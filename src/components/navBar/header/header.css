@@ -1,0 +1,234 @@
+.header {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+}
+
+.header_container {
+    width: 100%;
+    z-index: 1;
+    background: var(--background);
+}
+
+.header_content {
+    width: 100%;
+    height: 130px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header.scrolled .header_content {
+    height: 70px;
+}
+
+.logo {
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--on-background);
+}
+
+.header.scrolled .logo {
+    font-size: 24px;
+}
+
+.main_nav > ul > li {
+    display: inline-block;
+    position: relative;
+}
+
+.main_nav > ul > li:not(:last-child) {
+    margin-right: 46px;
+}
+
+.main_nav > ul > li > a {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--on-background);
+}
+
+.main_nav > ul > li > a:hover,
+.main_nav > ul > li > a.active {
+    color: var(--primary);
+}
+
+.main_nav ul li.hassubs::after {
+    position: absolute;
+    top: 50%;
+    left: calc(100% + 3px);
+    font-family: "FontAwesome", sans-serif;
+    font-size: 10px;
+    content: "\f078";
+    color: var(--on-background);
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.main_nav ul li:hover::after,
+.main_nav ul li.active::after {
+    color: var(--primary);
+}
+
+.hassubs ul {
+    position: absolute;
+    right: -15px;
+    top: calc(100% + 20px);
+    text-align: right;
+    background: var(--background);
+    padding: 25px 25px 25px 35px;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.hassubs:hover ul {
+    visibility: visible;
+    opacity: 1;
+    top: calc(100% + 0px);
+}
+
+.hassubs ul li:not(:last-child) {
+    margin-bottom: 11px;
+}
+
+.hassubs ul li a {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--on-background);
+}
+
+.hassubs ul li a:hover {
+    color: var(--primary);
+}
+
+.shopping_cart {
+    display: inline-block;
+}
+
+.shopping_cart a svg {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+    fill: var(--on-background);
+}
+
+.shopping_cart a:hover svg,
+.shopping_cart a:hover div {
+    fill: var(--primary);
+    color: var(--primary);
+}
+
+.shopping_cart a div {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--on-background);
+    margin-left: 13px;
+}
+
+.shopping_cart a.active div {
+    color: var(--primary);
+}
+
+.theme_icon {
+    display: inline-block;
+    margin-left: 15px;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.theme_icon i {
+    font-size: 15px;
+    color: var(--on-background);
+}
+
+.theme_icon i:hover {
+    color: var(--primary);
+}
+
+.hamburger {
+    display: none;
+    margin-left: 20px;
+    cursor: pointer;
+    margin-right: 4px;
+    vertical-align: middle;
+    -webkit-transform: translateY(2px);
+    -moz-transform: translateY(2px);
+    -ms-transform: translateY(2px);
+    -o-transform: translateY(2px);
+    transform: translateY(2px);
+}
+
+.hamburger i {
+    font-size: 18px;
+    color: var(--on-background);
+}
+
+
+@media only screen and (max-width: 1600px) {
+    .header_social {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 1199px) {
+    .header_container {
+        padding-left: 45px;
+        padding-right: 45px;
+    }
+
+    .header_container .container {
+        max-width: 100%;
+    }
+    .main_nav > ul > li:not(:last-child) {
+        margin-right: 40px;
+    }
+}
+
+@media only screen and (max-width: 992px) {
+    .header_container {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .main_nav,
+    .header_social {
+        display: none;
+    }
+
+    .hamburger {
+        display: inline-block;
+    }
+}
+
+
+/************
+12. 600px
+************/
+@media only screen and (max-width: 600px) {
+    .header_container {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .header_content {
+        height: 70px;
+    }
+
+    .logo,
+    .header.scrolled .logo {
+        font-size: 18px;
+    }
+    .main_container {
+        padding-top: 80px;
+        padding-bottom: 50px;
+    }
+}

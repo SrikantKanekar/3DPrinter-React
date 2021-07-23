@@ -1,0 +1,153 @@
+.menu {
+    position: fixed;
+    top: 0;
+    right: -400px;
+    width: 400px;
+    height: 100vh;
+    background: var(--menu-background);
+    z-index: 101;
+}
+
+.menu.active {
+    right: 0;
+}
+
+.menu_container {
+    width: 100%;
+    height: 0;
+    padding-top: 130px;
+}
+
+.menu.active .menu_container {
+    height: 500px;
+}
+
+.menu_content {
+    padding-left: 30px;
+    padding-right: 30px;
+    overflow: hidden;
+    text-align: right;
+}
+
+.menu_nav > li {
+    border-bottom: solid 1px var(--border-light);
+}
+
+.menu_item {
+    display: block;
+    position: relative;
+    vertical-align: middle;
+}
+
+.menu_item > a {
+    display: block;
+    color: var(--on-surface);
+    font-weight: 700;
+    line-height: 50px;
+    height: 50px;
+    font-size: 16px;
+}
+
+.menu_item > a:hover {
+    color: var(--on-surface-hover);
+}
+
+.menu_item a i {
+    display: none;
+    margin-left: 8px;
+}
+
+.menu_item.has-children > a > i {
+    display: inline-block;
+}
+
+.menu_selection {
+    margin: 0;
+    width: 100%;
+    height: 0;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.menu_selection li {
+    padding-right: 15px;
+    line-height: 40px;
+}
+
+.menu_selection li:last-child {
+    padding-bottom: 20px;
+}
+
+.menu_selection li a {
+    display: block;
+    color: var(--on-surface);
+    border-bottom: solid 1px var(--border-light);
+    font-size: 14px;
+}
+
+.menu_selection li a:hover {
+    color: var(--on-surface-hover);
+}
+
+.menu_selection li:last-child a {
+    border-bottom: none;
+}
+
+.menu_social {
+    position: absolute;
+    right: 30px;
+    bottom: 15px;
+}
+
+.menu_social ul li {
+    display: inline-block;
+}
+
+.menu_social ul li:not(:last-child) {
+    margin-right: 18px;
+}
+
+.menu_social ul li a i {
+    font-size: 16px;
+    color: var(--on-surface);
+    padding: 5px;
+}
+
+.menu_social ul li a i:hover {
+    color: var(--on-surface-hover);
+}
+
+.menu_close {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    cursor: pointer;
+}
+
+.menu_close i {
+    font-size: 16px;
+    color: var(--on-background);
+    padding: 5px;
+}
+
+
+/************
+12. 600px
+************/
+@media only screen and (max-width: 600px) {
+    .menu {
+        width: 100vw;
+        right: -100vw;
+    }
+
+    .menu_container {
+        padding-top: 80px;
+    }
+
+    .menu_item > a,
+    .menu_selection li a {
+        font-size: 13px;
+        height: 40px;
+        line-height: 40px;
+    }
+}

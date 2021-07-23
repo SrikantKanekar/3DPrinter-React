@@ -1,0 +1,161 @@
+* {
+    margin: 0;
+    padding: 0;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-shadow: rgba(0, 0, 0, 0.01) 0 0 1px;
+
+    -webkit-transition: all 300ms ease;
+    -moz-transition: all 300ms ease;
+    -o-transition: all 300ms ease;
+    transition: all 300ms ease;
+}
+
+:root {
+    --primary: #e86363;
+    --primary-variant: #e85051;
+    --background: #121212;
+    --surface: #1b1b1b;
+    --surface-hover: rgba(29, 29, 29, 0.64);
+    --error: #CF6679;
+    --success: #18d26e;
+    --on-primary: #000000;
+    --on-background: rgba(255, 255, 255, 0.87);
+    --on-surface: rgba(255, 255, 255, 0.6);
+    --on-surface-hover: rgba(255, 255, 255, 0.8);
+    --on-error: #000000;
+    --menu-background: #282828;
+    --border-light: rgba(255, 255, 255, 0.5);
+    --border-dark: rgba(255, 255, 255, 0.15);
+}
+
+.light_theme {
+    --primary: #d6383a;
+    --primary-variant: #da0000;
+    --background: #FFFFFF;
+    --surface: rgb(246, 246, 246);
+    --surface-hover: rgba(242, 244, 248, 0.66);
+    --error: #B00020;
+    --success: #61de4a;
+    --on-primary: #FFFFFF;
+    --on-background: #1b1b1b;
+    --on-surface: #767676;
+    --on-surface-hover: #5f5e5e;
+    --on-error: #FFFFFF;
+    --menu-background: #e4e4e4;
+    --border-light: #d0d0d0;
+    --border-dark: #1b1b1b;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    background: var(--background);
+    color: var(--on-surface);
+}
+
+div {
+    display: block;
+    position: relative;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+ul {
+    list-style: none;
+    margin-bottom: 0;
+}
+
+a,
+a:hover,
+a:visited,
+a:active,
+a:link {
+    text-decoration: none;
+    -webkit-font-smoothing: antialiased;
+    text-shadow: rgba(0, 0, 0, 0.01) 0 0 1px;
+}
+
+h1 {
+    font-size: 48px;
+}
+
+h2 {
+    font-size: 36px;
+}
+
+h3 {
+    font-size: 24px;
+}
+
+h4 {
+    font-size: 18px;
+}
+
+h5 {
+    font-size: 14px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Open Sans", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-shadow: rgba(0, 0, 0, 0.01) 0 0 1px;
+}
+
+section {
+    display: block;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.clearfix::before,
+.clearfix::after {
+    content: "";
+    display: table;
+}
+
+.clearfix::after {
+    clear: both;
+}
+
+.clearfix {
+    zoom: 1;
+}
+
+.super_container {
+    width: 100%;
+    overflow: hidden;
+}
+
+main {
+    min-height: 300vh;
+    padding-top: 150px;
+    padding-bottom: 100px;
+}
+
+@media only screen and (max-width: 992px){
+    main {
+        padding-bottom: 70px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    main {
+        padding-top: 80px;
+        padding-bottom: 50px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    p {
+        font-size: 13px;
+    }
+}
