@@ -37,7 +37,7 @@ class Header extends Component {
                             <div className="col">
                                 <div className="header_content">
                                     <div className="logo">
-                                        title
+                                        3D Printing
                                     </div>
 
                                     <nav className="main_nav">
