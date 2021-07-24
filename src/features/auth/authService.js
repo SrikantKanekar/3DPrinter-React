@@ -1,6 +1,6 @@
 import jwtDecode from "jwt-decode";
 import http from "../../services/httpService";
-import {apiUrl} from "../../config.json";
+import {apiUrl} from "../../config.json"
 
 const apiEndpoint = apiUrl + "/auth";
 const tokenKey = "token";
@@ -20,6 +20,10 @@ export async function register(user) {
         password2: user.password2
     });
     localStorage.setItem(tokenKey, data);
+}
+
+export async function resetPassword(data) {
+    await http.put(`${apiEndpoint}/reset-password`, data);
 }
 
 export function logout() {
@@ -42,6 +46,7 @@ export function getJwt() {
 export default {
     login,
     register,
+    resetPassword,
     logout,
     getCurrentUser,
     getJwt
