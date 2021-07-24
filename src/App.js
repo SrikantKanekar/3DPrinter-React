@@ -4,12 +4,13 @@ import {setupTheme, toggleTheme} from "./util/theme";
 import {ToastContainer} from "react-toastify";
 import NotFound from "./components/notFound";
 import NavBar from "./components/navBar/navBar";
-import Home from "./components/home";
-import LoginForm from "./features/auth/loginForm";
-import RegisterForm from "./features/auth/registerForm";
+import Home from "./features/util/home";
 import Account from "./features/account/account";
-import Logout from "./features/auth/logout";
+import Logout from "./features/auth/logout/logout";
 import auth from "./features/auth/authService";
+import Footer from "./components/footer/footer";
+import Login from "./features/auth/login/login";
+import Register from "./features/auth/register/register";
 import "bootstrap/dist/css/bootstrap.css";
 import "font-awesome/css/font-awesome.css";
 import "react-toastify/dist/ReactToastify.css";
@@ -37,17 +38,23 @@ class App extends Component {
                     theme={theme}
                     toggleTheme={toggleTheme}
                 />
-                <main className="container">
+                <main>
                     <Switch>
-                        <Route path="/login" component={LoginForm}/>
-                        <Route path="/register" component={RegisterForm}/>
+                        <Route path="/login" component={Login}/>
+                        <Route path="/register" component={Register}/>
                         <Route path="/logout" component={Logout}/>
-                        <Route path="/account" component={Account}/>
+                        <Route
+                            path="/account"
+                            render={(props) => (
+                                <Account {...props} user={user}/>
+                            )}
+                        />
                         <Route path="/not-found" component={NotFound}/>
                         <Route path="/" exact component={Home}/>
                         <Redirect to="/not-found"/>
                     </Switch>
                 </main>
+                <Footer/>
             </Fragment>
         );
     }

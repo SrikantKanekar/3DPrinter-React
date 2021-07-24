@@ -1,0 +1,149 @@
+label {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--on-surface);
+}
+
+input {
+    width: 100%;
+    height: 52px;
+    background: var(--surface);
+    color: var(--on-surface);
+    border: none;
+    outline: none;
+    padding-left: 15px;
+}
+
+textarea {
+    width: 100%;
+    background: var(--surface);
+    color: var(--on-surface);
+    border: none;
+    outline: none;
+    padding: 15px;
+}
+
+/* removed autofill colours */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px var(--surface) inset !important;
+    -webkit-text-fill-color: var(--on-surface) !important;
+}
+
+/* remove input number arrows */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+/* password show/hide */
+.btn-show-pass {
+    font-size: 15px;
+    color: var(--on-surface);
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    z-index: 5;
+    height: 100%;
+    top: 0;
+    right: 25px;
+    padding: 0 5px;
+    cursor: pointer;
+}
+
+.btn-show-pass:hover {
+    color: var(--primary);
+}
+
+.btn-show-pass.active {
+    color: var(--on-background);
+}
+
+.alert-validate .btn-show-pass {
+    visibility: hidden;
+}
+
+.validate-input {
+    position: relative;
+}
+
+.alert-validate::before {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    content: attr(data-validate);
+    position: absolute;
+    z-index: 1;
+    max-width: 90%;
+    background-color: var(--surface);
+    border: 1px solid var(--primary);
+    border-radius: 14px;
+    padding: 4px 25px 4px 10px;
+    top: 50%;
+    right: 10px;
+    pointer-events: none;
+    color: var(--primary);
+    font-size: 13px;
+    line-height: 1.4;
+    text-align: left;
+    visibility: hidden;
+    opacity: 0;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.alert-validate::after {
+    content: "\f06a";
+    font-family: "FontAwesome", sans-serif;
+    display: block;
+    position: absolute;
+    z-index: 1;
+    color: var(--primary);
+    font-size: 16px;
+    top: 50%;
+    right: 16px;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.alert-validate:hover:before {
+    visibility: visible;
+    opacity: 1;
+}
+
+@media only screen and (max-width: 992px) {
+    .alert-validate::before {
+        visibility: visible;
+        opacity: 1;
+    }
+}
+
+
+/************
+12. 600px
+************/
+@media only screen and (max-width: 600px) {
+    input {
+        height: 45px;
+    }
+}

@@ -136,7 +136,7 @@ section {
 }
 
 main {
-    min-height: 300vh;
+    min-height: 100vh;
     padding-top: 150px;
     padding-bottom: 100px;
 }

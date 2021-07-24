@@ -1,12 +1,14 @@
 import React from "react";
 import Joi from "joi-browser";
-import Form from "../../components/form/form";
-import auth from "./authService";
+import Form from "../../../components/form/form";
+import auth from "../authService";
+import FormContainer from "../../../components/form/formContainer";
 
 class RegisterForm extends Form {
     state = {
-        data: { email: "", username: "", password1: "", password2: "" },
-        errors: {}
+        data: {email: "", username: "", password1: "", password2: ""},
+        errors: {},
+        formError: ''
     };
 
     schema = {
@@ -17,7 +19,7 @@ class RegisterForm extends Form {
         username: Joi.string()
             .required()
             .min(3)
-            .max(50)
+            .max(55)
             .label("Username"),
         password1: Joi.string()
             .required()
@@ -35,25 +37,24 @@ class RegisterForm extends Form {
             window.location = "/";
         } catch (ex) {
             if (ex.response && ex.response.status === 400) {
-                const errors = { ...this.state.errors };
-                errors.email = ex.response.data;
-                this.setState({ errors });
+                this.setState({formError: ex.response.data});
             }
         }
     };
 
     render() {
         return (
-            <div>
-                <h1>Register</h1>
-                <form onSubmit={this.handleSubmit}>
-                    {this.renderInput("email", "Email", "email")}
-                    {this.renderInput("username", "Username")}
-                    {this.renderInput("password1", "Password", "password")}
-                    {this.renderInput("password2", "Confirm Password", "password")}
-                    {this.renderButton("Register")}
-                </form>
-            </div>
+            <FormContainer
+                title="Register"
+                button="Register"
+                errors={this.validate()}
+                formError={this.state.formError}
+                onSubmit={this.handleSubmit}>
+                {this.renderInput("email", "Email", "email")}
+                {this.renderInput("username", "Username")}
+                {this.renderInput("password1", "Password", "password")}
+                {this.renderInput("password2", "Confirm Password", "password")}
+            </FormContainer>
         );
     }
 }

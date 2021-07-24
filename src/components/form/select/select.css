@@ -1,0 +1,37 @@
+label {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--on-surface);
+}
+
+.dropdown_item_select {
+    /*background-image: url(/static/images/down.png);*/
+    background-position: center right;
+    background-repeat: no-repeat;
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--on-background) !important;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    -webkit-box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+    -webkit-user-select: none;
+}
+
+.dropdown_item_select::-ms-expand {
+    display: none;
+}
+
+/* removed autofill colours */
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus,
+select:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px var(--surface) inset !important;
+    -webkit-text-fill-color: var(--on-surface) !important;
+}

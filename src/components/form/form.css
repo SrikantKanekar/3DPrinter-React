@@ -1,0 +1,37 @@
+.form_title {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--on-background);
+    justify-content: center;
+}
+
+.form_subtitle {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--on-surface);
+    margin-top: 3px;
+}
+
+.form_container {
+    width: 100%;
+    margin-top: 46px;
+}
+
+form > div:not(:last-child) {
+    margin-bottom: 25px;
+}
+
+.form_message {
+    margin-top: 10px;
+    margin-left: 5px;
+    font-weight: 500;
+    color: var(--error);
+}
+
+.form_message.success {
+    color: var(--success);
+}
+
+.form_button {
+    margin: 30px auto auto;
+}

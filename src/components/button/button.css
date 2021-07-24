@@ -1,0 +1,86 @@
+.button {
+    margin: auto;
+    width: 178px;
+    height: 61px;
+    background: none;
+    text-align: center;
+    border: solid 2px var(--border-dark);
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.button a {
+    display: block;
+    position: relative;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 57px;
+    color: var(--on-background);
+    background: none;
+    z-index: 1;
+}
+
+.button button {
+    width: 100%;
+    position: relative;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 57px;
+    color: var(--on-background);
+    background: none;
+    border: none;
+    z-index: 1;
+}
+
+.button::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 150%;
+    height: 100%;
+    background: var(--on-background);
+    z-index: 0;
+    opacity: 0;
+
+    -webkit-transform: rotate3d(0, 0, 1, -45deg) translate3d(0, -3em, 0);
+    -moz-transform: rotate3d(0, 0, 1, -45deg) translate3d(0, -3em, 0);
+    -o-transform: rotate3d(0, 0, 1, -45deg) translate3d(0, -3em, 0);
+    transform: rotate3d(0, 0, 1, -45deg) translate3d(0, -3em, 0);
+
+    -webkit-transform-origin: 0 100%;
+    -moz-transform-origin: 0 100%;
+    -o-transform-origin: 0 100%;
+    transform-origin: 0 100%;
+
+    -webkit-transition: -webkit-transform 0.3s, opacity 0.3s, background-color 0.3s;
+    -moz-transition: -webkit-transform 0.3s, opacity 0.3s, background-color 0.3s;
+    -o-transition: -webkit-transform 0.3s, opacity 0.3s, background-color 0.3s;
+    transition: transform 0.3s, opacity 0.3s, background-color 0.3s;
+}
+
+.button:hover::after {
+    opacity: 1;
+    -webkit-transform: rotate3d(0, 0, 1, 0deg);
+    transform: rotate3d(0, 0, 1, 0deg);
+    -webkit-transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+    -moz-transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+    -o-transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+    transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+.button:hover {
+    border: solid 2px var(--surface);
+}
+
+.button.disabled {
+    border: solid 2px var(--primary);
+}
+
+.button:hover a {
+    color: var(--surface);
+}
+
+.button:hover button {
+    color: var(--surface);
+}
