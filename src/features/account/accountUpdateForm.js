@@ -2,7 +2,7 @@ import React from 'react';
 import Form from "../../components/form/form";
 import FormContainer from "../../components/form/formContainer";
 import Joi from "joi-browser";
-import account from "./accountService";
+import account from "../../services/accountService";
 
 class AccountUpdateForm extends Form {
     state = {
@@ -22,7 +22,7 @@ class AccountUpdateForm extends Form {
     doSubmit = async () => {
         try {
             const {data} = this.state;
-            await account.updateAccount(data.username)
+            await account.update(data)
         } catch (ex) {
             if (ex.response && ex.response.status === 400) {
                 this.setState({formError: ex.response.data});

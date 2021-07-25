@@ -1,5 +1,5 @@
 import { Component } from "react";
-import auth from "../authService";
+import auth from "../../../services/authService";
 
 class Logout extends Component {
     componentDidMount() {

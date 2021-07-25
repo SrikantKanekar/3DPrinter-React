@@ -20,10 +20,12 @@ function setJwt(jwt) {
     axios.defaults.headers.common = {'Authorization': `Bearer ${jwt}`};
 }
 
-export default {
+const http = {
     get: axios.get,
     post: axios.post,
     put: axios.put,
     delete: axios.delete,
     setJwt
-};
+}
+
+export default http

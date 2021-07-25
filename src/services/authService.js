@@ -1,29 +1,24 @@
 import jwtDecode from "jwt-decode";
-import http from "../../services/httpService";
-import {apiUrl} from "../../config.json"
+import http from "./httpService";
+import {apiUrl} from "../config.json"
 
 const apiEndpoint = apiUrl + "/auth";
 const tokenKey = "token";
 
 http.setJwt(getJwt());
 
-export async function login(email, password) {
-    const {data} = await http.post(`${apiEndpoint}/login`, {email, password});
+export async function login(credentials) {
+    const {data} = await http.post(`${apiEndpoint}/login`, credentials);
     localStorage.setItem(tokenKey, data);
 }
 
 export async function register(user) {
-    const {data} = await http.post(`${apiEndpoint}/register`, {
-        email: user.email,
-        username: user.username,
-        password1: user.password1,
-        password2: user.password2
-    });
+    const {data} = await http.post(`${apiEndpoint}/register`, user);
     localStorage.setItem(tokenKey, data);
 }
 
 export async function resetPassword(data) {
-    await http.put(`${apiEndpoint}/reset-password`, data);
+    return await http.put(`${apiEndpoint}/reset-password`, data);
 }
 
 export function logout() {
@@ -43,11 +38,13 @@ export function getJwt() {
     return localStorage.getItem(tokenKey);
 }
 
-export default {
+const auth = {
     login,
     register,
     resetPassword,
     logout,
     getCurrentUser,
     getJwt
-};
+}
+
+export default auth

@@ -7,7 +7,7 @@ import NavBar from "./components/navBar/navBar";
 import Home from "./features/util/home";
 import Account from "./features/account/account";
 import Logout from "./features/auth/logout/logout";
-import auth from "./features/auth/authService";
+import auth from "./services/authService";
 import Footer from "./components/footer/footer";
 import Login from "./features/auth/login/login";
 import Register from "./features/auth/register/register";
