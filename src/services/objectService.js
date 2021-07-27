@@ -1,7 +1,6 @@
-import {apiUrl} from "../config.json";
 import http from "./httpService";
 
-const apiEndpoint = apiUrl + "/objects";
+const apiEndpoint = "/objects";
 
 async function getAll() {
     return await http.get(apiEndpoint);
@@ -31,7 +30,7 @@ async function deleteObject(id) {
     return await http.delete(`${apiEndpoint}/${id}`);
 }
 
-const object = {
+const obj = {
     getAll,
     get,
     create,
@@ -41,4 +40,4 @@ const object = {
     deleteObject
 }
 
-export default object
+export default obj

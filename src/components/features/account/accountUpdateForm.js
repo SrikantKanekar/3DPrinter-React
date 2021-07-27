@@ -1,15 +1,21 @@
 import React from 'react';
-import Form from "../../components/form/form";
-import FormContainer from "../../components/form/formContainer";
 import Joi from "joi-browser";
-import account from "../../services/accountService";
+import Form from "../../form/form";
+import account from "../../../services/accountService";
+import FormContainer from "../../form/formContainer";
+import auth from "../../../services/authService";
 
 class AccountUpdateForm extends Form {
     state = {
-        data: {username: this.props.user.username},
+        data: {username: ''},
         errors: {},
         formError: ''
     };
+
+    componentDidMount() {
+        const user = auth.getCurrentUser()
+        this.setState({data: {username: user.username}})
+    }
 
     schema = {
         username: Joi.string()

@@ -2,23 +2,33 @@ import React, {Component} from 'react';
 import "./account.css"
 import AccountUpdateForm from "./accountUpdateForm";
 import ResetPasswordForm from "./resetPasswordForm";
+import auth from "../../../services/authService";
 
 class Account extends Component {
+    state = {
+        user: ''
+    }
+
+    componentDidMount() {
+        const user = auth.getCurrentUser()
+        this.setState({user})
+    }
+
     render() {
-        const {username, email} = this.props.user
+        const user = this.state.user
 
         return (
             <div className="container">
 
                 <div className="account_detail_container">
-                    <p>Username : {username}</p>
-                    <p>Email : {email}</p>
+                    <p>Username : {user.username}</p>
+                    <p>Email : {user.email}</p>
                 </div>
 
                 <button className="collapsible">Update Account</button>
                 <div className="collapsible_content col-lg-10">
                     <div className="update_form_container">
-                        <AccountUpdateForm user={this.props.user}/>
+                        <AccountUpdateForm />
                     </div>
                 </div>
 

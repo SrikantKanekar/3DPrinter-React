@@ -1,8 +1,8 @@
 import React from 'react';
-import Form from "../../components/form/form";
-import FormContainer from "../../components/form/formContainer";
+import Form from "../../form/form";
+import FormContainer from "../../form/formContainer";
+import auth from "../../../services/authService";
 import Joi from "joi-browser";
-import auth from "../../services/authService";
 
 class ResetPasswordForm extends Form {
     state = {

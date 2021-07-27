@@ -44,7 +44,7 @@ class Header extends Component {
                                         <ul>
                                             <li><NavLink exact={true} to="/">Home</NavLink></li>
                                             <li><NavLink to="/objects/create">Create</NavLink></li>
-                                            <li><NavLink to="/objects">My Objects</NavLink></li>
+                                            <li><NavLink exact to="/objects">My Objects</NavLink></li>
 
                                             {user && (
                                                 <li className="hassubs">

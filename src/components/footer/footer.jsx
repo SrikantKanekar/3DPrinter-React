@@ -21,23 +21,21 @@ class Footer extends Component {
                                     <Link to="/">3D Printing</Link>
                                 </div>
                                 <div className="copyright ml-auto mr-auto">
-                                    {/* Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0 */}
-                                    Copyright &copy; All rights reserved | This template is made with <i className="fa fa-heart-o" aria-hidden="true"/> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-                                    {/* Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0 */}
+                                    Copyright &copy; All rights reserved | This template is made with <i className="fa fa-heart-o" aria-hidden="true"/> by Colorlib
                                 </div>
                                 <div className="footer_social ml-lg-auto">
                                     <ul>
                                         <li>
-                                            <a href="#"><i className="fa fa-pinterest" aria-hidden="true"/></a>
+                                            <Link to="#"><i className="fa fa-pinterest" aria-hidden="true"/></Link>
                                         </li>
                                         <li>
-                                            <a href="#"><i className="fa fa-instagram" aria-hidden="true"/></a>
+                                            <Link to="#"><i className="fa fa-instagram" aria-hidden="true"/></Link>
                                         </li>
                                         <li>
-                                            <a href="#"><i className="fa fa-facebook" aria-hidden="true"/></a>
+                                            <Link to="#"><i className="fa fa-facebook" aria-hidden="true"/></Link>
                                         </li>
                                         <li>
-                                            <a href="#"><i className="fa fa-twitter" aria-hidden="true"/></a>
+                                            <Link to="#"><i className="fa fa-twitter" aria-hidden="true"/></Link>
                                         </li>
                                     </ul>
                                 </div>

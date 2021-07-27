@@ -2,6 +2,10 @@ import axios from "axios";
 import logger from "./logService";
 import {toast} from "react-toastify";
 
+setupJwtHeader()
+
+axios.defaults.baseURL = process.env.REACT_APP_API_URL
+
 axios.interceptors.response.use(null, error => {
     const expectedError =
         error.response &&
@@ -10,13 +14,14 @@ axios.interceptors.response.use(null, error => {
 
     if (!expectedError) {
         logger.log(error);
-        toast.error("An unexpected error occurred.");
+        toast.dark("An unexpected error occurred.");
     }
 
     return Promise.reject(error);
 });
 
-function setJwt(jwt) {
+function setupJwtHeader() {
+    const jwt = localStorage.getItem('token');
     axios.defaults.headers.common = {'Authorization': `Bearer ${jwt}`};
 }
 
@@ -25,7 +30,7 @@ const http = {
     post: axios.post,
     put: axios.put,
     delete: axios.delete,
-    setJwt
+    setJwt: setupJwtHeader
 }
 
 export default http

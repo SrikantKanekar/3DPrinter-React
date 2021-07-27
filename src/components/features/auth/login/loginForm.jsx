@@ -1,9 +1,9 @@
 import React from "react";
 import {Redirect} from "react-router-dom";
 import Joi from "joi-browser";
-import Form from "../../../components/form/form";
-import auth from "../../../services/authService";
-import FormContainer from "../../../components/form/formContainer";
+import auth from "../../../../services/authService";
+import FormContainer from "../../../form/formContainer";
+import Form from "../../../form/form";
 
 class LoginForm extends Form {
     state = {

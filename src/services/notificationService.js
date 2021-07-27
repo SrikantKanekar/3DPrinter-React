@@ -1,7 +1,6 @@
-import {apiUrl} from "../config.json";
 import http from "./httpService";
 
-const apiEndpoint = apiUrl + "/notifications";
+const apiEndpoint = "/notifications";
 
 async function getAll() {
     return await http.get(apiEndpoint);

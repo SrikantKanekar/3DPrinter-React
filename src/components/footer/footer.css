@@ -56,3 +56,42 @@
 .footer_social ul li a i:hover {
     color: var(--primary);
 }
+
+
+/************
+11. 992px
+************/
+@media only screen and (max-width: 992px) {
+    .footer_content {
+        height: 200px;
+    }
+
+    .footer_logo,
+    .copyright,
+    .footer_social {
+        text-align: center;
+        width: 100%;
+    }
+
+    .copyright {
+        margin-top: 15px;
+    }
+
+    .footer_social {
+        margin-top: 21px;
+    }
+}
+
+
+/************
+12. 600px
+************/
+@media only screen and (max-width: 600px) {
+    .copyright {
+        font-size: 10px;
+    }
+
+    .footer_logo a {
+        font-size: 20px;
+    }
+}

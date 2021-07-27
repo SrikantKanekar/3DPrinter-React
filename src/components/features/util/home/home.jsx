@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Link} from "react-router-dom";
-import Button from "../../components/button/button";
+import Button from "../../../button/button";
 import "boxicons/css/boxicons.css";
 import "bootstrap-icons/font/bootstrap-icons.css"
 import "./home.css"
@@ -9,7 +9,6 @@ class Home extends Component {
     render() {
         return (
             <div>
-
                 <div className="hero">
                     <div className="hero_text">
                         Welcome

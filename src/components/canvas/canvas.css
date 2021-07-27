@@ -1,0 +1,72 @@
+.canvas_container {
+    position: relative;
+    width: 100%;
+    height: calc(100vh - 180px);
+}
+
+.canvas_container canvas {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+#gui{
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+#gui input {
+    height: 19px;
+}
+
+.canvas_overlay {
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background: var(--background);
+}
+
+.spinner_container {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px var(--background) solid;
+    border-top: 4px var(--primary) solid;
+    border-radius: 50%;
+    animation: sp-anime 0.8s infinite linear;
+}
+
+@keyframes sp-anime {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.canvas_error_container {
+    position: absolute;
+    display: flex;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background: var(--background);
+    justify-content: center;
+    align-items: center;
+}
+
+.canvas_error_container > div {
+    max-width: 80%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 18px;
+    font-weight: 550;
+    color: var(--error);
+}

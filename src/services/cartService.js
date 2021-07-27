@@ -1,24 +1,23 @@
-import {apiUrl} from "../config.json";
 import http from "./httpService";
 
-const apiEndpoint = apiUrl + "/cart";
+const apiEndpoint = "/cart";
 
-async function getCart() {
+async function get() {
     return await http.get(apiEndpoint);
 }
 
-async function addToCart(id) {
+async function add(id) {
     return await http.post(`${apiEndpoint}/${id}`);
 }
 
-async function removeFromCart(id) {
+async function remove(id) {
     return await http.delete(`${apiEndpoint}/${id}`);
 }
 
 const cart = {
-    getCart,
-    addToCart,
-    removeFromCart
+    get,
+    add,
+    remove
 }
 
 export default cart

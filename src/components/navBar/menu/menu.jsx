@@ -22,7 +22,7 @@ class Menu extends Component {
                             </li>
 
                             <li className="menu_item">
-                                <NavLink to="/objects">My Objects<i className="fa fa-angle-down"/></NavLink>
+                                <NavLink exact to="/objects">My Objects<i className="fa fa-angle-down"/></NavLink>
                             </li>
 
                             {user && (

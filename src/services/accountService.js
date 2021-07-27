@@ -1,7 +1,6 @@
 import http from "./httpService";
-import {apiUrl} from "../config.json";
 
-const apiEndpoint = apiUrl + "/account";
+const apiEndpoint = "/account";
 
 async function get() {
     return await http.get(apiEndpoint)

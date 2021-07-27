@@ -1,7 +1,6 @@
-import {apiUrl} from "../config.json";
 import http from "./httpService";
 
-const apiEndpoint = apiUrl + "/admin";
+const apiEndpoint = "/admin";
 
 async function getAllActiveOrders() {
     return await http.get(apiEndpoint);
