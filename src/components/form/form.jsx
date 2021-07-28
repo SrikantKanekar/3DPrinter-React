@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import Joi from "joi-browser";
 import Input from "./input/input";
 import Select from "./select/select";
+import Checkbox from "./checkbox/checkbox";
 
 class Form extends Component {
     state = {
@@ -38,6 +39,8 @@ class Form extends Component {
     };
 
     handleChange = ({currentTarget: input}) => {
+        console.log(input.value)
+
         const errors = {...this.state.errors};
         const errorMessage = this.validateProperty(input);
         if (errorMessage) errors[input.name] = errorMessage;
@@ -68,11 +71,23 @@ class Form extends Component {
         return (
             <Select
                 name={name}
-                value={data[name]}
                 label={label}
                 options={options}
+                value={data[name]}
                 onChange={this.handleChange}
                 error={errors[name]}
+            />
+        );
+    }
+
+    renderCheckbox(name, label) {
+        const {data} = this.state;
+        return (
+            <Checkbox
+                name={name}
+                value={data[name]}
+                label={label}
+                onChange={this.handleChange}
             />
         );
     }

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Button from "../../../button/button";
 import "./create.css"
 import {toast} from "react-toastify";
-import obj from "../../../../services/objectService";
+import objectService from "../../../../services/objectService";
 import Canvas from "../../../canvas/canvas";
 import Firebase from "../../../../services/firebaseService";
 
@@ -94,7 +94,7 @@ class Create extends Component {
                                 fileExtension: this.getFileExtension()
                             }
                             try {
-                                const result = await obj.create(request)
+                                const result = await objectService.create(request)
                                 this.props.history.replace("/objects/" + result.data.id)
                             } catch (ex) {
                                 this.showError(ex.response.data)

@@ -14,8 +14,8 @@ async function updateOrderStatus(status, id) {
     return await http.put(`${apiEndpoint}/order-status/${id}`, status);
 }
 
-async function updatePrintingStatus(status) {
-    return await http.put(`${apiEndpoint}/printing-status`, status);
+async function updatePrintingStatus(request) {
+    return await http.put(`${apiEndpoint}/printing-status`, request);
 }
 
 const admin = {

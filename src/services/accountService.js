@@ -11,7 +11,7 @@ async function update(account) {
 }
 
 async function updateAddress(address) {
-    return await http.post(apiEndpoint, address)
+    return await http.post(`${apiEndpoint}/address`, address)
 }
 
 const account = {

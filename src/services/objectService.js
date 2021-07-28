@@ -30,7 +30,7 @@ async function deleteObject(id) {
     return await http.delete(`${apiEndpoint}/${id}`);
 }
 
-const obj = {
+const objectService = {
     getAll,
     get,
     create,
@@ -40,4 +40,4 @@ const obj = {
     deleteObject
 }
 
-export default obj
+export default objectService

@@ -7,7 +7,7 @@ async function get() {
 }
 
 async function proceed() {
-    return await http.post(`${apiEndpoint}/proceed`);
+    return await http.post(`${apiEndpoint}/proceed`, {success: true});
 }
 
 const checkout = {

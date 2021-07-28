@@ -36,7 +36,7 @@ class Menu extends Component {
                                             <Link to="/orders">Orders<i className="fa fa-angle-down"/></Link>
                                         </li>
                                         <li className="menu_item">
-                                            <Link to="/notification">
+                                            <Link to="/notifications">
                                                 Notifications<i className="fa fa-angle-down"/>
                                             </Link>
                                         </li>
@@ -44,6 +44,12 @@ class Menu extends Component {
                                             <Link to="/account/logout">Logout<i className="fa fa-angle-down"/></Link>
                                         </li>
                                     </ul>
+                                </li>
+                            )}
+
+                            {user.isAdmin && (
+                                <li className="menu_item">
+                                    <NavLink to="/admin">Admin<i className="fa fa-angle-down"/></NavLink>
                                 </li>
                             )}
                         </ul>

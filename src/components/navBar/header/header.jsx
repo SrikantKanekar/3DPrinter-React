@@ -57,7 +57,7 @@ class Header extends Component {
                                                             <Link to="/orders">Orders</Link>
                                                         </li>
                                                         <li>
-                                                            <Link to="/notification">Notifications</Link>
+                                                            <Link to="/notifications">Notifications</Link>
                                                         </li>
                                                         <li>
                                                             <Link to="/logout">Logout</Link>
@@ -65,6 +65,7 @@ class Header extends Component {
                                                     </ul>
                                                 </li>
                                             )}
+                                            {user.isAdmin && <li><NavLink to="/admin">Admin</NavLink></li>}
                                         </ul>
                                     </nav>
 
