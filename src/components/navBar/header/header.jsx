@@ -65,7 +65,7 @@ class Header extends Component {
                                                     </ul>
                                                 </li>
                                             )}
-                                            {user.isAdmin && <li><NavLink to="/admin">Admin</NavLink></li>}
+                                            {user && user.isAdmin && <li><NavLink to="/admin">Admin</NavLink></li>}
                                         </ul>
                                     </nav>
 

@@ -47,7 +47,7 @@ class Menu extends Component {
                                 </li>
                             )}
 
-                            {user.isAdmin && (
+                            {user && user.isAdmin && (
                                 <li className="menu_item">
                                     <NavLink to="/admin">Admin<i className="fa fa-angle-down"/></NavLink>
                                 </li>
