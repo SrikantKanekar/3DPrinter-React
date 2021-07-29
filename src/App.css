@@ -20,6 +20,7 @@
     --surface-hover: rgba(29, 29, 29, 0.64);
     --error: #CF6679;
     --success: #18d26e;
+    --warning: #e8bd39;
     --on-primary: #000000;
     --on-background: rgba(255, 255, 255, 0.87);
     --on-surface: rgba(255, 255, 255, 0.6);
@@ -38,6 +39,7 @@
     --surface-hover: rgba(242, 244, 248, 0.66);
     --error: #B00020;
     --success: #61de4a;
+    --warning: #e8bd39;
     --on-primary: #FFFFFF;
     --on-background: #1b1b1b;
     --on-surface: #767676;
@@ -141,6 +143,12 @@ main {
     padding-top: 150px;
     padding-bottom: 100px;
 }
+
+.progress-bar {
+    background-color: var(--primary);
+}
+
+
 
 @media only screen and (max-width: 992px){
     main {

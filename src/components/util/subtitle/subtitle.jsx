@@ -4,7 +4,7 @@ import "./subtitle.css"
 class Subtitle extends Component {
     render() {
         return (
-            <div className="subtitle">
+            <div className="section_subtitle">
                 {this.props.children}
             </div>
         );

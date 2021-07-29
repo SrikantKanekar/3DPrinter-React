@@ -204,7 +204,13 @@ class Create extends Component {
                             sizeError={this.handleSizeError}/>
 
                         <div className="canvas_info">
-                            <div className="canvas_name" contentEditable="true">{this.state.filename}</div>
+                            <div
+                                className="canvas_name"
+                                contentEditable="true"
+                                onChange={e => this.setState({filename: e.currentTarget.textContent})}
+                                suppressContentEditableWarning={true}>
+                                {this.state.filename}
+                            </div>
                             {sizeError && (
                                 <div className="canvas_size_error">
                                     Maximum dimension should be less than 200x200x250 mm

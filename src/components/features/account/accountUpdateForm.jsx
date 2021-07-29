@@ -30,10 +30,10 @@ class AccountUpdateForm extends Form {
         try {
             const {data} = this.state;
             await account.update(data)
-            this.setState({formSuccess: "Updated"})
-        } catch (ex) {
-            if (ex.response && ex.response.status === 400) {
-                this.setState({formError: ex.response.data});
+            this.setState({formSuccess: "Successfully Updated"})
+        } catch (e) {
+            if (e.response && e.response.status === 400) {
+                this.setState({formError: e.response.data});
             }
         }
     }

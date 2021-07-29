@@ -15,7 +15,7 @@ class Account extends Component {
     }
 
     render() {
-        const user = this.state.user
+        const {user} = this.state
 
         return (
             <div className="container">

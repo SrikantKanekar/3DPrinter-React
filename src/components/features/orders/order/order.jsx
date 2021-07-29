@@ -1,11 +1,12 @@
 import React, {Component, Fragment} from 'react';
-import "./order.css"
+import {Link} from "react-router-dom";
 import order from "../../../../services/orderService";
 import auth from "../../../../services/authService";
-import {Link} from "react-router-dom";
-import NotificationForm from "./notificationForm";
 import admin from "../../../../services/adminService";
 import {toast} from "react-toastify";
+import NotificationForm from "./notificationForm";
+import "./order.css"
+import Button from "../../../util/button/button";
 
 class Order extends Component {
     state = {
@@ -15,17 +16,22 @@ class Order extends Component {
     }
 
     async componentDidMount() {
-        const {data} = await order.get(this.props.match.params.id)
-        const user = auth.getCurrentUser()
-
-        this.setState({
-            order: data.order,
-            objects: data.objects,
-            isAdmin: user.isAdmin
-        })
+        try {
+            const {data} = await order.get(this.props.match.params.id)
+            const user = auth.getCurrentUser()
+            this.setState({
+                order: data.order,
+                objects: data.objects,
+                isAdmin: user.isAdmin
+            })
+        } catch (e) {
+            if (e.response && e.response.status === 404) {
+                this.props.history.replace("/not-found");
+            }
+        }
     }
 
-    handleStatusUpdate = async (object, status) => {
+    updatePrintingStatus = async (status, object) => {
         try {
             const request = {
                 orderId: this.state.order.id,
@@ -42,23 +48,22 @@ class Order extends Component {
         }
     }
 
-    handleNotificationSubmit = async (data) => {
-        const notification = {
-            email: this.state.order.userEmail,
-            subject: data.subject,
-            body: data.body
-        }
-        await admin.sendNotification(notification)
+    isCompleted = (object, statusId) => {
+        return statusId <= this.printingStatus.find(it => it.name === object.printingStatus).id
+    }
+
+    isNotAllowed = (object, statusId) => {
+        return statusId > this.printingStatus.find(it => it.name === object.printingStatus).id + 1
     }
 
     render() {
-        const {objects, isAdmin} = this.state
+        const {order, objects, isAdmin} = this.state
 
         return (
             <div className="container">
-                <div className="row">
+                <div className="objects_container">
                     {objects.map(object =>
-                        <div className="col-3 product" key={object.id}>
+                        <div className="product" key={object.id}>
                             <div className="product_image">
                                 <img src={object.imageUrl} alt=""/>
                             </div>
@@ -73,16 +78,16 @@ class Order extends Component {
                                 {isAdmin && (
                                     <Fragment>
                                         <div className="product_id">ID : {object.id}</div>
-                                        <div className='btn-group' role='group'>
-                                            <div data-status="0" className="button admin pending disabled">
-                                                <a href="/">Pending</a>
-                                            </div>
-                                            <div data-status="1" className="button admin printing">
-                                                <a href="/">Printing</a>
-                                            </div>
-                                            <div data-status="2" className="button admin printed">
-                                                <a href="/">Printed</a>
-                                            </div>
+                                        <div className='status_buttons'>
+                                            {this.printingStatus.map(status =>
+                                                <Button
+                                                    key={status.id}
+                                                    label={status.name}
+                                                    errors={this.isNotAllowed(object, status.id)}
+                                                    completed={this.isCompleted(object, status.id)}
+                                                    onClick={() => this.updatePrintingStatus(status.name, object)}
+                                                />
+                                            )}
                                         </div>
                                     </Fragment>
                                 )}
@@ -94,13 +99,19 @@ class Order extends Component {
                 {isAdmin && (
                     <div className="row">
                         <div className="message_section col-lg-6">
-                            <NotificationForm onSubmit={data => this.handleNotificationSubmit(data)}/>
+                            <NotificationForm email={order.userEmail}/>
                         </div>
                     </div>
                 )}
             </div>
         );
     }
+
+    printingStatus = [
+        {id: 0, name: "PENDING"},
+        {id: 1, name: "PRINTING"},
+        {id: 2, name: "PRINTED"}
+    ]
 }
 
 export default Order;

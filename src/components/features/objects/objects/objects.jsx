@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import objectService from "../../../../services/objectService";
 import {Link} from "react-router-dom";
-import "./objects.css"
 import cart from "../../../../services/cartService";
 import {toast} from "react-toastify";
+import "./objects.css"
 
 class Objects extends Component {
     state = {
@@ -11,8 +11,13 @@ class Objects extends Component {
     }
 
     async componentDidMount() {
-        const {data: objects} = await objectService.getAll()
-        this.setState({objects})
+        try {
+            const {data: objects} = await objectService.getAll()
+            this.setState({objects})
+        } catch (e) {
+            toast.dark(e.message)
+        }
+
     }
 
     handleAddToCart = async (e, object) => {
@@ -23,8 +28,7 @@ class Objects extends Component {
             const index = objects.indexOf(object)
             objects[index].status = "CART"
             this.setState({objects})
-        }
-        catch (e){
+        } catch (e) {
             toast.dark(e.message)
         }
     }
@@ -70,9 +74,9 @@ class Objects extends Component {
                 </div>
 
                 {count && (
-                    <div className="row">
+                    <div className="objects_container">
                         {objects.map(object =>
-                            <div className="col-3 product" key={object.id}>
+                            <div className="product" key={object.id}>
                                 <div className="product_image">
                                     <img src={object.imageUrl} alt=""/>
                                 </div>

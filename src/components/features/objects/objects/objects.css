@@ -95,9 +95,16 @@
 /**************
     Grid item
 ***************/
+.objects_container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
 .product {
     width: calc((100% - 90px) / 4);
-    margin-bottom: 59px;
+    margin: 0 22px 50px 0;
 }
 
 .product_image {
@@ -142,6 +149,7 @@
 
     .product {
         width: calc((100% - 30px) / 2);
+        margin: 0 7px 40px 0;
     }
 }
 
@@ -165,6 +173,7 @@
 
     .product {
         width: 100%;
+        margin: 0 0 30px 0;
     }
 }
 

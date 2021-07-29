@@ -1,36 +1,57 @@
 import React from 'react';
 import Joi from "joi-browser";
 import Form from "../../../form/form";
-import auth from "../../../../services/authService";
 import FormContainer from "../../../form/formContainer";
+import objectService from "../../../../services/objectService";
 
 class SettingForm extends Form {
-    state = {
-        data: {email: "", username: "", select: "name2", checkbox: ""},
-        errors: {},
-        formError: ''
-    };
+
+    constructor(props) {
+        super(props)
+        this.state = {
+            data: props.object.setting,
+            errors: {},
+            formError: '',
+            formSuccess: ''
+        }
+    }
 
     schema = {
-        email: Joi.string()
-            .required()
-            .email()
-            .label("Email"),
-        username: Joi.string()
-            .required()
-            .min(3)
-            .max(55)
-            .label("Username"),
-        select: Joi.string()
-            .label("Select"),
-        checkbox: Joi.boolean()
-            .label("Confirm Password")
+        advanced: Joi.boolean(),
+
+        quality: Joi.string(),
+        infill: Joi.number(),
+        gradualInfill: Joi.boolean(),
+        support: Joi.boolean(),
+
+        layerHeight: Joi.number(),
+        infillDensity: Joi.number(),
+        infillPattern: Joi.string(),
+        generateSupport: Joi.boolean(),
+        supportStructure: Joi.string(),
+        supportPlacement: Joi.string(),
+        supportOverhangAngle: Joi.number(),
+        supportPattern: Joi.string(),
+        supportDensity: Joi.number(),
+        wallLineWidth: Joi.number(),
+        topBottomLineWidth: Joi.number(),
+        wallThickness: Joi.number(),
+        wallLineCount: Joi.number(),
+        topThickness: Joi.number(),
+        bottomThickness: Joi.number(),
+        infillSpeed: Joi.number(),
+        outerWallSpeed: Joi.number(),
+        innerWallSpeed: Joi.number(),
+        topBottomSpeed: Joi.number(),
+        supportSpeed: Joi.number(),
+        printSequence: Joi.string(),
     };
 
     doSubmit = async () => {
         try {
-            await auth.register(this.state.data);
-            window.location = "/";
+            const {data} = this.state;
+            await objectService.updateSetting(this.props.object.id, data)
+            this.setState({formSuccess: "Successfully Updated"})
         } catch (ex) {
             if (ex.response && ex.response.status === 400) {
                 this.setState({formError: ex.response.data});
@@ -50,6 +71,7 @@ class SettingForm extends Form {
                 buttonLabel="Update"
                 errors={this.validate()}
                 formError={this.state.formError}
+                formSuccess={this.state.formSuccess}
                 onSubmit={this.handleSubmit}>
                 {this.renderCheckbox("advanced", "Advanced User")}
 

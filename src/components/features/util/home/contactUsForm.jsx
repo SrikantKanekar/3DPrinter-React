@@ -1,35 +1,34 @@
-import React from 'react';
+import React, {Component} from 'react';
 import Joi from "joi-browser";
-import FormContainer from "../../../form/formContainer";
 import Form from "../../../form/form";
-import admin from "../../../../services/adminService";
+import FormContainer from "../../../form/formContainer";
 
-class NotificationForm extends Form {
+class ContactUsForm extends Form {
     state = {
-        data: {subject: "", body: ""},
+        data: {name: "", email: "", subject: "", message: ""},
         errors: {},
         formError: '',
         formSuccess: ''
     };
 
     schema = {
+        name: Joi.string()
+            .required()
+            .label("Name"),
+        email: Joi.string()
+            .required()
+            .email()
+            .label("Email"),
         subject: Joi.string()
             .required()
             .label("Subject"),
-        body: Joi.string()
+        message: Joi.string()
             .required()
-            .label("Body")
+            .label("message")
     };
 
     doSubmit = async () => {
         try {
-            const {data} = this.state;
-            const notification = {
-                email: this.props.email,
-                subject: data.subject,
-                body: data.body
-            }
-            await admin.sendNotification(notification)
             this.setState({formSuccess: "Successfully Sent"})
         } catch (ex) {
             if (ex.response && ex.response.status === 400) {
@@ -41,18 +40,24 @@ class NotificationForm extends Form {
     render() {
         return (
             <FormContainer
-                title="Message Notification"
-                subtitle="Send custom notification to the user"
                 buttonLabel="Send"
                 errors={this.validate()}
                 formError={this.state.formError}
                 formSuccess={this.state.formSuccess}
                 onSubmit={this.handleSubmit}>
+                <div className="row">
+                    <div className="col-xl-6">
+                        {this.renderInput("name", "Name")}
+                    </div>
+                    <div className="col-xl-6">
+                        {this.renderInput("email", "Email", "email")}
+                    </div>
+                </div>
                 {this.renderInput("subject", "Subject")}
-                {this.renderInput("body", "Body")}
+                {this.renderTextarea("message", "Message")}
             </FormContainer>
         );
     }
 }
 
-export default NotificationForm;
+export default ContactUsForm;

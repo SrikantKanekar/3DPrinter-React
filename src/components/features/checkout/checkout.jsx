@@ -1,24 +1,38 @@
 import React from 'react';
 import Joi from "joi-browser";
+import {toast} from "react-toastify";
 import account from "../../../services/accountService";
 import checkout from "../../../services/checkoutService";
-import {toast} from "react-toastify";
 import FormContainer from "../../form/formContainer";
 import Form from "../../form/form";
 import Button from "../../util/button/button";
+import Title from "../../util/title/title";
 import "./checkout.css"
 
 class Checkout extends Form {
     state = {
         objects: [],
-        data: {firstname: "", lastname: "", phoneNumber: "", address: "", city: "", state: "", country: "", pinCode: ""},
+        data: {
+            firstname: "",
+            lastname: "",
+            phoneNumber: "",
+            address: "",
+            city: "",
+            state: "",
+            country: "",
+            pinCode: ""
+        },
         errors: {},
         formError: ''
     };
 
     async componentDidMount() {
-        const {data} = await checkout.get()
-        this.setState({objects: data.objects, data: data.address})
+        try {
+            const {data} = await checkout.get()
+            this.setState({objects: data.objects, data: data.address})
+        } catch (e) {
+            toast.dark(e.message)
+        }
     }
 
     schema = {
@@ -73,90 +87,96 @@ class Checkout extends Form {
         try {
             await checkout.proceed()
             this.props.history.replace("/orders")
-        }catch (e) {
+        } catch (e) {
             toast.dark(e.message)
         }
     }
 
     render() {
         const {objects} = this.state
-        if (objects.length === 0) return <div>No Checkout objects</div>
+
         return (
             <div className="container">
-                <div className="row">
-                    <div className="col-lg-6">
-                        <div className="checkout_section">
-                            <FormContainer
-                                title="Billing Address"
-                                subtitle="Enter your address info"
-                                formError={this.state.formError}>
-                                <div className="row">
-                                    <div className="col-xl-6">
-                                        {this.renderInput("firstname", "First Name*")}
+                {objects.length && (
+                    <div className="row">
+                        <div className="col-lg-6">
+                            <div className="checkout_section">
+                                <FormContainer
+                                    title="Billing Address"
+                                    subtitle="Enter your address info"
+                                    formError={this.state.formError}>
+                                    <div className="row">
+                                        <div className="col-xl-6">
+                                            {this.renderInput("firstname", "First Name*")}
+                                        </div>
+                                        <div className="col-xl-6">
+                                            {this.renderInput("lastname", "Last Name*")}
+                                        </div>
                                     </div>
-                                    <div className="col-xl-6">
-                                        {this.renderInput("lastname", "Last Name*")}
-                                    </div>
-                                </div>
-                                {this.renderInput("phoneNumber", "Phone no*", "phone")}
-                                {this.renderInput("address", "Address*")}
-                                {this.renderSelect("city", "City/Town*", this.cities)}
-                                {this.renderSelect("state", "State*", this.states)}
-                                {this.renderSelect("country", "Country*", this.countries)}
-                                {this.renderInput("pinCode", "PinCode*", "number")}
-                            </FormContainer>
+                                    {this.renderInput("phoneNumber", "Phone no*", "phone")}
+                                    {this.renderInput("address", "Address*")}
+                                    {this.renderSelect("city", "City/Town*", this.cities)}
+                                    {this.renderSelect("state", "State*", this.states)}
+                                    {this.renderSelect("country", "Country*", this.countries)}
+                                    {this.renderInput("pinCode", "PinCode*", "number")}
+                                </FormContainer>
+                            </div>
                         </div>
-                    </div>
 
-                    <div className="col-lg-6">
-                        <div className="order checkout_section">
-                            <div className="section_title">Your order</div>
-                            <div className="section_subtitle">Order details</div>
+                        <div className="col-lg-6">
+                            <div className="order checkout_section">
+                                <div className="section_title">Your order</div>
+                                <div className="section_subtitle">Order details</div>
 
-                            <div className="order_list_container">
-                                <div className="list_bar">
-                                    <div className="list_title">Object</div>
-                                    <div className="list_details">
-                                        <div className="list_quantity">Qty.</div>
-                                        <div className="list_price">Price</div>
+                                <div className="order_list_container">
+                                    <div className="list_bar">
+                                        <div className="list_title">Object</div>
+                                        <div className="list_details">
+                                            <div className="list_quantity">Qty.</div>
+                                            <div className="list_price">Price</div>
+                                        </div>
                                     </div>
-                                </div>
-                                <ul className="order_list">
-                                    {objects.map(object =>
-                                        <li className="list_item object">
-                                            <div className="list_title">{object.name}</div>
-                                            <div className="list_details">
-                                                <div className="list_quantity">X<span>{object.quantity}</span></div>
-                                                <div className="list_price">
-                                                    <i className="fa fa-inr"/><span>{object.slicingDetails.totalPrice}</span>
+                                    <ul className="order_list">
+                                        {objects.map(object =>
+                                            <li className="list_item object">
+                                                <div className="list_title">{object.name}</div>
+                                                <div className="list_details">
+                                                    <div className="list_quantity">X<span>{object.quantity}</span></div>
+                                                    <div className="list_price">
+                                                        <i className="fa fa-inr"/><span>{object.slicingDetails.totalPrice}</span>
+                                                    </div>
                                                 </div>
+                                            </li>
+                                        )}
+                                        <li className="list_item">
+                                            <div className="list_title">Subtotal</div>
+                                            <div className="list_price subtotal">
+                                                <i className="fa fa-inr"/><span>{this.calculateTotal()}</span>
                                             </div>
                                         </li>
-                                    )}
-                                    <li className="list_item">
-                                        <div className="list_title">Subtotal</div>
-                                        <div className="list_price subtotal">
-                                            <i className="fa fa-inr"/><span>{this.calculateTotal()}</span>
-                                        </div>
-                                    </li>
-                                    <li className="list_item">
-                                        <div className="list_title">Shipping</div>
-                                        <div className="list_price">Free</div>
-                                    </li>
-                                    <li className="list_item">
-                                        <div className="list_title">Total</div>
-                                        <div className="list_price total">
-                                            <i className="fa fa-inr"/><span>{this.calculateTotal()}</span>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div className="order_button">
-                                <Button label="Place Order" onClick={this.handleSubmit}/>
+                                        <li className="list_item">
+                                            <div className="list_title">Shipping</div>
+                                            <div className="list_price">Free</div>
+                                        </li>
+                                        <li className="list_item">
+                                            <div className="list_title">Total</div>
+                                            <div className="list_price total">
+                                                <i className="fa fa-inr"/><span>{this.calculateTotal()}</span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div className="order_button">
+                                    <Button label="Place Order" onClick={this.handleSubmit}/>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                )}
+
+                {!objects.length && (
+                    <Title>Cart is empty</Title>
+                )}
             </div>
         );
     }

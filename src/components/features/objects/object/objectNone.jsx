@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
+import objectService from "../../../../services/objectService";
+import cart from "../../../../services/cartService";
+import {toast} from "react-toastify";
 import Canvas from "../../../canvas/canvas";
 import Button from "../../../util/button/button";
-import objectService from "../../../../services/objectService";
-import {toast} from "react-toastify";
-import cart from "../../../../services/cartService";
 
 class ObjectNone extends Component {
     state = {

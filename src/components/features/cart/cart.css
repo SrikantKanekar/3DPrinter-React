@@ -194,8 +194,8 @@
 /*********************************
 4. Coupon
 *********************************/
-.row_extra {
-    margin-top: 80px;
+.cart_row {
+    margin-bottom: 80px;
 }
 
 .coupon_form_container {
@@ -484,8 +484,8 @@
         width: 32%;
     }
 
-    .row_extra {
-        margin-top: 50px;
+    .cart_row {
+        margin-bottom: 50px;
     }
 
     .coupon_input {

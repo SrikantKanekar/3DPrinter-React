@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from "react-router-dom";
 import Button from "../../../util/button/button";
+import ContactUsForm from "./contactUsForm";
 import "boxicons/css/boxicons.css";
 import "bootstrap-icons/font/bootstrap-icons.css"
 import "./home.css"
@@ -17,7 +18,6 @@ class Home extends Component {
                         url="/objects/create"
                         label="Create"
                     />
-
                 </div>
 
                 <section id="about" className="about section-bg">
@@ -72,7 +72,6 @@ class Home extends Component {
                     </div>
                 </section>
 
-
                 <section id="counts" className="counts">
                     <div className="container">
 
@@ -114,7 +113,6 @@ class Home extends Component {
 
                     </div>
                 </section>
-
 
                 <section id="pricing" className="pricing section-bg">
                     <div className="container">
@@ -185,7 +183,6 @@ class Home extends Component {
                     </div>
                 </section>
 
-
                 <section id="contact" className="contact">
                     <div className="container">
 
@@ -224,46 +221,11 @@ class Home extends Component {
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
-
                             <div className="col-lg-6">
-                                <form action="#" method="post" className="form" id="contact_form">
-                                    <div className="row">
-                                        <div className="col-xl-6">
-                                            <label htmlFor="name">Your Name*</label>
-                                            <div data-validate="Enter Name">
-                                                <input name="name" type="text" id="name" className="input"/>
-                                            </div>
-                                        </div>
-                                        <div className="col-xl-6">
-                                            <label htmlFor="email">Email*</label>
-                                            <div data-validate="Invalid">
-                                                <input name="email" type="email" id="email" className="input"/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <label htmlFor="subject">Subject*</label>
-                                    <div data-validate="Please fill">
-                                        <input name="subject" type="text" id="subject" className="input"/>
-                                    </div>
-
-                                    <label htmlFor="message">Message*</label>
-                                    <div data-validate="Please fill">
-                                        <textarea name="message" rows="7" id="message" className="textarea"/>
-                                    </div>
-
-                                    <div className="form_message"/>
-
-                                    <Button
-                                        label="Send"
-                                    />
-
-                                </form>
+                                <ContactUsForm/>
                             </div>
-
                         </div>
-
                     </div>
                 </section>
             </div>

@@ -3,6 +3,7 @@ import Joi from "joi-browser";
 import Input from "./input/input";
 import Select from "./select/select";
 import Checkbox from "./checkbox/checkbox";
+import Textarea from "./textarea/textarea";
 
 class Form extends Component {
     state = {
@@ -56,6 +57,19 @@ class Form extends Component {
         return (
             <Input
                 type={type}
+                name={name}
+                value={data[name]}
+                label={label}
+                onChange={this.handleChange}
+                error={errors[name]}
+            />
+        );
+    }
+
+    renderTextarea(name, label) {
+        const {data, errors} = this.state;
+        return (
+            <Textarea
                 name={name}
                 value={data[name]}
                 label={label}

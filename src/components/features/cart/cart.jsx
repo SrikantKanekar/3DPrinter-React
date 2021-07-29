@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import {Link} from "react-router-dom";
-import Button from "../../util/button/button";
-import cart from "../../../services/cartService";
-import {toast} from "react-toastify";
-import "./cart.css"
 import objectService from "../../../services/objectService";
+import {toast} from "react-toastify";
+import cart from "../../../services/cartService";
+import Button from "../../util/button/button";
+import Title from "../../util/title/title";
+import "./cart.css"
 
 class Cart extends Component {
     state = {
@@ -12,8 +13,12 @@ class Cart extends Component {
     }
 
     async componentDidMount() {
-        const {data: objects} = await cart.get()
-        this.setState({objects})
+        try {
+            const {data: objects} = await cart.get()
+            this.setState({objects})
+        } catch (e) {
+            toast.dark(e.message)
+        }
     }
 
     handleCartRemove = async (e, object) => {
@@ -64,25 +69,22 @@ class Cart extends Component {
     render() {
         const {objects} = this.state
 
-        if (objects.length === 0) return <div className="container">No items</div>
-
         return (
             <div className="container">
-                <div className="cart">
-
-                    <div className="row">
-                        <div className="col">
-                            <div className="info_column clearfix">
-                                <div className="info_object">Object</div>
-                                <div className="info_price">Price</div>
-                                <div className="info_quantity">Qty.</div>
+                {objects.length && (
+                    <div className="cart">
+                        <div className="row">
+                            <div className="col">
+                                <div className="info_column clearfix">
+                                    <div className="info_object">Object</div>
+                                    <div className="info_price">Price</div>
+                                    <div className="info_quantity">Qty.</div>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div className="row">
-                        <div className="col">
-                            <div className="cart_grid">
+                        <div className="row">
+                            <div className="col cart_row">
                                 {objects.map(object =>
                                     <div className="cart_item" key={object.id}>
 
@@ -130,77 +132,80 @@ class Cart extends Component {
                                 )}
                             </div>
                         </div>
-                    </div>
 
-                    <div className="row row_extra">
-
-                        <div className="col-lg-4">
-                            <div className="section_title">Coupon code</div>
-                            <div className="section_subtitle">Enter your coupon code</div>
-                            <div className="coupon_form_container">
-                                <form id="coupon_form" className="coupon_form">
-                                    <input type="text" className="coupon_input"/>
-                                    <div className="coupon_button">
-                                        <Button label="Apply" onClick={e => this.handleCouponSubmit(e)}/>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-
-                        <div className="col-lg-6 offset-lg-2">
-                            <div className="cart_total">
-                                <div className="section_title">Cart total</div>
-                                <div className="total_container">
-                                    <div className="list_bar">
-                                        <div className="list_title">Object</div>
-                                        <div className="list_details">
-                                            <div className="list_quantity">Qty.</div>
-                                            <div className="list_price">Price</div>
+                        <div className="row">
+                            <div className="col-lg-4">
+                                <div className="section_title">Coupon code</div>
+                                <div className="section_subtitle">Enter your coupon code</div>
+                                <div className="coupon_form_container">
+                                    <form id="coupon_form" className="coupon_form">
+                                        <input type="text" className="coupon_input"/>
+                                        <div className="coupon_button">
+                                            <Button label="Apply" onClick={e => this.handleCouponSubmit(e)}/>
                                         </div>
-                                    </div>
-                                    <ul>
-                                        {objects.map(object =>
-                                            <li className="total_item" key={object.id}>
-                                                <div className="total_title">{object.name}</div>
-                                                <div className="total_details">
-                                                    <div className="total_quantity">
-                                                        x<span>{object.quantity}</span>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <div className="col-lg-6 offset-lg-2">
+                                <div className="cart_total">
+                                    <div className="section_title">Cart total</div>
+                                    <div className="total_container">
+                                        <div className="list_bar">
+                                            <div className="list_title">Object</div>
+                                            <div className="list_details">
+                                                <div className="list_quantity">Qty.</div>
+                                                <div className="list_price">Price</div>
+                                            </div>
+                                        </div>
+                                        <ul>
+                                            {objects.map(object =>
+                                                <li className="total_item" key={object.id}>
+                                                    <div className="total_title">{object.name}</div>
+                                                    <div className="total_details">
+                                                        <div className="total_quantity">
+                                                            x<span>{object.quantity}</span>
+                                                        </div>
+                                                        <div className="total_value">
+                                                            <i className="fa fa-inr"/>
+                                                            <span>{object.slicingDetails.totalPrice}</span>
+                                                        </div>
                                                     </div>
-                                                    <div className="total_value">
-                                                        <i className="fa fa-inr"/>
-                                                        <span>{object.slicingDetails.totalPrice}</span>
-                                                    </div>
+                                                </li>
+                                            )}
+                                            <li className="total_item">
+                                                <div className="total_title">Subtotal</div>
+                                                <div className="total_value subtotal">
+                                                    <i className="fa fa-inr"/> <span>{this.calculateTotal()}</span>
                                                 </div>
                                             </li>
-                                        )}
-                                        <li className="total_item">
-                                            <div className="total_title">Subtotal</div>
-                                            <div className="total_value subtotal">
-                                                <i className="fa fa-inr"/> <span>{this.calculateTotal()}</span>
-                                            </div>
-                                        </li>
-                                        <li className="total_item">
-                                            <div className="total_title">Shipping</div>
-                                            <div className="total_value">Free</div>
-                                        </li>
-                                        <li className="total_item">
-                                            <div className="total_title">Total</div>
-                                            <div className="total_value total">
-                                                <i className="fa fa-inr"/> <span>{this.calculateTotal()}</span>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div className="checkout_button">
-                                    <Button
-                                        label="Proceed to checkout"
-                                        url="/checkout"
-                                    />
+                                            <li className="total_item">
+                                                <div className="total_title">Shipping</div>
+                                                <div className="total_value">Free</div>
+                                            </li>
+                                            <li className="total_item">
+                                                <div className="total_title">Total</div>
+                                                <div className="total_value total">
+                                                    <i className="fa fa-inr"/> <span>{this.calculateTotal()}</span>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div className="checkout_button">
+                                        <Button
+                                            label="Proceed to checkout"
+                                            url="/checkout"
+                                        />
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                )}
+
+                {!objects.length && (
+                    <Title>Cart is empty</Title>
+                )}
             </div>
         );
     }

@@ -11,7 +11,11 @@ async function sendNotification(notification) {
 }
 
 async function updateOrderStatus(status, id) {
-    return await http.put(`${apiEndpoint}/order-status/${id}`, status);
+    return await http.put(
+        `${apiEndpoint}/order-status/${id}`,
+        status,
+        {headers: {"Content-Type": "application/json"}}
+    );
 }
 
 async function updatePrintingStatus(request) {

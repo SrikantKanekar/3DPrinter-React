@@ -9,27 +9,26 @@
     cursor: pointer;
 }
 
-.button a {
-    display: block;
-    position: relative;
-    font-size: 16px;
-    font-weight: 600;
-    line-height: 57px;
-    color: var(--on-background);
-    background: none;
-    z-index: 1;
+.button.disabled {
+    border: solid 2px var(--error);
+    cursor: default;
 }
 
-.button button {
-    width: 100%;
-    position: relative;
-    font-size: 16px;
-    font-weight: 600;
-    line-height: 57px;
-    color: var(--on-background);
-    background: none;
-    border: none;
-    z-index: 1;
+.button.completed {
+    border: solid 2px var(--success);
+    cursor: default;
+}
+
+.button:hover {
+    border: solid 2px var(--surface);
+}
+
+.button.disabled:hover {
+    border: solid 2px var(--error);
+}
+
+.button.completed:hover {
+    border: solid 2px var(--success);
 }
 
 .button::after {
@@ -69,18 +68,45 @@
     transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
 }
 
-.button:hover {
-    border: solid 2px var(--surface);
+.button.disabled:hover::after,
+.button.completed:hover::after {
+    opacity: 0;
+    -webkit-transform: rotate3d(0, 0, 1, -45deg);
+    transform: rotate3d(0, 0, 1, -45deg);
 }
 
-.button.disabled {
-    border: solid 2px var(--primary);
+.button a {
+    display: block;
+    position: relative;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 57px;
+    color: var(--on-background);
+    background: none;
+    z-index: 1;
 }
 
+.button button {
+    width: 100%;
+    position: relative;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 57px;
+    color: var(--on-background);
+    background: none;
+    border: none;
+    z-index: 1;
+}
+
+.button:hover button,
 .button:hover a {
     color: var(--surface);
 }
 
-.button:hover button {
-    color: var(--surface);
+.button.disabled:hover button,
+.button.disabled:hover a,
+.button.completed:hover button,
+.button.completed:hover a {
+    color: var(--on-background);
+    cursor: default;
 }

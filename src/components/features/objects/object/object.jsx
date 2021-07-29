@@ -5,17 +5,18 @@ import ObjectTracking from "./objectTracking";
 import ObjectCompleted from "./objectCompleted";
 import SettingForm from "./settingForm";
 import Button from "../../../util/button/button";
-import './object.css'
 import {toast} from "react-toastify";
+import Title from "../../../util/title/title";
+import './object.css'
 
 class ObjectGet extends Component {
     state = {}
 
     async componentDidMount() {
-        const id = this.props.match.params.id
         try {
-            const {data} = await objectService.get(id)
-            this.setState({object: data})
+            const id = this.props.match.params.id
+            const {data: object} = await objectService.get(id)
+            this.setState({object})
         } catch (e) {
             if (e.response && e.response.status === 404) {
                 this.props.history.replace("/not-found");
@@ -31,7 +32,7 @@ class ObjectGet extends Component {
         try {
             await objectService.deleteObject(this.state.object.id)
             this.props.history.goBack()
-        }catch (e){
+        } catch (e) {
             toast.dark(e.message)
         }
     }
@@ -50,16 +51,16 @@ class ObjectGet extends Component {
                         {status === "TRACKING" && <ObjectTracking object={object}/>}
                         {status === "COMPLETED" && <ObjectCompleted object={object}/>}
 
-                        <div className="row setting">
-                            <div className="col">
-                                <SettingForm object={object} {...this.props}/>
-                            </div>
+                        <div className="setting">
+                            <SettingForm object={object} {...this.props}/>
                         </div>
 
                         {status === "NONE" && (
                             <div className="delete_button_container">
-                                <div className="section_title">Delete</div>
-                                <Button label="Delete" onClick={this.handleDelete}/>
+                                <Title>Delete</Title>
+                                <div className="delete_button">
+                                    <Button label="Delete" onClick={this.handleDelete}/>
+                                </div>
                             </div>
                         )}
                     </div>

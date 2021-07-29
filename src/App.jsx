@@ -41,10 +41,6 @@ class App extends Component {
         this.setState({user})
     }
 
-    hidePreloader = () =>{
-        document.getElementById('preloader').remove()
-    }
-
     render() {
         const {theme, user} = this.state
         return (
@@ -85,6 +81,12 @@ class App extends Component {
                 <Footer/>
             </Fragment>
         );
+    }
+
+    hidePreloader = () => {
+        const preloader = document.getElementById('preloader')
+        preloader.style.opacity = '0'
+        setTimeout(() => preloader.remove(), 300)
     }
 }
 

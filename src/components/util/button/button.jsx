@@ -4,11 +4,10 @@ import "./button.css"
 
 class Button extends Component {
     render() {
-        const {url, label, errors, onClick} = this.props
-        const buttonClass = errors ? 'button disabled' : 'button'
+        const {url, label, errors, completed, onClick} = this.props
 
         return (
-            <div className={buttonClass}>
+            <div className={`button ${completed? 'completed': ''} ${errors? 'disabled': ''}`}>
                 {url && (
                     <Link to={url}>{label}</Link>
                 )}

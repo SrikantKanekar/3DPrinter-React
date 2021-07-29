@@ -2,8 +2,10 @@ import React, {Component} from 'react';
 import admin from "../../../services/adminService";
 import {toast} from "react-toastify";
 import {Link} from "react-router-dom";
-import "./admin.css"
 import auth from "../../../services/authService";
+import Title from "../../util/title/title";
+import Button from "../../util/button/button";
+import "./admin.css"
 
 class Admin extends Component {
 
@@ -32,71 +34,95 @@ class Admin extends Component {
     updateOrderStatus = async (status, order) => {
         try {
             const {data} = await admin.updateOrderStatus(status, order.id)
-            const orders = [...this.state.orders]
-            const index = orders.indexOf(order)
-            orders[index].status = data
-            this.setState({orders})
+            if (status === 'DELIVERED'){
+                const orders = this.state.orders.filter(it => it.id !== order.id)
+                this.setState({orders})
+            } else {
+                const orders = [...this.state.orders]
+                const index = orders.indexOf(order)
+                orders[index].status = data
+                this.setState({orders})
+            }
         } catch (e) {
-            toast.dark(e.message)
+            if (e.response && e.response.status === 405) {
+                toast.dark("Please prints all objects of the order")
+            } else {
+                toast.dark(e.message)
+            }
         }
+    }
+
+    isCompleted = (order, statusId) => {
+        return statusId <= this.orderStatus.find(it => it.name === order.status).id
+    }
+
+    isNotAllowed = (order, statusId) => {
+        return statusId > this.orderStatus.find(it => it.name === order.status).id + 1
     }
 
     render() {
         const {orders} = this.state
-        if (orders.length === 0) return <div className="container">No Orders</div>
 
         return (
             <div className="container">
-                <div className="row">
-                    {orders.map(order =>
-                        <div className="col-3 product" key={order.id}>
-                            <div className="product_image">
-                                <img src="/3d-order-image.jpeg" alt=""/>
-                            </div>
-
-                            <div className="product_content">
-                                <div className="product_id">
-                                    <Link to={`/orders/${order.id}`}>ID : {order.id}</Link>
+                {orders.length && (
+                    <div className="orders_container">
+                        {orders.map(order =>
+                            <div className="product" key={order.id}>
+                                <div className="product_image">
+                                    <img src="/3d-order-image.jpeg" alt=""/>
                                 </div>
 
-                                <div className="product_details">
-                                    <div className="product_details_content user_email">{order.userEmail}</div>
-                                    <div className="product_details_content price">
-                                        <i className="fa fa-inr"/><span>{order.price}</span>
+                                <div className="product_content">
+                                    <div className="product_id">
+                                        <Link to={`/orders/${order.id}`}>ID : {order.id}</Link>
                                     </div>
-                                </div>
 
-                                <div className="product_details">
-                                    <div className="product_details_content status">{order.status}</div>
-                                    <div className="product_details_content size">
-                                        <span>{order.objectIds.length}</span> objects
+                                    <div className="product_details">
+                                        <div className="product_details_content user_email">{order.userEmail}</div>
+                                        <div className="product_details_content price">
+                                            <i className="fa fa-inr"/><span>{order.price}</span>
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div className='btn-group' role='group'>
-                                    <div data-status="0" className="button admin placed disabled">
-                                        <a href="/">Placed</a>
+                                    <div className="product_details">
+                                        <div className="product_details_content status">{order.status}</div>
+                                        <div className="product_details_content size">
+                                            <span>{order.objectIds.length}</span> objects
+                                        </div>
                                     </div>
-                                    <div data-status="1" className="button admin confirmed">
-                                        <a href="/">Confirmed</a>
-                                    </div>
-                                    <div data-status="2" className="button admin processing">
-                                        <a href="/">Processing</a>
-                                    </div>
-                                    <div data-status="3" className="button admin delivering">
-                                        <a href="/">Delivering</a>
-                                    </div>
-                                    <div data-status="4" className="button admin delivered">
-                                        <a href="/">Delivered</a>
+
+                                    <div className='status_buttons'>
+                                        {this.orderStatus.map(status =>
+                                            <Button
+                                                key={status.id}
+                                                label={status.name}
+                                                errors={this.isNotAllowed(order, status.id)}
+                                                completed={this.isCompleted(order, status.id)}
+                                                onClick={() => this.updateOrderStatus(status.name, order)}
+                                            />
+                                        )}
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    )}
-                </div>
+                        )}
+                    </div>
+                )}
+
+                {!orders.length && (
+                    <Title>No Active Orders</Title>
+                )}
             </div>
         );
     }
+
+    orderStatus = [
+        {id: 0, name: "PLACED"},
+        {id: 1, name: "CONFIRMED"},
+        {id: 2, name: "PROCESSING"},
+        {id: 3, name: "DELIVERING"},
+        {id: 4, name: "DELIVERED"}
+    ]
 }
 
 export default Admin;

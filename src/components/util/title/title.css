@@ -1,11 +1,12 @@
-.title {
+.section_title {
     font-size: 24px;
     font-weight: 600;
     color: var(--on-background);
+    padding-left: 10px;
 }
 
 @media only screen and (max-width: 600px) {
-    .title {
+    .section_title {
         font-size: 20px;
     }
 }
