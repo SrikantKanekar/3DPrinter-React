@@ -35,7 +35,7 @@ class NotificationForm extends Form {
             <FormContainer
                 title="Message Notification"
                 subtitle="Send custom notification to the user"
-                button="Send"
+                buttonLabel="Send"
                 errors={this.validate()}
                 formError={this.state.formError}
                 onSubmit={this.handleSubmit}>

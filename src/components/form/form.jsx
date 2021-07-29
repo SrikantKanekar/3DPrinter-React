@@ -8,7 +8,8 @@ class Form extends Component {
     state = {
         data: {},
         errors: {},
-        formError: ''
+        formError: '',
+        formSuccess: ''
     };
 
     validate = () => {
@@ -39,8 +40,6 @@ class Form extends Component {
     };
 
     handleChange = ({currentTarget: input}) => {
-        console.log(input.value)
-
         const errors = {...this.state.errors};
         const errorMessage = this.validateProperty(input);
         if (errorMessage) errors[input.name] = errorMessage;
@@ -49,7 +48,7 @@ class Form extends Component {
         const data = {...this.state.data};
         data[input.name] = input.value;
 
-        this.setState({data, errors, formError: ''});
+        this.setState({data, errors, formError: '', formSuccess: ''});
     };
 
     renderInput(name, label, type = "text") {

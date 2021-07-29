@@ -1,32 +1,31 @@
 import {Component, Fragment} from "react";
 import {Redirect, Route, Switch} from "react-router-dom"
-import {setupTheme, toggleTheme} from "./util/theme";
-import NotFound from "./components/features/util/notFound/notFound";
-import ProtectedRoute from "./components/protectedRoute";
 import {ToastContainer} from "react-toastify";
-import NavBar from "./components/navBar/navBar";
-import Home from "./components/features/util/home/home";
-import Account from "./components/features/account/account";
-import Logout from "./components/features/auth/logout/logout";
 import auth from "./services/authService";
-import Footer from "./components/footer/footer";
+import {setupTheme, toggleTheme} from "./util/theme";
+import ProtectedRoute from "./components/protectedRoute";
+import NotFound from "./components/features/util/notFound/notFound";
+import Account from "./components/features/account/account";
+import Admin from "./components/features/admin/admin";
 import Login from "./components/features/auth/login/login";
 import Register from "./components/features/auth/register/register";
-import Admin from "./components/features/admin/admin";
+import Logout from "./components/features/auth/logout/logout";
+import Create from "./components/features/objects/create/create";
+import Objects from "./components/features/objects/objects/objects";
+import ObjectGet from "./components/features/objects/object/object";
+import Cart from "./components/features/cart/cart";
+import Checkout from "./components/features/checkout/checkout";
+import Orders from "./components/features/orders/orders/orders";
+import Order from "./components/features/orders/order/order";
+import Notifications from "./components/features/notification/notifications/notifications";
+import Notification from "./components/features/notification/notification/notification";
+import Home from "./components/features/util/home/home";
+import NavBar from "./components/navBar/navBar";
+import Footer from "./components/footer/footer";
 import "bootstrap/dist/css/bootstrap.css";
 import "font-awesome/css/font-awesome.css";
 import "react-toastify/dist/ReactToastify.css";
 import './App.css';
-import './components/canvas/canvas.css'
-import Cart from "./components/features/cart/cart";
-import Checkout from "./components/features/checkout/checkout";
-import Notifications from "./components/features/notification/notifications/notifications";
-import Notification from "./components/features/notification/notification/notification";
-import Objects from "./components/features/objects/objects/objects";
-import ObjectGet from "./components/features/objects/object/object";
-import Orders from "./components/features/orders/orders/orders";
-import Order from "./components/features/orders/order/order";
-import Create from "./components/features/objects/create/create";
 
 class App extends Component {
     state = {
@@ -35,10 +34,15 @@ class App extends Component {
     }
 
     componentDidMount() {
+        this.hidePreloader()
         this.setState({theme: setupTheme})
 
         const user = auth.getCurrentUser()
         this.setState({user})
+    }
+
+    hidePreloader = () =>{
+        document.getElementById('preloader').remove()
     }
 
     render() {
@@ -66,9 +70,9 @@ class App extends Component {
                         <ProtectedRoute path="/notifications/:id" component={Notification}/>
                         <ProtectedRoute exact path="/notifications" component={Notifications}/>
 
-                        <ProtectedRoute path="/objects/create" component={Create}/>
-                        <ProtectedRoute path="/objects/:id" component={ObjectGet}/>
-                        <ProtectedRoute exact path="/objects" component={Objects}/>
+                        <Route path="/objects/create" component={Create}/>
+                        <Route path="/objects/:id" component={ObjectGet}/>
+                        <Route exact path="/objects" component={Objects}/>
 
                         <ProtectedRoute path="/orders/:id" component={Order}/>
                         <ProtectedRoute exact path="/orders" component={Orders}/>

@@ -1,26 +1,31 @@
 import React, {Component, Fragment} from 'react';
-import Button from "../button/button";
+import Button from "../util/button/button";
 import "./form.css"
+import Title from "../util/title/title";
+import Subtitle from "../util/subtitle/subtitle";
 
 class FormContainer extends Component {
     render() {
-        const {title, subtitle, button, errors, formError, children, onSubmit} = this.props
+        const {title, subtitle, buttonLabel, errors, formError, formSuccess, children, onSubmit, center} = this.props
+
         return (
             <Fragment>
-                <div className="row form_title">{title}</div>
-                <div className="row form_subtitle">{subtitle}</div>
+                <Title center={center}>{title}</Title>
+                <Subtitle>{subtitle}</Subtitle>
+
                 <div className="form_container">
 
                     <form onSubmit={this.handleSubmit}>
                         {children}
                     </form>
 
-                    <div className="form_message">{formError}</div>
+                    {formError && <div className="form_error">{formError}</div>}
+                    {formSuccess && <div className="form_success">{formSuccess}</div>}
 
-                    {button && (
+                    {buttonLabel && (
                         <div className="form_button">
                             <Button
-                                label={button}
+                                label={buttonLabel}
                                 errors={errors}
                                 onClick={onSubmit}
                             />

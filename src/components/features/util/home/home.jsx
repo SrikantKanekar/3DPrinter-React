@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Link} from "react-router-dom";
-import Button from "../../../button/button";
+import Button from "../../../util/button/button";
 import "boxicons/css/boxicons.css";
 import "bootstrap-icons/font/bootstrap-icons.css"
 import "./home.css"

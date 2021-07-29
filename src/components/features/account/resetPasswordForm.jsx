@@ -39,7 +39,7 @@ class ResetPasswordForm extends Form {
     render() {
         return (
             <FormContainer
-                button="Reset"
+                buttonLabel="Reset"
                 errors={this.validate()}
                 formError={this.state.formError}
                 onSubmit={this.handleSubmit}>

@@ -9,7 +9,8 @@ class AccountUpdateForm extends Form {
     state = {
         data: {username: ''},
         errors: {},
-        formError: ''
+        formError: '',
+        formSuccess: ''
     };
 
     componentDidMount() {
@@ -29,6 +30,7 @@ class AccountUpdateForm extends Form {
         try {
             const {data} = this.state;
             await account.update(data)
+            this.setState({formSuccess: "Updated"})
         } catch (ex) {
             if (ex.response && ex.response.status === 400) {
                 this.setState({formError: ex.response.data});
@@ -39,9 +41,10 @@ class AccountUpdateForm extends Form {
     render() {
         return (
             <FormContainer
-                button="Update"
+                buttonLabel="Update"
                 errors={this.validate()}
                 formError={this.state.formError}
+                formSuccess={this.state.formSuccess}
                 onSubmit={this.handleSubmit}>
                 {this.renderInput("username", "Username")}
             </FormContainer>

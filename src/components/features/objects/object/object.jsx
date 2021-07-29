@@ -4,7 +4,7 @@ import ObjectNone from "./objectNone";
 import ObjectTracking from "./objectTracking";
 import ObjectCompleted from "./objectCompleted";
 import SettingForm from "./settingForm";
-import Button from "../../../button/button";
+import Button from "../../../util/button/button";
 import './object.css'
 import {toast} from "react-toastify";
 

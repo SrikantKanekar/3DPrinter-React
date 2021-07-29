@@ -5,7 +5,7 @@ import checkout from "../../../services/checkoutService";
 import {toast} from "react-toastify";
 import FormContainer from "../../form/formContainer";
 import Form from "../../form/form";
-import Button from "../../button/button";
+import Button from "../../util/button/button";
 import "./checkout.css"
 
 class Checkout extends Form {

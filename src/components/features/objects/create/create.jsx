@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Button from "../../../button/button";
+import Button from "../../../util/button/button";
 import "./create.css"
 import {toast} from "react-toastify";
 import objectService from "../../../../services/objectService";

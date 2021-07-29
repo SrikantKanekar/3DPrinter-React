@@ -22,7 +22,7 @@ axios.interceptors.response.use(null, error => {
 
 function setupJwtHeader() {
     const jwt = localStorage.getItem('token');
-    axios.defaults.headers.common = {'Authorization': `Bearer ${jwt}`};
+    if (jwt) axios.defaults.headers.common = {'Authorization': `Bearer ${jwt}`};
 }
 
 const http = {

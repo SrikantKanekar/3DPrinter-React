@@ -46,7 +46,8 @@ class RegisterForm extends Form {
         return (
             <FormContainer
                 title="Register"
-                button="Register"
+                center={true}
+                buttonLabel="Register"
                 errors={this.validate()}
                 formError={this.state.formError}
                 onSubmit={this.handleSubmit}>

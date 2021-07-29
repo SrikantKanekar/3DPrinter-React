@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Canvas from "../../../canvas/canvas";
-import Button from "../../../button/button";
+import Button from "../../../util/button/button";
 import objectService from "../../../../services/objectService";
 import {toast} from "react-toastify";
 import cart from "../../../../services/cartService";

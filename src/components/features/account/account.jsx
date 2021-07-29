@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import "./account.css"
+import auth from "../../../services/authService";
 import AccountUpdateForm from "./accountUpdateForm";
 import ResetPasswordForm from "./resetPasswordForm";
-import auth from "../../../services/authService";
+import "./account.css"
 
 class Account extends Component {
     state = {

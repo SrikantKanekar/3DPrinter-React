@@ -41,7 +41,8 @@ class LoginForm extends Form {
         return (
             <FormContainer
                 title="Login"
-                button="Login"
+                center={true}
+                buttonLabel="Login"
                 errors={this.validate()}
                 formError={this.state.formError}
                 onSubmit={this.handleSubmit}>

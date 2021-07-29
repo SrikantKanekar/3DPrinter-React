@@ -47,7 +47,7 @@ class SettingForm extends Form {
         return (
             <FormContainer
                 title="Settings"
-                button="Update"
+                buttonLabel="Update"
                 errors={this.validate()}
                 formError={this.state.formError}
                 onSubmit={this.handleSubmit}>
@@ -80,8 +80,6 @@ class SettingForm extends Form {
                 {this.renderInput("topBottomSpeed", "Top Bottom Speed (mm/s)")}
                 {this.renderInput("supportSpeed", "Support Speed (mm/s)")}
                 {this.renderSelect("printSequence", "Print Sequence", this.options)}
-
-
             </FormContainer>
         );
     }
