@@ -21,12 +21,13 @@
     --error: #CF6679;
     --success: #18d26e;
     --warning: #e8bd39;
+
     --on-primary: #000000;
     --on-background: rgba(255, 255, 255, 0.87);
     --on-surface: rgba(255, 255, 255, 0.6);
     --on-surface-hover: rgba(255, 255, 255, 0.8);
     --on-error: #000000;
-    --menu-background: #282828;
+
     --border-light: rgba(255, 255, 255, 0.5);
     --border-dark: rgba(255, 255, 255, 0.15);
 }
@@ -40,12 +41,13 @@
     --error: #B00020;
     --success: #61de4a;
     --warning: #e8bd39;
+
     --on-primary: #FFFFFF;
     --on-background: #1b1b1b;
     --on-surface: #767676;
     --on-surface-hover: #5f5e5e;
     --on-error: #FFFFFF;
-    --menu-background: #e4e4e4;
+
     --border-light: #d0d0d0;
     --border-dark: #1b1b1b;
 }

@@ -1,20 +1,13 @@
 .header {
-    display: block;
     position: fixed;
-    top: 0;
-    left: 0;
     width: 100%;
     z-index: 100;
-}
-
-.header_container {
-    width: 100%;
-    z-index: 1;
+    padding-left: 45px;
+    padding-right: 45px;
     background: var(--background);
 }
 
-.header_content {
-    width: 100%;
+.header_container {
     height: 130px;
     display: flex;
     flex-direction: row;
@@ -22,7 +15,7 @@
     align-items: center;
 }
 
-.header.scrolled .header_content {
+.header_container.scrolled {
     height: 70px;
 }
 
@@ -32,31 +25,36 @@
     color: var(--on-background);
 }
 
-.header.scrolled .logo {
+.header_container.scrolled .logo {
     font-size: 24px;
 }
 
-.main_nav > ul > li {
+.center_nav > ul > li {
     display: inline-block;
     position: relative;
 }
 
-.main_nav > ul > li:not(:last-child) {
-    margin-right: 46px;
+.center_nav > ul > li:not(:last-child) {
+    margin-right: 40px;
 }
 
-.main_nav > ul > li > a {
+.center_nav > ul > li > a {
     font-size: 16px;
     font-weight: 600;
     color: var(--on-background);
 }
 
-.main_nav > ul > li > a:hover,
-.main_nav > ul > li > a.active {
+.center_nav > ul > li > a:hover,
+.center_nav > ul > li > a.active {
     color: var(--primary);
 }
 
-.main_nav ul li.hassubs::after {
+.center_nav ul li:hover::after,
+.center_nav ul li.active::after {
+    color: var(--primary);
+}
+
+.center_nav ul li.hassubs::after {
     position: absolute;
     top: 50%;
     left: calc(100% + 3px);
@@ -69,11 +67,6 @@
     -ms-transform: translateY(-50%);
     -o-transform: translateY(-50%);
     transform: translateY(-50%);
-}
-
-.main_nav ul li:hover::after,
-.main_nav ul li.active::after {
-    color: var(--primary);
 }
 
 .hassubs ul {
@@ -113,9 +106,9 @@
 
 .shopping_cart a svg {
     display: inline-block;
-    width: 20px;
-    height: 20px;
-    vertical-align: middle;
+    width: 19px;
+    height: 19px;
+    vertical-align: top;
     fill: var(--on-background);
 }
 
@@ -131,7 +124,7 @@
     font-size: 15px;
     font-weight: 600;
     color: var(--on-background);
-    margin-left: 13px;
+    margin-left: 5px;
 }
 
 .shopping_cart a.active div {
@@ -140,7 +133,7 @@
 
 .theme_icon {
     display: inline-block;
-    margin-left: 15px;
+    margin-left: 20px;
     vertical-align: middle;
     cursor: pointer;
 }
@@ -159,7 +152,6 @@
     margin-left: 20px;
     cursor: pointer;
     margin-right: 4px;
-    vertical-align: middle;
     -webkit-transform: translateY(2px);
     -moz-transform: translateY(2px);
     -ms-transform: translateY(2px);
@@ -172,35 +164,13 @@
     color: var(--on-background);
 }
 
-
-@media only screen and (max-width: 1600px) {
-    .header_social {
-        display: none;
-    }
-}
-
-@media only screen and (max-width: 1199px) {
-    .header_container {
-        padding-left: 45px;
-        padding-right: 45px;
-    }
-
-    .header_container .container {
-        max-width: 100%;
-    }
-    .main_nav > ul > li:not(:last-child) {
-        margin-right: 40px;
-    }
-}
-
 @media only screen and (max-width: 992px) {
-    .header_container {
-        padding-left: 15px;
-        padding-right: 15px;
+    .header {
+        padding-left: 20px;
+        padding-right: 20px;
     }
 
-    .main_nav,
-    .header_social {
+    .center_nav {
         display: none;
     }
 
@@ -209,26 +179,25 @@
     }
 }
 
-
-/************
-12. 600px
-************/
 @media only screen and (max-width: 600px) {
-    .header_container {
-        padding-left: 0;
-        padding-right: 0;
+    .header {
+        padding-left: 10px;
+        padding-right: 10px;
     }
 
-    .header_content {
+    .header_container {
+        height: 90px;
+    }
+
+    .header_container.scrolled {
         height: 70px;
     }
 
-    .logo,
-    .header.scrolled .logo {
-        font-size: 18px;
+    .logo{
+        font-size: 20px;
     }
-    .main_container {
-        padding-top: 80px;
-        padding-bottom: 50px;
+
+    .header_container.scrolled .logo {
+        font-size: 18px;
     }
 }
