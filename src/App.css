@@ -28,7 +28,7 @@
     --on-surface-hover: rgba(255, 255, 255, 0.8);
     --on-error: #000000;
 
-    --border-light: rgba(255, 255, 255, 0.5);
+    --border-light: rgb(56, 56, 56);
     --border-dark: rgba(255, 255, 255, 0.15);
 }
 
@@ -142,8 +142,8 @@ section {
 
 main {
     min-height: 100vh;
-    padding-top: 150px;
-    padding-bottom: 100px;
+    padding-top: 160px;
+    padding-bottom: 70px;
 }
 
 .progress-bar {
@@ -151,17 +151,16 @@ main {
 }
 
 
-
-@media only screen and (max-width: 992px){
+@media only screen and (max-width: 992px) {
     main {
-        padding-bottom: 70px;
+        padding-bottom: 50px;
     }
 }
 
 @media only screen and (max-width: 600px) {
     main {
-        padding-top: 80px;
-        padding-bottom: 50px;
+        padding-top: 110px;
+        padding-bottom: 30px;
     }
 }
 

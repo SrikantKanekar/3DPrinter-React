@@ -52,7 +52,10 @@ class ObjectGet extends Component {
                         {status === "COMPLETED" && <ObjectCompleted object={object}/>}
 
                         <div className="setting">
-                            <SettingForm object={object} {...this.props}/>
+                            <SettingForm
+                                object={object}
+                                updateObject={obj => this.updateObject(obj)}
+                                {...this.props}/>
                         </div>
 
                         {status === "NONE" && (

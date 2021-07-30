@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import objectService from "../../../../services/objectService";
 import cart from "../../../../services/cartService";
 import {toast} from "react-toastify";
@@ -48,13 +48,13 @@ class ObjectNone extends Component {
     }
 
     render() {
-        const object = this.props.object
-        const slicingDone = this.props.object.slicingDetails.uptoDate
-        const status = this.props.object.status
+        const {object} = this.props
+        const slicingDone = object.slicingDetails.uptoDate
+        const status = object.status
+        const time = this.millisToTime(object.slicingDetails.time)
 
         return (
-
-            <div className="row status_none">
+            <div className="row">
                 <div className="col-lg-6">
                     <Canvas
                         fileUrl={object.fileUrl}
@@ -65,33 +65,34 @@ class ObjectNone extends Component {
 
                 <div className="col-lg-6">
                     <div className="object_content">
-
-                        <div className="object_name">{object.name}</div>
+                        <div className="object_name">
+                            {object.name}
+                        </div>
 
                         {!slicingDone && (
-                            <div className="slicing_pending_text">
+                            <div>
                                 Slicing details are not upto date
                             </div>
                         )}
 
                         {slicingDone && (
-                            <div className="slicing_details">
-                                <div className="time">
-                                    Time: {object.slicingDetails.time}
+                            <Fragment>
+                                <div>
+                                    Time: {time}
                                 </div>
-                                <div className="material_weight">
-                                    Material Weight {object.slicingDetails.materialWeight} g
+                                <div>
+                                    Material Weight: {object.slicingDetails.materialWeight}g
                                 </div>
-                                <div className="material_cost">
-                                    Material Cost <i className="fa fa-inr"/> {object.slicingDetails.materialCost}
+                                <div>
+                                    Material Cost: <i className="fa fa-inr"/>{object.slicingDetails.materialCost}
                                 </div>
-                                <div className="electricity_cost">
-                                    Electricity Cost <i className="fa fa-inr"/> {object.slicingDetails.electricityCost}
+                                <div>
+                                    Electricity Cost: <i className="fa fa-inr"/>{object.slicingDetails.electricityCost}
                                 </div>
-                                <div className="total_price">
-                                    Total Price <i className="fa fa-inr"/> {object.slicingDetails.totalPrice}
+                                <div>
+                                    Total Price: <i className="fa fa-inr"/>{object.slicingDetails.totalPrice}
                                 </div>
-                            </div>
+                            </Fragment>
                         )}
 
                         <div className="button_container">

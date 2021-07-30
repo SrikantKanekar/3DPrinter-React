@@ -4,34 +4,44 @@ import Canvas from "../../../canvas/canvas";
 class ObjectCompleted extends Component {
     render() {
         const {object} = this.props
+        const startedAt = object.trackingDetails.started_at
+        const completedAt = object.trackingDetails.completed_at
+        const duration = this.calculateDuration(startedAt, completedAt)
 
         return (
-            <div className="row status_completed">
-
+            <div className="row">
                 <div className="col-lg-6">
                     <Canvas
                         fileUrl={object.fileUrl}
                         fileExt={object.fileExtension}
+                        canvasError={() => {
+                        }}
                     />
                 </div>
 
                 <div className="col-lg-6">
                     <div className="object_content">
                         <div className="object_name">{object.name}</div>
-                        <div className="object_description">
-                            <div className=""><i className="fa fa-inr"/>{object.slicingDetails.totalPrice}</div>
-                            <div className="">Printing status : {object.printingStatus}</div>
-                            <div className="completed_at">
-                                Completed on : <span>{new Date(object.trackingDetails.completed_at).toLocaleString()}</span>
-                            </div>
-                            <div className="duration">
-                                Printing duration : <span>{new Date(object.trackingDetails.started_at).toLocaleString()}</span>
-                            </div>
+                        <div>Price: <i className="fa fa-inr"/>{object.slicingDetails.totalPrice}</div>
+                        <div>Printing status : {object.printingStatus}</div>
+                        <div>
+                            Completed on : {new Date(completedAt).toLocaleString()}
+                        </div>
+                        <div>
+                            Printing duration : {duration}
                         </div>
                     </div>
                 </div>
             </div>
         );
+    }
+
+    calculateDuration(started, completed) {
+        const duration =  Math.abs(new Date(completed) - new Date(started))
+        let minutes = Math.floor((duration / (1000 * 60)) % 60);
+        let hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
+        minutes = (minutes < 10) ? "0" + minutes : minutes;
+        return hours + ":" + minutes + " hrs";
     }
 }
 

@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
-import admin from "../../../services/adminService";
 import {toast} from "react-toastify";
-import {Link} from "react-router-dom";
+import admin from "../../../services/adminService";
 import auth from "../../../services/authService";
+import OrderItem from "./orderItem/orderItem";
 import Title from "../../util/title/title";
-import Button from "../../util/button/button";
 import "./admin.css"
 
 class Admin extends Component {
@@ -52,14 +51,6 @@ class Admin extends Component {
         }
     }
 
-    isCompleted = (order, statusId) => {
-        return statusId <= this.orderStatus.find(it => it.name === order.status).id
-    }
-
-    isNotAllowed = (order, statusId) => {
-        return statusId > this.orderStatus.find(it => it.name === order.status).id + 1
-    }
-
     render() {
         const {orders} = this.state
 
@@ -68,43 +59,12 @@ class Admin extends Component {
                 {orders.length && (
                     <div className="orders_container">
                         {orders.map(order =>
-                            <div className="product" key={order.id}>
-                                <div className="product_image">
-                                    <img src="/3d-order-image.jpeg" alt=""/>
-                                </div>
-
-                                <div className="product_content">
-                                    <div className="product_id">
-                                        <Link to={`/orders/${order.id}`}>ID : {order.id}</Link>
-                                    </div>
-
-                                    <div className="product_details">
-                                        <div className="product_details_content user_email">{order.userEmail}</div>
-                                        <div className="product_details_content price">
-                                            <i className="fa fa-inr"/><span>{order.price}</span>
-                                        </div>
-                                    </div>
-
-                                    <div className="product_details">
-                                        <div className="product_details_content status">{order.status}</div>
-                                        <div className="product_details_content size">
-                                            <span>{order.objectIds.length}</span> objects
-                                        </div>
-                                    </div>
-
-                                    <div className='status_buttons'>
-                                        {this.orderStatus.map(status =>
-                                            <Button
-                                                key={status.id}
-                                                label={status.name}
-                                                errors={this.isNotAllowed(order, status.id)}
-                                                completed={this.isCompleted(order, status.id)}
-                                                onClick={() => this.updateOrderStatus(status.name, order)}
-                                            />
-                                        )}
-                                    </div>
-                                </div>
-                            </div>
+                            <OrderItem
+                                key={order.id}
+                                order={order}
+                                orderStatus={this.orderStatus}
+                                updateOrderStatus={this.updateOrderStatus}
+                            />
                         )}
                     </div>
                 )}

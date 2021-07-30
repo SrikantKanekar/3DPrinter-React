@@ -1,0 +1,86 @@
+.object {
+    width: calc((100% - 90px) / 4);
+    margin: 0 0 50px 18px;
+}
+
+.object_image {
+    width: 100%;
+}
+
+.object_image img {
+    width: 100%;
+    height: auto;
+}
+
+.object_description {
+    width: 100%;
+    padding: 36px 5px 38px;
+}
+
+.object_description > div:not(:first-child) {
+    font-size: 16px;
+    font-weight: 550;
+    color: var(--on-surface);
+    line-height: 0.75;
+    margin-top: 8px;
+}
+
+.object_title {
+    width: 90%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.object_title a {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--on-background);
+}
+
+.object_title a:hover {
+    color: var(--primary);
+}
+
+.cart_icon a svg {
+    display: inline;
+    position: absolute;
+    right: 0;
+    top: -33px;
+    width: 20px;
+    height: 20px;
+    z-index: 2;
+    vertical-align: middle;
+    fill: var(--on-surface);
+}
+
+.cart_icon a:hover svg {
+    fill: var(--primary);
+    color: var(--primary);
+}
+
+.cart {
+    color: var(--warning) !important;
+}
+
+.tracking {
+    color: var(--error) !important;
+}
+
+.completed {
+    color: var(--success) !important;
+}
+
+@media only screen and (max-width: 991px) {
+    .object {
+        width: calc((100% - 30px) / 2);
+        margin: 0 0 40px 10px;
+    }
+}
+
+@media only screen and (max-width: 575px) {
+    .object {
+        width: calc(100% - 30px);
+        margin: 0 0 30px 15px;
+    }
+}

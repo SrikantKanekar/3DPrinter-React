@@ -1,12 +1,11 @@
-import React, {Component, Fragment} from 'react';
-import {Link} from "react-router-dom";
+import React, {Component} from 'react';
+import {toast} from "react-toastify";
 import order from "../../../../services/orderService";
 import auth from "../../../../services/authService";
 import admin from "../../../../services/adminService";
-import {toast} from "react-toastify";
 import NotificationForm from "./notificationForm";
+import OrderObjectItem from "./orderObjectItem/orderObjectItem";
 import "./order.css"
-import Button from "../../../util/button/button";
 
 class Order extends Component {
     state = {
@@ -44,16 +43,10 @@ class Order extends Component {
             objects[index].printingStatus = data
             this.setState({objects})
         } catch (e) {
-            toast.dark(e.message)
+            if (e.response && e.response.status === 405){
+                toast.dark("Please start processing this order first")
+            } else toast.dark(e.message)
         }
-    }
-
-    isCompleted = (object, statusId) => {
-        return statusId <= this.printingStatus.find(it => it.name === object.printingStatus).id
-    }
-
-    isNotAllowed = (object, statusId) => {
-        return statusId > this.printingStatus.find(it => it.name === object.printingStatus).id + 1
     }
 
     render() {
@@ -63,42 +56,18 @@ class Order extends Component {
             <div className="container">
                 <div className="objects_container">
                     {objects.map(object =>
-                        <div className="product" key={object.id}>
-                            <div className="product_image">
-                                <img src={object.imageUrl} alt=""/>
-                            </div>
-
-                            <div className="product_content">
-                                <div className="product_title">
-                                    <Link to={`/objects/${object.id}`}>{object.name}</Link>
-                                </div>
-
-                                <div className="product_status">{object.printingStatus}</div>
-
-                                {isAdmin && (
-                                    <Fragment>
-                                        <div className="product_id">ID : {object.id}</div>
-                                        <div className='status_buttons'>
-                                            {this.printingStatus.map(status =>
-                                                <Button
-                                                    key={status.id}
-                                                    label={status.name}
-                                                    errors={this.isNotAllowed(object, status.id)}
-                                                    completed={this.isCompleted(object, status.id)}
-                                                    onClick={() => this.updatePrintingStatus(status.name, object)}
-                                                />
-                                            )}
-                                        </div>
-                                    </Fragment>
-                                )}
-                            </div>
-                        </div>
+                        <OrderObjectItem
+                            object={object}
+                            isAdmin={isAdmin}
+                            printingStatus={this.printingStatus}
+                            updatePrintingStatus={this.updatePrintingStatus}
+                            key={object.id}/>
                     )}
                 </div>
 
                 {isAdmin && (
                     <div className="row">
-                        <div className="message_section col-lg-6">
+                        <div className="notification_sender col-lg-6">
                             <NotificationForm email={order.userEmail}/>
                         </div>
                     </div>

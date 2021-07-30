@@ -124,7 +124,7 @@ class Checkout extends Form {
                         </div>
 
                         <div className="col-lg-6">
-                            <div className="order checkout_section">
+                            <div className="checkout_order checkout_section">
                                 <div className="section_title">Your order</div>
                                 <div className="section_subtitle">Order details</div>
 

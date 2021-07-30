@@ -4,34 +4,47 @@ import Canvas from "../../../canvas/canvas";
 class ObjectTracking extends Component {
     render() {
         const {object} = this.props
-        const date = object.trackingDetails.started_at
-        const startedAt = date ? new Date(date).toLocaleDateString() : ''
+        const startTime = object.trackingDetails.started_at
+        const startedAt = startTime ? new Date(startTime).toLocaleString() : ''
+
+        const stopTime = object.trackingDetails.completed_at
+        const stoppedAt = stopTime ? new Date(stopTime).toLocaleString() : ''
 
         return (
-            <div className="row status_tracking">
-                <div className="col-12">
-                    <video className="video_container" controls>
-                        <source src="" type="video/mp4"/>
-                        Your browser does not support the video tag.
-                    </video>
-                </div>
+            <div className="row justify-content-center">
+                {startedAt && (
+                    <div className="col-lg-10">
+                        <video className="video_container" controls>
+                            <source src="" type="video/mp4"/>
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                )}
 
                 <div className="col-lg-6">
                     <Canvas
                         fileUrl={object.fileUrl}
                         fileExt={object.fileExtension}
-                        canvasError={() => {}}
+                        canvasError={() => {
+                        }}
                     />
                 </div>
 
                 <div className="col-lg-6">
                     <div className="object_content">
                         <div className="object_name">{object.name}</div>
-                        <div className="object_description">
-                            <div className=""><i className="fa fa-inr"/>{object.slicingDetails.totalPrice}</div>
-                            <div className="">Printing status : {object.printingStatus}</div>
-                            <div className="started_at">Started at : {startedAt}</div>
-                        </div>
+                        <div>Price: <i className="fa fa-inr"/>{object.slicingDetails.totalPrice}</div>
+                        <div>Printing status : {object.printingStatus}</div>
+
+                        {!startedAt && (
+                            <div>Printing will start soon</div>
+                        )}
+                        {startedAt && (
+                            <div>Started at : {startedAt}</div>
+                        )}
+                        {stoppedAt && (
+                            <div>Completed at : {stoppedAt}</div>
+                        )}
                     </div>
                 </div>
             </div>

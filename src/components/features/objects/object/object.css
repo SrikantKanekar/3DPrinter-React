@@ -1,132 +1,39 @@
-/************
- Status none
-************/
-
 .object_content {
-    margin-top: 25px;
+    margin-top: 15px;
+}
+
+.object_content > div {
+    font-size: 16px;
+    font-weight: 550;
+    color: var(--on-surface);
+    margin-bottom: 5px;
 }
 
 .object_name {
+    font-size: 30px !important;
+    font-weight: 600 !important;
+    margin-bottom: 12px !important;
+    color: var(--on-background) !important;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    font-size: 30px;
-    font-weight: 550;
-    color: var(--on-background);
-    margin-bottom: 12px;
-}
-
-.slicing_pending_text {
-    font-size: 16px;
-    font-weight: 500;
-    color: var(--on-surface);
-}
-
-.slicing_details {
-    font-size: 16px;
-    font-weight: 500;
-    color: var(--on-surface);
-}
-
-.slicing_details > div {
-    margin-bottom: 5px;
-    word-spacing: 3px;
 }
 
 .button_container {
-    margin-top: 48px;
+    margin-top: 30px;
     width: fit-content;
 }
 
-/************
- Settings
-************/
+.video_container {
+    width: 100%;
+    margin: auto auto 50px;
+    border: none;
+}
 
 .setting {
     margin-top: 90px;
 }
 
-#setting_form{
-    margin-top: 40px;
-}
-
-.basic_container > div:not(:last-child),
-.advanced_container > div:not(:last-child) {
-    margin-bottom: 25px;
-}
-
-/******************
-    checkbox
- *****************/
-.checkbox_container {
-    display: block;
-    position: relative;
-    padding-left: 35px;
-    margin-bottom: 25px;
-    cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-
-/* Hide the browser's default checkbox */
-.checkbox_container input {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-    height: 0;
-    width: 0;
-}
-
-/* Create a custom checkbox */
-.checkmark {
-    position: absolute;
-    top: 2px;
-    left: 8px;
-    height: 15px;
-    width: 15px;
-    background-color: var(--surface);
-}
-
-/* On mouse-over, add a grey background color */
-.checkbox_container:hover input ~ .checkmark {
-    background-color: var(--surface-hover);
-}
-
-/* When the checkbox is checked, add a blue background */
-.checkbox_container input:checked ~ .checkmark {
-    background-color: var(--primary);
-}
-
-/* Create the checkmark/indicator (hidden when not checked) */
-.checkmark:after {
-    content: "";
-    position: absolute;
-    display: none;
-}
-
-/* Show the checkmark when checked */
-.checkbox_container input:checked ~ .checkmark:after {
-    display: block;
-}
-
-/* Style the checkmark/indicator */
-.checkbox_container .checkmark:after {
-    left: 5px;
-    top: 2px;
-    width: 5px;
-    height: 10px;
-    border: solid var(--on-primary);
-    border-width: 0 3px 3px 0;
-    -webkit-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    transform: rotate(45deg);
-}
-
-/************
- Delete Object
-************/
 .delete_button_container {
     margin-top: 50px;
     width: fit-content;
@@ -136,40 +43,11 @@
     margin-top: 30px;
 }
 
-/************
- Status tracking
-************/
-
-.video_container {
-    width: 100%;
-    margin-bottom: 50px;
-    border: none;
-}
-
-.object_description {
-    font-size: 16px;
-    font-weight: 500;
-    color: var(--on-surface);
-}
-
-.object_description > div {
-    margin-bottom: 5px;
-}
-
-/************
-6. 992px
-************/
-
 @media only screen and (max-width: 992px) {
     .setting {
         margin-top: 70px;
     }
 }
-
-
-/************
-7. 600px
-************/
 
 @media only screen and (max-width: 600px) {
     .object_name {
@@ -177,17 +55,8 @@
         font-weight: 500;
     }
 
-    .slicing_details > div {
+    .object_content > div {
         font-size: 15px;
-    }
-
-    .object_description {
-        font-size: 15px;
-        font-weight: 500;
-    }
-
-    .button_container {
-        margin-top: 30px;
     }
 
     .setting {

@@ -50,7 +50,11 @@ class SettingForm extends Form {
     doSubmit = async () => {
         try {
             const {data} = this.state;
-            await objectService.updateSetting(this.props.object.id, data)
+            const setting = await objectService.updateSetting(this.props.object.id, data)
+            const object = {...this.props.object}
+            object.setting = setting
+            object.slicingDetails.uptoDate = false
+            this.props.updateObject(object)
             this.setState({formSuccess: "Successfully Updated"})
         } catch (ex) {
             if (ex.response && ex.response.status === 400) {
