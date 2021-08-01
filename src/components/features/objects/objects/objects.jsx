@@ -3,7 +3,7 @@ import objectService from "../../../../services/objectService";
 import cart from "../../../../services/cartService";
 import {toast} from "react-toastify";
 import ObjectItem from "./objectItem/objectItem";
-import "./objects.css"
+import styles from "./objects.module.css"
 
 class Objects extends Component {
     state = {
@@ -39,7 +39,7 @@ class Objects extends Component {
         return (
             <div className="container">
                 {count && (
-                    <div className="objects_container">
+                    <div className={styles.container}>
                         {objects.map(object =>
                             <ObjectItem
                                 key={object.id}

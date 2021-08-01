@@ -1,19 +1,19 @@
 import React, {Component, Fragment} from 'react';
 import {Link} from "react-router-dom";
-import "./objectItem.css"
+import styles from "./objectItem.module.css"
 
 class ObjectItem extends Component {
     render() {
         const {object} = this.props
         return (
-            <div className="object" key={object.id}>
+            <div className={styles.object}>
 
-                <div className="object_image">
+                <div className={styles.image}>
                     <img src={object.imageUrl} alt=""/>
                 </div>
 
-                <div className="object_description">
-                    <div className="object_title">
+                <div className={styles.description}>
+                    <div className={styles.title}>
                         <Link to={`/objects/${object.id}`}>{object.name}</Link>
                     </div>
 
@@ -23,7 +23,7 @@ class ObjectItem extends Component {
 
                     {object.slicingDetails.uptoDate && object.status === "NONE" && (
                         <Fragment>
-                            <div className="cart_icon">
+                            <div className={styles.cart}>
                                 <a href="/" onClick={e => this.props.handleAddToCart(e, object)}>
                                     <svg version="1.1"
                                          xmlns="http://www.w3.org/2000/svg"

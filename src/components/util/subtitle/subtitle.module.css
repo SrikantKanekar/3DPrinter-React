@@ -1,13 +1,13 @@
-.section_subtitle {
+.subtitle {
     font-size: 14px;
     font-weight: 400;
     color: var(--on-surface);
     margin-top: 3px;
-    padding-left: 10px;
+    padding-left: 2px;
 }
 
 @media only screen and (max-width: 600px) {
-    .section_subtitle {
+    .subtitle {
         font-size: 12px;
     }
 }

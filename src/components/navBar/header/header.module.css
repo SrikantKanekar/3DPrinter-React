@@ -7,7 +7,7 @@
     background: var(--background);
 }
 
-.header_container {
+.container {
     height: 130px;
     display: flex;
     flex-direction: row;
@@ -15,7 +15,7 @@
     align-items: center;
 }
 
-.header_container.scrolled {
+.container.scrolled {
     height: 70px;
 }
 
@@ -25,36 +25,36 @@
     color: var(--on-background);
 }
 
-.header_container.scrolled .logo {
+.container.scrolled .logo {
     font-size: 24px;
 }
 
-.center_nav > ul > li {
+.center > ul > li {
     display: inline-block;
     position: relative;
 }
 
-.center_nav > ul > li:not(:last-child) {
+.center > ul > li:not(:last-child) {
     margin-right: 40px;
 }
 
-.center_nav > ul > li > a {
+.center > ul > li > a {
     font-size: 16px;
     font-weight: 600;
     color: var(--on-background);
 }
 
-.center_nav > ul > li > a:hover,
-.center_nav > ul > li > a.active {
+.center > ul > li > a:hover,
+.center > ul > li > a.active {
     color: var(--primary);
 }
 
-.center_nav ul li:hover::after,
-.center_nav ul li.active::after {
+.center ul li:hover::after,
+.center ul li.active::after {
     color: var(--primary);
 }
 
-.center_nav ul li.hassubs::after {
+.center ul li.subs::after {
     position: absolute;
     top: 50%;
     left: calc(100% + 3px);
@@ -69,7 +69,7 @@
     transform: translateY(-50%);
 }
 
-.hassubs ul {
+.subs ul {
     position: absolute;
     right: -15px;
     top: calc(100% + 20px);
@@ -80,31 +80,31 @@
     opacity: 0;
 }
 
-.hassubs:hover ul {
+.subs:hover ul {
     visibility: visible;
     opacity: 1;
     top: calc(100% + 0px);
 }
 
-.hassubs ul li:not(:last-child) {
+.subs ul li:not(:last-child) {
     margin-bottom: 11px;
 }
 
-.hassubs ul li a {
+.subs ul li a {
     font-size: 14px;
     font-weight: 600;
     color: var(--on-background);
 }
 
-.hassubs ul li a:hover {
+.subs ul li a:hover {
     color: var(--primary);
 }
 
-.shopping_cart {
+.cart {
     display: inline-block;
 }
 
-.shopping_cart a svg {
+.cart a svg {
     display: inline-block;
     width: 19px;
     height: 19px;
@@ -112,13 +112,13 @@
     fill: var(--on-background);
 }
 
-.shopping_cart a:hover svg,
-.shopping_cart a:hover div {
+.cart a:hover svg,
+.cart a:hover div {
     fill: var(--primary);
     color: var(--primary);
 }
 
-.shopping_cart a div {
+.cart a div {
     display: inline-block;
     vertical-align: middle;
     font-size: 15px;
@@ -127,23 +127,23 @@
     margin-left: 5px;
 }
 
-.shopping_cart a.active div {
+.cart a.active div {
     color: var(--primary);
 }
 
-.theme_icon {
+.theme {
     display: inline-block;
     margin-left: 20px;
     vertical-align: middle;
     cursor: pointer;
 }
 
-.theme_icon i {
+.theme i {
     font-size: 15px;
     color: var(--on-background);
 }
 
-.theme_icon i:hover {
+.theme i:hover {
     color: var(--primary);
 }
 
@@ -170,7 +170,7 @@
         padding-right: 20px;
     }
 
-    .center_nav {
+    .center {
         display: none;
     }
 
@@ -185,11 +185,11 @@
         padding-right: 10px;
     }
 
-    .header_container {
+    .container {
         height: 90px;
     }
 
-    .header_container.scrolled {
+    .container.scrolled {
         height: 70px;
     }
 
@@ -197,7 +197,7 @@
         font-size: 20px;
     }
 
-    .header_container.scrolled .logo {
+    .container.scrolled .logo {
         font-size: 18px;
     }
 }

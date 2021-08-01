@@ -1,13 +1,16 @@
 import React, {Component} from 'react';
 import {Link} from "react-router-dom";
-import "./button.css"
+import styles from "./button.module.css"
 
 class Button extends Component {
     render() {
         const {url, label, errors, completed, onClick} = this.props
 
+        const isDisabled = errors ? styles.disabled : ''
+        const isCompleted = completed ? styles.completed : ''
+
         return (
-            <div className={`button ${completed? 'completed': ''} ${errors? 'disabled': ''}`}>
+            <div className={`${styles.button} ${isCompleted} ${isDisabled}`}>
                 {url && (
                     <Link to={url}>{label}</Link>
                 )}

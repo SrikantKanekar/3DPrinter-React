@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Link, NavLink} from "react-router-dom";
-import "./header.css"
+import styles from "./header.module.css"
 
 class Header extends Component {
     state = {
@@ -26,25 +26,25 @@ class Header extends Component {
 
     render() {
         const {user, theme} = this.props
-        const scrolled = this.state.scrolled ? 'scrolled' : ''
+        const scrolled = this.state.scrolled ? styles.scrolled : ''
         const themeIcon = theme ? 'fa fa-sun-o' : 'fa fa-moon-o'
 
         return (
-            <header className="header">
+            <header className={styles.header}>
                 <div className="container">
-                    <div className={`header_container ${scrolled}`}>
-                        <div className="logo">
+                    <div className={`${styles.container} ${scrolled}`}>
+                        <div className={styles.logo}>
                             3D Printing
                         </div>
 
-                        <nav className="center_nav">
+                        <nav className={styles.center}>
                             <ul>
                                 <li><NavLink exact={true} to="/">Home</NavLink></li>
                                 <li><NavLink to="/objects/create">Create</NavLink></li>
                                 <li><NavLink exact to="/objects">My Objects</NavLink></li>
 
                                 {user && (
-                                    <li className="hassubs">
+                                    <li className={styles.subs}>
                                         <NavLink to="/account">Account</NavLink>
                                         <ul>
                                             <li>
@@ -67,8 +67,8 @@ class Header extends Component {
                             </ul>
                         </nav>
 
-                        <div className="end_nav">
-                            <div className="shopping_cart">
+                        <div>
+                            <div className={styles.cart}>
                                 {user && (
                                     <NavLink to="/cart">
                                         <svg version="1.1" xmlns="http://www.w3.org/2000/svg"
@@ -94,11 +94,11 @@ class Header extends Component {
                                 )}
                             </div>
 
-                            <div className="theme_icon" onClick={this.props.toggleTheme}>
+                            <div className={styles.theme} onClick={this.props.toggleTheme}>
                                 <i className={themeIcon} aria-hidden="true"/>
                             </div>
 
-                            <div className="hamburger" onClick={this.props.openMenu}>
+                            <div className={styles.hamburger} onClick={this.props.openMenu}>
                                 <i className="fa fa-bars" aria-hidden="true"/>
                             </div>
                         </div>

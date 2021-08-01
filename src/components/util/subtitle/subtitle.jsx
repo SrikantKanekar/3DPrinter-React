@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import "./subtitle.css"
+import styles from "./subtitle.module.css"
 
 class Subtitle extends Component {
     render() {
         return (
-            <div className="section_subtitle">
+            <div className={styles.subtitle}>
                 {this.props.children}
             </div>
         );

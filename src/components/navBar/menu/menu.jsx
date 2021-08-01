@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Link, NavLink} from "react-router-dom";
-import "./menu.css"
+import styles from "./menu.module.css"
 
 class Menu extends Component {
     state = {
@@ -15,63 +15,62 @@ class Menu extends Component {
 
     render() {
         const {user, menu} = this.props
-        const menuClasses = menu ? 'menu active' : 'menu'
+        const isExpanded = menu ? styles.active : ''
+        const isCollapsed = this.state.accountMenu ? styles.active: ''
 
         return (
-            <div className={menuClasses} onClick={this.props.closeMenu}>
-                <div className="menu_container">
-                    <ul>
-                        <li className="menu_item">
-                            <NavLink exact={true} to="/">Home<i className="fa fa-angle-down"/></NavLink>
+            <div className={`${styles.menu} ${isExpanded}`} onClick={this.props.closeMenu}>
+                <div className={styles.container}>
+                    <ul className={styles.content}>
+                        <li>
+                            <NavLink exact={true} to="/">Home</NavLink>
                         </li>
 
-                        <li className="menu_item">
-                            <NavLink to="/objects/create">Create<i className="fa fa-angle-down"/></NavLink>
+                        <li>
+                            <NavLink to="/objects/create">Create</NavLink>
                         </li>
 
-                        <li className="menu_item">
-                            <NavLink exact to="/objects">My Objects<i className="fa fa-angle-down"/></NavLink>
+                        <li>
+                            <NavLink exact to="/objects">My Objects</NavLink>
                         </li>
 
                         {user && (
-                            <li className="menu_item has-children">
+                            <li>
                                 <NavLink to="/account">
                                     Account<i
                                     className="fa fa-angle-down"
                                     onClick={e => this.toggleAccountMenu(e)}/>
                                 </NavLink>
-                                <ul className={`menu_selection ${this.state.accountMenu? 'active': ''}`}>
-                                    <li className="menu_item">
-                                        <Link to="/account">Account<i className="fa fa-angle-down"/></Link>
+                                <ul className={`${styles.collapsible} ${isCollapsed}`}>
+                                    <li>
+                                        <Link to="/account">Account</Link>
                                     </li>
-                                    <li className="menu_item">
-                                        <Link to="/orders">Orders<i className="fa fa-angle-down"/></Link>
+                                    <li>
+                                        <Link to="/orders">Orders</Link>
                                     </li>
-                                    <li className="menu_item">
-                                        <Link to="/notifications">
-                                            Notifications<i className="fa fa-angle-down"/>
-                                        </Link>
+                                    <li>
+                                        <Link to="/notifications">Notifications</Link>
                                     </li>
-                                    <li className="menu_item">
-                                        <Link to="/account/logout">Logout<i className="fa fa-angle-down"/></Link>
+                                    <li>
+                                        <Link to="/account/logout">Logout</Link>
                                     </li>
                                 </ul>
                             </li>
                         )}
 
                         {user && user.isAdmin && (
-                            <li className="menu_item">
-                                <NavLink to="/admin">Admin<i className="fa fa-angle-down"/></NavLink>
+                            <li>
+                                <NavLink to="/admin">Admin</NavLink>
                             </li>
                         )}
                     </ul>
                 </div>
 
-                <div className="menu_close" onClick={this.props.closeMenu}>
+                <div className={styles.close} onClick={this.props.closeMenu}>
                     <i className="fa fa-times" aria-hidden="true"/>
                 </div>
 
-                <div className="menu_social">
+                <div className={styles.social}>
                     <ul>
                         <li>
                             <Link to="#"><i className="fa fa-pinterest" aria-hidden="true"/></Link>

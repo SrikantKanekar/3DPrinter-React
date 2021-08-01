@@ -20,7 +20,7 @@ function Total(props) {
                 </div>
                 <ul className={styles.list}>
                     {props.objects.map(object =>
-                        <li>
+                        <li key={object.id}>
                             <div className={styles.name}>{object.name}</div>
                             <div className={styles.details}>
                                 <div>X{object.quantity}</div>

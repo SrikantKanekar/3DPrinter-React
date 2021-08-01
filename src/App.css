@@ -150,6 +150,17 @@ main {
     background-color: var(--primary);
 }
 
+.cart {
+    color: var(--warning) !important;
+}
+
+.tracking {
+    color: var(--error) !important;
+}
+
+.completed {
+    color: var(--success) !important;
+}
 
 @media only screen and (max-width: 992px) {
     main {

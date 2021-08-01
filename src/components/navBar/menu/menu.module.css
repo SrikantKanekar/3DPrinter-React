@@ -11,7 +11,7 @@
     right: 0;
 }
 
-.menu_container {
+.container {
     padding-top: 130px;
     padding-left: 30px;
     padding-right: 30px;
@@ -19,39 +19,35 @@
     text-align: right;
 }
 
-.menu_container > ul > li {
+.content li {
     border-bottom: solid 1px var(--border-light);
 }
 
-.menu_item {
+.content li {
     display: block;
     position: relative;
     vertical-align: middle;
 }
 
-.menu_item > a {
+.content li > a {
     display: block;
-    color: var(--on-surface);
+    font-size: 16px;
     font-weight: 700;
     line-height: 50px;
     height: 50px;
-    font-size: 16px;
+    color: var(--on-surface);
 }
 
-.menu_item > a:hover {
+.content li > a:hover {
     color: var(--on-surface-hover);
 }
 
-.menu_item a i {
-    display: none;
+.content i {
+    display: inline-block;
     margin-left: 8px;
 }
 
-.menu_item.has-children > a > i {
-    display: inline-block;
-}
-
-.menu_selection {
+.collapsible {
     margin: 0;
     width: 100%;
     height: 0;
@@ -59,87 +55,69 @@
     z-index: 1;
 }
 
-.menu_selection.active{
+.collapsible.active{
     height: fit-content;
 }
 
-.menu_selection li {
+.collapsible li {
     padding-right: 15px;
     line-height: 40px;
 }
 
-.menu_selection li:last-child {
+.collapsible li:last-child {
     padding-bottom: 20px;
-}
-
-.menu_selection li a {
-    display: block;
-    color: var(--on-surface);
-    border-bottom: solid 1px var(--border-dark);
-    font-size: 14px;
-}
-
-.menu_selection li a:hover {
-    color: var(--on-surface-hover);
-}
-
-.menu_selection li:last-child a {
     border-bottom: none;
 }
 
-.menu_social {
+.social {
     position: absolute;
     right: 30px;
     bottom: 15px;
 }
 
-.menu_social ul li {
+.social ul li {
     display: inline-block;
 }
 
-.menu_social ul li:not(:last-child) {
+.social ul li:not(:last-child) {
     margin-right: 18px;
 }
 
-.menu_social ul li a i {
+.social ul li a i {
     font-size: 16px;
     color: var(--on-surface);
     padding: 5px;
 }
 
-.menu_social ul li a i:hover {
+.social ul li a i:hover {
     color: var(--on-surface-hover);
 }
 
-.menu_close {
+.close {
     position: absolute;
     top: 25px;
     right: 25px;
     cursor: pointer;
 }
 
-.menu_close i {
+.close i {
     font-size: 16px;
     color: var(--on-background);
     padding: 5px;
 }
 
-
-/************
-12. 600px
-************/
 @media only screen and (max-width: 600px) {
     .menu {
         width: 100vw;
         right: -100vw;
     }
 
-    .menu_container {
+    .container {
         padding-top: 80px;
     }
 
-    .menu_item > a,
-    .menu_selection li a {
+    .content li > a,
+    .collapsible li a {
         font-size: 13px;
         height: 40px;
         line-height: 40px;

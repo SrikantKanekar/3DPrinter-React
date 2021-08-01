@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
-import "./title.css"
+import styles from "./title.module.css"
 
 class Title extends Component {
     render() {
-        const titleClass = this.props.center ? 'row section_title justify-content-center' : 'section_title'
+        const isCentered = this.props.center ? 'row justify-content-center' : ''
+
         return (
-            <div className={titleClass}>
+            <div className={`${styles.title} ${isCentered}`}>
                 {this.props.children}
             </div>
         );
