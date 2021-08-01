@@ -1,0 +1,102 @@
+.total {
+    width: 100%;
+    background: var(--surface);
+    padding: 44px 58px 53px 60px;
+}
+
+.container {
+    margin-top: 46px;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    font-size: 20px;
+    font-weight: 550;
+    color: var(--on-background);
+    margin-bottom: 60px;
+}
+
+.name {
+    width: 60%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.details {
+    width: 35%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.list > li {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--on-background);
+}
+
+.list li:not(:last-child) {
+    margin-bottom: 50px;
+}
+
+.button {
+    width: 100%;
+    margin-top: 83px;
+}
+
+.button > div {
+    width: 100%;
+}
+
+@media only screen and (max-width: 992px) {
+    .total {
+        margin-top: 60px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .total {
+        padding: 20px 20px 20px 20px;
+    }
+
+    .container {
+        margin-top: 40px;
+    }
+
+    .header {
+        font-size: 14px;
+        margin-bottom: 30px;
+    }
+
+    .name {
+        width: 50%;
+    }
+
+    .details {
+        width: 40%;
+    }
+
+    .list > li {
+        font-size: 12px;
+        font-weight: 500;
+    }
+
+    .list li:not(:last-child) {
+        margin-bottom: 30px;
+    }
+
+    .button {
+        margin-top: 30px;
+    }
+}

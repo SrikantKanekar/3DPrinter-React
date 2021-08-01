@@ -1,145 +1,16 @@
-
-.checkout_section {
+.checkout {
     width: 100%;
     padding-top: 44px;
 }
 
-.checkout_order {
-    width: 100%;
-    padding-left: 60px;
-    background: var(--surface);
-    padding-bottom: 53px;
-    padding-right: 58px;
-}
-
-.order_list_container {
-    margin-top: 46px;
-}
-
-.header {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 59px;
-}
-
-.name {
-    font-size: 18px;
-    font-weight: 500;
-    color: var(--on-background);
-    width: 80%;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.quantity,
-.price {
-    font-size: 16px;
-    font-weight: 500;
-    color: var(--on-background);
-}
-
-.order_list li:not(:last-child) {
-    margin-bottom: 53px;
-}
-
-.list_item {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.details {
-    width: 30%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.order_text {
-    font-size: 12px;
-    font-weight: 400;
-    font-style: italic;
-    color: var(--on-surface);
-    margin-top: 70px;
-}
-
-.order_button {
-    width: 100%;
-    margin-top: 83px;
-}
-
-.order_button > div {
-    width: 100%;
-}
-
-/************
-4. 1199px
-************/
-
 @media only screen and (max-width: 1199px) {
-    .last_name_col {
-        margin-top: 15px;
+    .margin {
+        margin-top: 25px;
     }
 }
 
-/************
-6. 991px
-************/
-
-@media only screen and (max-width: 991px) {
-    .checkout_order {
-        margin-top: 60px;
-    }
-}
-
-
-/************
-11. 575px
-************/
-
-@media only screen and (max-width: 575px) {
-    .checkout_order {
-        padding-left: 20px;
-        padding-bottom: 20px;
-        padding-right: 20px;
-    }
-
-    .order_list_container {
-        margin-top: 40px;
-    }
-
-    .header {
-        margin-bottom: 30px;
-    }
-
-    .order_list li:not(:last-child) {
-        margin-bottom: 30px;
-    }
-
-    .name {
-        font-size: 13px;
-        width: 60%;
-    }
-
-    .quantity,
-    .price {
-        font-size: 11px;
-    }
-
-    .details {
-        width: 30%;
-    }
-
-    .order_text {
-        margin-top: 20px;
-    }
-
-    .order_button {
-        margin-top: 30px;
+@media only screen and (max-width: 600px) {
+    .checkout {
+        padding-top: 0;
     }
 }
