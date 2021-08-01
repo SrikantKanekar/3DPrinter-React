@@ -7,7 +7,7 @@ import FormContainer from "../../form/formContainer";
 import Form from "../../form/form";
 import Button from "../../util/button/button";
 import Title from "../../util/title/title";
-import "./checkout.css"
+import "./checkout.module.css"
 
 class Checkout extends Form {
     state = {
@@ -129,38 +129,38 @@ class Checkout extends Form {
                                 <div className="section_subtitle">Order details</div>
 
                                 <div className="order_list_container">
-                                    <div className="list_bar">
-                                        <div className="list_title">Object</div>
-                                        <div className="list_details">
-                                            <div className="list_quantity">Qty.</div>
-                                            <div className="list_price">Price</div>
+                                    <div className="header">
+                                        <div className="name">Object</div>
+                                        <div className="details">
+                                            <div className="quantity">Qty.</div>
+                                            <div className="price">Price</div>
                                         </div>
                                     </div>
                                     <ul className="order_list">
                                         {objects.map(object =>
                                             <li className="list_item object">
-                                                <div className="list_title">{object.name}</div>
-                                                <div className="list_details">
-                                                    <div className="list_quantity">X<span>{object.quantity}</span></div>
-                                                    <div className="list_price">
+                                                <div className="object">{object.name}</div>
+                                                <div className="details">
+                                                    <div className="quantity">X<span>{object.quantity}</span></div>
+                                                    <div className="price">
                                                         <i className="fa fa-inr"/><span>{object.slicingDetails.totalPrice}</span>
                                                     </div>
                                                 </div>
                                             </li>
                                         )}
                                         <li className="list_item">
-                                            <div className="list_title">Subtotal</div>
-                                            <div className="list_price subtotal">
+                                            <div className="object">Subtotal</div>
+                                            <div className="price subtotal">
                                                 <i className="fa fa-inr"/><span>{this.calculateTotal()}</span>
                                             </div>
                                         </li>
                                         <li className="list_item">
-                                            <div className="list_title">Shipping</div>
-                                            <div className="list_price">Free</div>
+                                            <div className="object">Shipping</div>
+                                            <div className="price">Free</div>
                                         </li>
                                         <li className="list_item">
-                                            <div className="list_title">Total</div>
-                                            <div className="list_price total">
+                                            <div className="object">Total</div>
+                                            <div className="price total">
                                                 <i className="fa fa-inr"/><span>{this.calculateTotal()}</span>
                                             </div>
                                         </li>

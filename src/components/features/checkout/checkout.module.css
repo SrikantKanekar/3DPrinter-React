@@ -16,7 +16,7 @@
     margin-top: 46px;
 }
 
-.list_bar {
+.header {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -24,7 +24,7 @@
     margin-bottom: 59px;
 }
 
-.list_title {
+.name {
     font-size: 18px;
     font-weight: 500;
     color: var(--on-background);
@@ -34,8 +34,8 @@
     text-overflow: ellipsis;
 }
 
-.list_quantity,
-.list_price {
+.quantity,
+.price {
     font-size: 16px;
     font-weight: 500;
     color: var(--on-background);
@@ -52,7 +52,7 @@
     justify-content: space-between;
 }
 
-.list_details {
+.details {
     width: 30%;
     display: flex;
     flex-direction: row;
@@ -113,7 +113,7 @@
         margin-top: 40px;
     }
 
-    .list_bar {
+    .header {
         margin-bottom: 30px;
     }
 
@@ -121,17 +121,17 @@
         margin-bottom: 30px;
     }
 
-    .list_title {
+    .name {
         font-size: 13px;
         width: 60%;
     }
 
-    .list_quantity,
-    .list_price {
+    .quantity,
+    .price {
         font-size: 11px;
     }
 
-    .list_details {
+    .details {
         width: 30%;
     }
 

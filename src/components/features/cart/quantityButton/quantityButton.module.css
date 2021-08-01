@@ -1,0 +1,136 @@
+.quantity {
+    display: inline-block;
+    width: 147px;
+    height: 61px;
+    border: solid 2px var(--border-dark);
+    overflow: hidden;
+    padding-left: 70px;
+    vertical-align: middle;
+}
+
+.quantity span {
+    position: absolute;
+    top: 50%;
+    left: 25px;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--on-surface);
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.value {
+    width: 40px;
+    line-height: 60px;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--on-background);
+}
+
+.buttons {
+    position: absolute;
+    top: 0;
+    right: 1px;
+    height: 100%;
+    width: 29px;
+}
+
+.buttons div i {
+    font-size: 10px;
+    color: var(--on-surface);
+    pointer-events: none;
+}
+
+.increase,
+.decrease {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 50%;
+    cursor: pointer;
+}
+
+.increase {
+    padding-bottom: 3px;
+    justify-content: flex-end;
+}
+
+.increase i {
+    -webkit-transform: translateY(3px);
+    -moz-transform: translateY(3px);
+    -ms-transform: translateY(3px);
+    -o-transform: translateY(3px);
+    transform: translateY(3px);
+}
+
+.decrease {
+    padding-top: 3px;
+    justify-content: flex-start;
+}
+
+.decrease i {
+    -webkit-transform: translateY(-3px);
+    -moz-transform: translateY(-3px);
+    -ms-transform: translateY(-3px);
+    -o-transform: translateY(-3px);
+    transform: translateY(-3px);
+}
+
+
+@media only screen and (max-width: 992px) {
+    .quantity {
+        max-width: 90px;
+        height: 50px;
+        padding-left: 35px;
+    }
+
+    .quantity span {
+        left: 10px;
+        font-size: 14px;
+        font-weight: 550;
+    }
+
+    .value {
+        width: 30px;
+        line-height: 47px;
+        font-size: 14px;
+        font-weight: 550;
+    }
+
+    .buttons {
+        width: 24px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .quantity {
+        max-width: 60px;
+        height: 40px;
+        padding-left: 25px;
+    }
+
+    .quantity span {
+        left: 5px;
+        font-size: 11px;
+        font-weight: 550;
+    }
+
+    .value {
+        width: 15px;
+        line-height: 38px;
+        font-size: 11px;
+        font-weight: 550;
+    }
+
+    .buttons {
+        width: 13px;
+    }
+}

@@ -1,11 +1,13 @@
 import React, {Component} from 'react';
-import {Link} from "react-router-dom";
 import objectService from "../../../services/objectService";
 import {toast} from "react-toastify";
 import cart from "../../../services/cartService";
-import Button from "../../util/button/button";
 import Title from "../../util/title/title";
-import "./cart.css"
+import CartHeader from "./cartHeader/cartHeader";
+import CartObject from "./cartObject/cartObject";
+import CartTotal from "./cartTotal/cartTotal";
+import CouponForm from "./couponForm/couponForm";
+import style from "./cart.module.css"
 
 class Cart extends Component {
     state = {
@@ -52,152 +54,34 @@ class Cart extends Component {
         }
     }
 
-    handleCouponSubmit = (e) => {
-        e.preventDefault()
-        toast.dark("Invalid coupon id")
-    }
-
-    calculateTotal = () => {
-        const objects = this.state.objects
-        let total = 0
-        objects.forEach((object) => {
-            total += object.quantity * object.slicingDetails.totalPrice
-        })
-        return total
-    }
-
     render() {
         const {objects} = this.state
 
         return (
             <div className="container">
                 {objects.length && (
-                    <div className="cart">
-                        <div className="row">
-                            <div className="col">
-                                <div className="info_column clearfix">
-                                    <div className="info_object">Object</div>
-                                    <div className="info_price">Price</div>
-                                    <div className="info_quantity">Qty.</div>
-                                </div>
-                            </div>
-                        </div>
+                    <div>
+                        <CartHeader/>
 
-                        <div className="row">
-                            <div className="col cart_row">
-                                {objects.map(object =>
-                                    <div className="cart_item" key={object.id}>
-
-                                        <div className="item_object">
-
-                                            <div className="item_image">
-                                                <img src={object.imageUrl} alt=""/>
-                                            </div>
-
-                                            <div className="item_name_container">
-                                                <div className="item_name">
-                                                    <Link to={`/objects/${object.id}`}>{object.name}</Link>
-                                                </div>
-                                                <div className="item_remove">
-                                                    <a href="/"
-                                                       onClick={e => this.handleCartRemove(e, object)}>remove</a>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div className="item_price"><i
-                                            className="fa fa-inr"/> {object.slicingDetails.totalPrice}
-                                        </div>
-
-                                        <div className="item_quantity">
-                                            <div className="quantity">
-                                                <span>Qty</span>
-
-                                                <div className="input">{object.quantity}</div>
-
-                                                <div className="quantity_buttons">
-                                                    <div className="quantity_inc quantity_control"
-                                                         onClick={() => this.handleQuantityIncrease(object)}>
-                                                        <i className="fa fa-chevron-up" aria-hidden="true"/>
-                                                    </div>
-
-                                                    <div className="quantity_dec quantity_control"
-                                                         onClick={() => this.handleQuantityDecrease(object)}>
-                                                        <i className="fa fa-chevron-down" aria-hidden="true"/>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                )}
-                            </div>
+                        <div className={style.container}>
+                            {objects.map(object =>
+                                <CartObject
+                                    object={object}
+                                    key={object.id}
+                                    handleCartRemove={this.handleCartRemove}
+                                    handleQuantityIncrease={this.handleQuantityIncrease}
+                                    handleQuantityDecrease={this.handleQuantityDecrease}
+                                />
+                            )}
                         </div>
 
                         <div className="row">
                             <div className="col-lg-4">
-                                <div className="section_title">Coupon code</div>
-                                <div className="section_subtitle">Enter your coupon code</div>
-                                <div className="coupon_form_container">
-                                    <form id="coupon_form" className="coupon_form">
-                                        <input type="text" className="coupon_input"/>
-                                        <div className="coupon_button">
-                                            <Button label="Apply" onClick={e => this.handleCouponSubmit(e)}/>
-                                        </div>
-                                    </form>
-                                </div>
+                                <CouponForm/>
                             </div>
 
                             <div className="col-lg-6 offset-lg-2">
-                                <div className="cart_total">
-                                    <div className="section_title">Cart total</div>
-                                    <div className="total_container">
-                                        <div className="list_bar">
-                                            <div className="list_title">Object</div>
-                                            <div className="list_details">
-                                                <div className="list_quantity">Qty.</div>
-                                                <div className="list_price">Price</div>
-                                            </div>
-                                        </div>
-                                        <ul>
-                                            {objects.map(object =>
-                                                <li className="total_item" key={object.id}>
-                                                    <div className="total_title">{object.name}</div>
-                                                    <div className="total_details">
-                                                        <div className="total_quantity">
-                                                            x<span>{object.quantity}</span>
-                                                        </div>
-                                                        <div className="total_value">
-                                                            <i className="fa fa-inr"/>
-                                                            <span>{object.slicingDetails.totalPrice}</span>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                            )}
-                                            <li className="total_item">
-                                                <div className="total_title">Subtotal</div>
-                                                <div className="total_value subtotal">
-                                                    <i className="fa fa-inr"/> <span>{this.calculateTotal()}</span>
-                                                </div>
-                                            </li>
-                                            <li className="total_item">
-                                                <div className="total_title">Shipping</div>
-                                                <div className="total_value">Free</div>
-                                            </li>
-                                            <li className="total_item">
-                                                <div className="total_title">Total</div>
-                                                <div className="total_value total">
-                                                    <i className="fa fa-inr"/> <span>{this.calculateTotal()}</span>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div className="checkout_button">
-                                        <Button
-                                            label="Proceed to checkout"
-                                            url="/checkout"
-                                        />
-                                    </div>
-                                </div>
+                                <CartTotal objects={objects}/>
                             </div>
                         </div>
                     </div>

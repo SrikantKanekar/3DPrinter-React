@@ -28,11 +28,11 @@ class OrderItem extends Component {
                     </div>
 
                     <div>{order.userEmail}</div>
-                    <div><i className="fa fa-inr"/>{order.price}</div>
-                    <div>{order.objectIds.length} objects</div>
                     <div className={order.status.toLowerCase()}>
                         {order.status}
                     </div>
+                    <div>{order.objectIds.length} objects</div>
+                    <div><i className="fa fa-inr"/>{order.price}</div>
 
                     <div className='order_status_buttons'>
                         {this.props.orderStatus.map(status =>

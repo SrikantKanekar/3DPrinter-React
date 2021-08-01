@@ -1,0 +1,50 @@
+.container {
+    margin-top: 42px;
+    width: 100%;
+}
+
+.form {
+    position: relative;
+    width: 100%;
+}
+
+.value {
+    width: 100%;
+    height: 52px;
+    border: none;
+    outline: none;
+    background: var(--surface);
+    padding-left: 15px;
+}
+
+.button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 112px;
+    height: 52px;
+}
+
+.button > div {
+    height: inherit;
+    width: inherit;
+}
+
+.button > div > button {
+    line-height: 52px;
+}
+
+
+@media only screen and (max-width: 600px) {
+    .value {
+        height: 45px;
+    }
+
+    .button {
+        height: 45px;
+    }
+
+    .button > div > button {
+        line-height: 45px;
+    }
+}
