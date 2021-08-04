@@ -3,7 +3,7 @@ import Joi from "joi-browser";
 import {toast} from "react-toastify";
 import account from "../../../services/accountService";
 import checkout from "../../../services/checkoutService";
-import FormContainer from "../../form/formContainer";
+import FormContainer from "../../form/formContainer/formContainer";
 import Form from "../../form/form";
 import Title from "../../util/title/title";
 import Total from "./total/total";

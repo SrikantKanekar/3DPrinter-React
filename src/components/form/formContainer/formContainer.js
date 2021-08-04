@@ -1,8 +1,8 @@
 import React, {Component, Fragment} from 'react';
-import Button from "../util/button/button";
-import "./form.css"
-import Title from "../util/title/title";
-import Subtitle from "../util/subtitle/subtitle";
+import Button from "../../util/button/button";
+import Title from "../../util/title/title";
+import Subtitle from "../../util/subtitle/subtitle";
+import styles from "./formContainer.module.css"
 
 class FormContainer extends Component {
     render() {
@@ -13,17 +13,17 @@ class FormContainer extends Component {
                 <Title center={center}>{title}</Title>
                 <Subtitle>{subtitle}</Subtitle>
 
-                <div className="form_container">
+                <div className={styles.content}>
 
                     <form onSubmit={this.handleSubmit}>
                         {children}
                     </form>
 
-                    {formError && <div className="form_error">{formError}</div>}
-                    {formSuccess && <div className="form_success">{formSuccess}</div>}
+                    {formError && <div className={styles.error}>{formError}</div>}
+                    {formSuccess && <div className={styles.success}>{formSuccess}</div>}
 
                     {buttonLabel && (
-                        <div className="form_button">
+                        <div className={styles.button}>
                             <Button
                                 label={buttonLabel}
                                 errors={errors}

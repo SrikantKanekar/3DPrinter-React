@@ -2,7 +2,7 @@ import React from "react";
 import Joi from "joi-browser";
 import Form from "../../../form/form";
 import auth from "../../../../services/authService";
-import FormContainer from "../../../form/formContainer";
+import FormContainer from "../../../form/formContainer/formContainer";
 
 class RegisterForm extends Form {
     state = {

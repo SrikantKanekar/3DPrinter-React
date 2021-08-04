@@ -1,32 +1,22 @@
-label {
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--on-surface);
-}
-
-.form_container {
+.content {
     width: 100%;
     margin-top: 46px;
 }
 
-form > div:not(:last-child) {
-    margin-bottom: 25px;
-}
-
-.form_error {
+.error {
     margin-top: 10px;
     margin-left: 5px;
     font-weight: 500;
     color: var(--error);
 }
 
-.form_success {
+.success {
     margin-top: 10px;
     margin-left: 5px;
     font-weight: 500;
     color: var(--success);
 }
 
-.form_button {
+.button {
     margin: 30px auto auto;
 }

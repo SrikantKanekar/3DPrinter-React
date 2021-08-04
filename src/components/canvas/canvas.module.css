@@ -1,26 +1,16 @@
-.canvas_container {
+.container {
     position: relative;
     width: 100%;
     height: calc(100vh - 180px);
 }
 
-.canvas_container canvas {
+.container canvas {
     position: absolute;
     width: 100%;
     height: 100%;
 }
 
-#gui{
-    position: absolute;
-    top: 0;
-    right: 0;
-}
-
-#gui input {
-    height: 19px;
-}
-
-.canvas_overlay {
+.overlay {
     position: absolute;
     z-index: 1;
     width: 100%;
@@ -50,7 +40,7 @@
     }
 }
 
-.canvas_error_container {
+.error {
     position: absolute;
     display: flex;
     z-index: 1;
@@ -61,7 +51,7 @@
     align-items: center;
 }
 
-.canvas_error_container > div {
+.error > div {
     max-width: 80%;
     overflow: hidden;
     white-space: nowrap;

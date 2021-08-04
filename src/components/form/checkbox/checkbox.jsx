@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import "./checkbox.css"
+import styles from "./checkbox.module.css"
 
 class Checkbox extends Component {
     state = {
@@ -14,7 +14,7 @@ class Checkbox extends Component {
         const {name, label, ...rest} = this.props
         const checked = this.state.checked ? 'checked' : ''
         return (
-            <label className="checkbox_container">{label}
+            <label className={styles.checkbox_container}>{label}
                 <input
                     {...rest}
                     type="checkbox"
@@ -23,7 +23,7 @@ class Checkbox extends Component {
                     checked={checked}
                     value={this.state.checked}
                     onClick={this.handleClick}/>
-                <span className="checkmark"/>
+                <span className={styles.checkmark}/>
             </label>
         );
     }

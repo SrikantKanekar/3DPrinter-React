@@ -1,6 +1,6 @@
 import React from 'react';
 import Form from "../../form/form";
-import FormContainer from "../../form/formContainer";
+import FormContainer from "../../form/formContainer/formContainer";
 import auth from "../../../services/authService";
 import Joi from "joi-browser";
 

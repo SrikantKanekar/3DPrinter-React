@@ -5,7 +5,7 @@ import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader.js';
 import {OBJLoader} from 'three/examples/jsm/loaders/OBJLoader';
 import {STLLoader} from 'three/examples/jsm/loaders/STLLoader';
 import {GUI} from "three/examples/jsm/libs/dat.gui.module";
-import "./canvas.css"
+import styles from "./canvas.module.css"
 
 class Canvas extends Component {
     state = {
@@ -34,19 +34,19 @@ class Canvas extends Component {
         const {loading, error} = this.state
 
         return (
-            <div className="canvas_container" ref={this.canvasContainer}>
+            <div className={styles.container} ref={this.canvasContainer}>
                 <canvas id="canvas" ref={this.canvas}/>
 
                 {loading && (
-                    <div id="canvasLoader" className="canvas_overlay">
-                        <div className="spinner_container">
-                            <span className="spinner"/>
+                    <div id="canvasLoader" className={styles.overlay}>
+                        <div className={styles.spinner_container}>
+                            <span className={styles.spinner}/>
                         </div>
                     </div>
                 )}
 
                 {error && (
-                    <div className="canvas_error_container">
+                    <div className={styles.error}>
                         <div>{this.state.error}</div>
                     </div>
                 )}

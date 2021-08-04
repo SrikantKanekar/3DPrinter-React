@@ -1,8 +1,9 @@
 import React, {Fragment} from "react";
+import styles from "../form.module.css"
 import "./select.css"
 
 const Select = ({name, label, options, value, error, ...rest}) => {
-    const errorClass = error ? 'alert-validate' : ''
+    const errorClass = error ? styles.alert : ''
 
     return (
         <Fragment>

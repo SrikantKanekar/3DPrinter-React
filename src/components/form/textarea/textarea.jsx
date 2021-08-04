@@ -1,10 +1,11 @@
 import React, {Component, Fragment} from 'react';
+import styles from "../form.module.css"
 import "./textarea.css"
 
 class Textarea extends Component {
     render() {
         let {name, label, error, ...rest} = this.props;
-        const errorClass = error ? 'alert-validate' : ''
+        const errorClass = error ? styles.alert : ''
 
         return (
             <Fragment>

@@ -17,7 +17,7 @@
     --primary-variant: #e85051;
     --background: #121212;
     --surface: #1b1b1b;
-    --surface-hover: rgba(29, 29, 29, 0.64);
+    --surface-hover: rgba(47, 47, 47, 0.64);
     --error: #CF6679;
     --success: #18d26e;
     --warning: #e8bd39;
@@ -144,6 +144,26 @@ main {
     min-height: 100vh;
     padding-top: 160px;
     padding-bottom: 70px;
+}
+
+label {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--on-surface);
+}
+
+form > div:not(:last-child) {
+    margin-bottom: 25px;
+}
+
+#gui {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+#gui input {
+    height: 19px;
 }
 
 .progress-bar {

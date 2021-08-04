@@ -1,4 +1,5 @@
 import React, {Component, Fragment} from "react";
+import styles from "../form.module.css"
 import "./input.css"
 
 class Input extends Component {
@@ -17,7 +18,7 @@ class Input extends Component {
 
     render() {
         let {name, label, error, type, ...rest} = this.props;
-        const errorClass = error ? 'alert-validate' : ''
+        const errorClass = error ? styles.alert : ''
         const passwordIcon = this.state.visible ? 'fa fa-eye-slash' : 'fa fa-eye'
 
         return (
@@ -26,7 +27,7 @@ class Input extends Component {
                 <div className={errorClass} data-validate={error}>
                     {type === "password" && (
                         <span
-                            className="btn-show-pass"
+                            className={styles.password}
                             onClick={this.togglePasswordVisibility}>
                         <i className={passwordIcon}/>
                     </span>
