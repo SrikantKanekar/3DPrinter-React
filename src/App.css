@@ -115,12 +115,6 @@ h6 {
     text-shadow: rgba(0, 0, 0, 0.01) 0 0 1px;
 }
 
-section {
-    display: block;
-    position: relative;
-    box-sizing: border-box;
-}
-
 .clearfix::before,
 .clearfix::after {
     content: "";
@@ -144,6 +138,12 @@ main {
     min-height: 100vh;
     padding-top: 160px;
     padding-bottom: 70px;
+}
+
+section {
+    padding: 60px 0;
+    overflow: hidden;
+    position: relative;
 }
 
 label {
@@ -179,6 +179,18 @@ form > div:not(:last-child) {
 }
 
 .completed {
+    color: var(--success) !important;
+}
+
+.pending {
+    color: var(--warning) !important;
+}
+
+.printing {
+    color: var(--error) !important;
+}
+
+.printed {
     color: var(--success) !important;
 }
 

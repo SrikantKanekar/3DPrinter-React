@@ -1,10 +1,10 @@
-.order_objects_container{
+.container{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: flex-start;
 }
 
-.notification_sender {
+.notification {
     margin: auto;
 }

@@ -1,0 +1,23 @@
+import React from 'react';
+import styles from "./ordersHeader.module.css";
+
+function OrdersHeader() {
+    return (
+        <div className={`${styles.header} clearfix`}>
+            <div className={styles.order}>
+                Order
+            </div>
+            <div className={styles.status}>
+                Status
+            </div>
+            <div className={styles.price}>
+                Price
+            </div>
+            <div className={styles.delivered}>
+                Delivered
+            </div>
+        </div>
+    );
+}
+
+export default OrdersHeader;

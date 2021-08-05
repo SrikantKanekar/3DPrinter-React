@@ -5,7 +5,7 @@ import auth from "../../../../services/authService";
 import admin from "../../../../services/adminService";
 import NotificationForm from "./notificationForm";
 import OrderObjectItem from "./orderObjectItem/orderObjectItem";
-import "./order.css"
+import styles from "./order.module.css"
 
 class Order extends Component {
     state = {
@@ -54,7 +54,7 @@ class Order extends Component {
 
         return (
             <div className="container">
-                <div className="objects_container">
+                <div className={styles.container}>
                     {objects.map(object =>
                         <OrderObjectItem
                             object={object}
@@ -67,7 +67,7 @@ class Order extends Component {
 
                 {isAdmin && (
                     <div className="row">
-                        <div className="notification_sender col-lg-6">
+                        <div className={`${styles.notification} col-lg-6`}>
                             <NotificationForm email={order.userEmail}/>
                         </div>
                     </div>

@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {Link} from "react-router-dom";
 import Button from "../../../util/button/button";
-import "./orderItem.css"
+import "./adminOrderItem.css"
 
-class OrderItem extends Component {
+class AdminOrderItem extends Component {
 
     isCompleted = (order, statusId) => {
         return statusId <= this.props.orderStatus.find(it => it.name === order.status).id
@@ -51,4 +51,4 @@ class OrderItem extends Component {
     }
 }
 
-export default OrderItem;
+export default AdminOrderItem;

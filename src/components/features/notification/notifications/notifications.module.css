@@ -1,0 +1,58 @@
+.content {
+    padding: 20px 5px 0;
+}
+
+.title {
+    width: 90%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.title a {
+    font-size: 26px;
+    font-weight: 550;
+    color: var(--on-background);
+}
+
+.title a:hover {
+    color: var(--primary);
+}
+
+.message {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--on-surface);
+    margin-top: 10px;
+
+    width: 60%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.date {
+    font-size: 14px;
+    font-weight: 450;
+    color: var(--on-surface);
+    margin-top: 5px;
+    text-align: right;
+}
+
+.divider {
+    border-top: 1px solid var(--border-light);
+}
+
+@media only screen and (max-width: 992px) {
+    .title a {
+        font-size: 22px;
+    }
+
+    .message {
+        font-size: 15px;
+    }
+
+    .date {
+        font-size: 13px;
+    }
+}

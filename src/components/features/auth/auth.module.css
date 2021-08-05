@@ -1,9 +1,9 @@
-.auth_container {
+.container {
     padding-top: 20px;
     margin: auto;
 }
 
-.text_container {
+.content {
     margin-top: 20px;
     text-align: center;
 }
@@ -25,22 +25,14 @@
     color: var(--primary);
 }
 
-/************
-1. 992px
-************/
-
 @media only screen and (max-width: 992px) {
-    .auth_container {
+    .container {
         padding-top: 10px;
     }
 }
 
-/************
-2. 600px
-************/
-
 @media only screen and (max-width: 600px) {
-    .auth_container {
+    .container {
         padding-top: 5px;
     }
 

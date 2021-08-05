@@ -49,7 +49,7 @@ class NotificationForm extends Form {
                 formSuccess={this.state.formSuccess}
                 onSubmit={this.handleSubmit}>
                 {this.renderInput("subject", "Subject")}
-                {this.renderInput("body", "Body")}
+                {this.renderTextarea("body", "Body")}
             </FormContainer>
         );
     }

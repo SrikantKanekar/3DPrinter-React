@@ -1,0 +1,48 @@
+.title {
+    font-size: 30px;
+    font-weight: 550;
+    color: var(--on-background);
+}
+
+.message {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--on-surface);
+    margin-top: 13px;
+}
+
+.date {
+    font-size: 14px;
+    font-weight: 450;
+    color: var(--on-surface);
+    margin-top: 15px;
+    text-align: right;
+}
+
+@media only screen and (max-width: 992px) {
+    .title {
+        font-size: 22px;
+    }
+
+    .message {
+        font-size: 16px;
+    }
+
+    .date {
+        font-size: 13px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .title {
+        font-size: 20px;
+    }
+
+    .message {
+        font-size: 15px;
+    }
+
+    .date {
+        font-size: 12px;
+    }
+}

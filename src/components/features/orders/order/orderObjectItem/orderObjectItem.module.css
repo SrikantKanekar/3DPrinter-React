@@ -1,23 +1,23 @@
-.order_object {
+.object {
     width: calc((100% - 90px) / 4);
     margin: 0 0 50px 18px;
 }
 
-.order_object_image {
+.image {
     width: 100%;
 }
 
-.order_object_image img {
+.image img {
     width: 100%;
     height: auto;
 }
 
-.order_object_content {
+.content {
     width: 100%;
     padding: 20px 5px 30px;
 }
 
-.order_object_content > div:not(:first-child) {
+.content > div:not(:first-child) {
     font-size: 16px;
     font-weight: 550;
     color: var(--on-surface);
@@ -25,7 +25,7 @@
     margin-top: 13px;
 }
 
-.order_object_title {
+.title {
     width: 90%;
     white-space: nowrap;
     overflow: hidden;
@@ -33,29 +33,17 @@
     line-height: normal;
 }
 
-.order_object_title a {
+.title a {
     font-size: 20px;
     font-weight: 600;
     color: var(--on-background);
 }
 
-.order_object_title a:hover {
+.title a:hover {
     color: var(--primary);
 }
 
-.pending {
-    color: var(--warning) !important;
-}
-
-.printing {
-    color: var(--error) !important;
-}
-
-.printed {
-    color: var(--success) !important;
-}
-
-.object_status_buttons {
+.buttons {
     margin-top: 13px;
     display: flex;
     flex-direction: row;
@@ -63,7 +51,7 @@
     justify-content: flex-start;
 }
 
-.object_status_buttons > div {
+.buttons > div {
     width: 75px;
     height: 35px;
     margin-left: 3px;
@@ -71,13 +59,13 @@
     margin-top: 8px;
 }
 
-.object_status_buttons > div > button {
+.buttons > div > button {
     font-size: 12px;
     font-weight: 500;
     line-height: 31px;
 }
 
-.object_status_buttons > div {
+.buttons > div {
     width: 75px;
     height: 35px;
     margin-left: 3px;
@@ -85,21 +73,21 @@
     margin-top: 8px;
 }
 
-.object_status_buttons > div > button {
+.buttons > div > button {
     font-size: 10px;
     font-weight: 500;
     line-height: 31px;
 }
 
 @media only screen and (max-width: 991px) {
-    .order_object {
+    .object {
         width: calc((100% - 30px) / 2);
         margin: 0 0 40px 10px;
     }
 }
 
 @media only screen and (max-width: 575px) {
-    .order_object {
+    .object {
         width: calc(100% - 30px);
         margin: 0 0 30px 15px;
     }

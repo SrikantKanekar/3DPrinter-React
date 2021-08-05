@@ -1,0 +1,42 @@
+.header {
+    padding-bottom: 7px;
+    border-bottom: solid 2px var(--border-dark);
+}
+
+.header > div {
+    float: left;
+    font-size: 16px;
+    font-weight: 450;
+    color: var(--on-background);
+}
+
+.order {
+    width: 55%;
+}
+
+.status {
+    width: 15%;
+    text-align: center;
+}
+
+.price {
+    width: 15%;
+    text-align: center;
+}
+
+.delivered {
+    width: 15%;
+    text-align: right;
+}
+
+@media only screen and (max-width: 992px) {
+    .header > div {
+        font-size: 15px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .header > div {
+        font-size: 11px;
+    }
+}

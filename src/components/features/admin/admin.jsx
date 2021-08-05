@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {toast} from "react-toastify";
 import admin from "../../../services/adminService";
 import auth from "../../../services/authService";
-import OrderItem from "./orderItem/orderItem";
+import AdminOrderItem from "./orderItem/adminOrderItem";
 import Title from "../../util/title/title";
 import "./admin.css"
 
@@ -59,7 +59,7 @@ class Admin extends Component {
                 {orders.length && (
                     <div className="orders_container">
                         {orders.map(order =>
-                            <OrderItem
+                            <AdminOrderItem
                                 key={order.id}
                                 order={order}
                                 orderStatus={this.orderStatus}

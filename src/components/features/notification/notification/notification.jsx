@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import "./notification.css"
 import notification from "../../../../services/notificationService";
+import styles from "./notification.module.css"
 
 class Notification extends Component {
     state = {
@@ -12,7 +12,7 @@ class Notification extends Component {
             const {data} = await notification.get(this.props.match.params.id)
             this.setState({notification: data})
         } catch (ex) {
-            if (ex.response && ex.response.status === 404){
+            if (ex.response && ex.response.status === 404) {
                 this.props.history.replace("/not-found");
             }
         }
@@ -27,13 +27,11 @@ class Notification extends Component {
 
         return (
             <div className="container">
-                <div className="notification_detail_content">
-                    <div className="notification_detail_title">
-                        {notification.subject}
-                    </div>
-                    <div className="notification_detail_message">{notification.body}</div>
-                    <div className="notification_detail_date">{date}</div>
+                <div className={styles.title}>
+                    {notification.subject}
                 </div>
+                <div className={styles.message}>{notification.body}</div>
+                <div className={styles.date}>~{date}</div>
             </div>
         );
     }
