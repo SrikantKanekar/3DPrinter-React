@@ -170,6 +170,7 @@ form > div:not(:last-child) {
     background-color: var(--primary);
 }
 
+/*cart screen*/
 .cart {
     color: var(--warning) !important;
 }
@@ -182,6 +183,7 @@ form > div:not(:last-child) {
     color: var(--success) !important;
 }
 
+/*printing status*/
 .pending {
     color: var(--warning) !important;
 }
@@ -191,6 +193,19 @@ form > div:not(:last-child) {
 }
 
 .printed {
+    color: var(--success) !important;
+}
+
+/*order status*/
+.processing {
+    color: var(--error) !important;
+}
+
+.delivering {
+    color: var(--warning) !important;
+}
+
+.delivered {
     color: var(--success) !important;
 }
 

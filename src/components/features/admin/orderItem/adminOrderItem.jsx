@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from "react-router-dom";
 import Button from "../../../util/button/button";
-import "./adminOrderItem.css"
+import styles from "./adminOrderItem.module.css"
 
 class AdminOrderItem extends Component {
 
@@ -17,13 +17,13 @@ class AdminOrderItem extends Component {
         const {order} = this.props
 
         return (
-            <div className="order" key={order.id}>
-                <div className="order_image">
+            <div className={styles.order}>
+                <div className={styles.image}>
                     <img src="/3d-order-image.jpeg" alt=""/>
                 </div>
 
-                <div className="order_content">
-                    <div className="order_id">
+                <div className={styles.content}>
+                    <div className={styles.name}>
                         <Link to={`/orders/${order.id}`}>ID : {order.id}</Link>
                     </div>
 
@@ -34,7 +34,7 @@ class AdminOrderItem extends Component {
                     <div>{order.objectIds.length} objects</div>
                     <div><i className="fa fa-inr"/>{order.price}</div>
 
-                    <div className='order_status_buttons'>
+                    <div className={styles.buttons}>
                         {this.props.orderStatus.map(status =>
                             <Button
                                 key={status.id}

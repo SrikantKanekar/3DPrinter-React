@@ -4,7 +4,7 @@ import admin from "../../../services/adminService";
 import auth from "../../../services/authService";
 import AdminOrderItem from "./orderItem/adminOrderItem";
 import Title from "../../util/title/title";
-import "./admin.css"
+import styles from "./admin.module.css"
 
 class Admin extends Component {
 
@@ -57,7 +57,7 @@ class Admin extends Component {
         return (
             <div className="container">
                 {orders.length && (
-                    <div className="orders_container">
+                    <div className={styles.container}>
                         {orders.map(order =>
                             <AdminOrderItem
                                 key={order.id}

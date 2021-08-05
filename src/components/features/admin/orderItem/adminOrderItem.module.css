@@ -3,21 +3,21 @@
     margin: 0 0 50px 18px;
 }
 
-.order_image {
+.image {
     width: 100%;
 }
 
-.order_image img {
+.image img {
     width: 100%;
     height: auto;
 }
 
-.order_content {
+.content {
     width: 100%;
     padding: 20px 5px 30px;
 }
 
-.order_content > div:not(:first-child) {
+.content > div:not(:first-child) {
     font-size: 16px;
     font-weight: 550;
     color: var(--on-surface);
@@ -25,7 +25,7 @@
     margin-top: 11px;
 }
 
-.order_id {
+.name {
     width: 95%;
     white-space: nowrap;
     overflow: hidden;
@@ -33,29 +33,17 @@
     line-height: normal;
 }
 
-.order_id a {
+.name a {
     font-size: 15px;
     font-weight: 600;
     color: var(--on-background);
 }
 
-.order_id a:hover {
+.name a:hover {
     color: var(--primary);
 }
 
-.processing {
-    color: var(--error) !important;
-}
-
-.delivering {
-    color: var(--warning) !important;
-}
-
-.delivered {
-    color: var(--success) !important;
-}
-
-.order_status_buttons {
+.buttons {
     margin-top: 13px;
     display: flex;
     flex-direction: row;
@@ -63,7 +51,7 @@
     justify-content: flex-start;
 }
 
-.order_status_buttons > div {
+.buttons > div {
     width: 75px;
     height: 35px;
     margin-left: 3px;
@@ -71,13 +59,13 @@
     margin-top: 8px;
 }
 
-.order_status_buttons > div > button {
+.buttons > div > button {
     font-size: 12px;
     font-weight: 500;
     line-height: 31px;
 }
 
-.order_status_buttons > div {
+.buttons > div {
     width: 75px;
     height: 35px;
     margin-left: 3px;
@@ -85,7 +73,7 @@
     margin-top: 8px;
 }
 
-.order_status_buttons > div > button {
+.buttons > div > button {
     font-size: 10px;
     font-weight: 550;
     line-height: 31px;
