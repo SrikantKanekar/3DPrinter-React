@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Canvas from "../../../canvas/canvas";
+import styles from "./object.module.css"
 
 class ObjectTracking extends Component {
     render() {
@@ -14,7 +15,7 @@ class ObjectTracking extends Component {
             <div className="row justify-content-center">
                 {startedAt && (
                     <div className="col-lg-10">
-                        <video className="video_container" controls>
+                        <video className={styles.video_container} controls>
                             <source src="" type="video/mp4"/>
                             Your browser does not support the video tag.
                         </video>
@@ -31,8 +32,10 @@ class ObjectTracking extends Component {
                 </div>
 
                 <div className="col-lg-6">
-                    <div className="object_content">
-                        <div className="object_name">{object.name}</div>
+                    <div className={styles.content}>
+                        <div className={styles.name}>
+                            {object.name}
+                        </div>
                         <div>Price: <i className="fa fa-inr"/>{object.slicingDetails.totalPrice}</div>
                         <div>Printing status : {object.printingStatus}</div>
 

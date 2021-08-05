@@ -7,7 +7,7 @@ import SettingForm from "./settingForm";
 import Button from "../../../util/button/button";
 import {toast} from "react-toastify";
 import Title from "../../../util/title/title";
-import './object.css'
+import styles from './object.module.css'
 
 class ObjectGet extends Component {
     state = {}
@@ -51,7 +51,7 @@ class ObjectGet extends Component {
                         {status === "TRACKING" && <ObjectTracking object={object}/>}
                         {status === "COMPLETED" && <ObjectCompleted object={object}/>}
 
-                        <div className="setting">
+                        <div className={styles.setting}>
                             <SettingForm
                                 object={object}
                                 updateObject={obj => this.updateObject(obj)}
@@ -59,9 +59,9 @@ class ObjectGet extends Component {
                         </div>
 
                         {status === "NONE" && (
-                            <div className="delete_button_container">
+                            <div className={styles.delete_button}>
                                 <Title>Delete</Title>
-                                <div className="delete_button">
+                                <div>
                                     <Button label="Delete" onClick={this.handleDelete}/>
                                 </div>
                             </div>

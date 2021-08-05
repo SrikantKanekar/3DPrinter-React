@@ -4,6 +4,7 @@ import cart from "../../../../services/cartService";
 import {toast} from "react-toastify";
 import Canvas from "../../../canvas/canvas";
 import Button from "../../../util/button/button";
+import styles from "./object.module.css"
 
 class ObjectNone extends Component {
     state = {
@@ -64,8 +65,8 @@ class ObjectNone extends Component {
                 </div>
 
                 <div className="col-lg-6">
-                    <div className="object_content">
-                        <div className="object_name">
+                    <div className={styles.content}>
+                        <div className={styles.name}>
                             {object.name}
                         </div>
 
@@ -95,7 +96,7 @@ class ObjectNone extends Component {
                             </Fragment>
                         )}
 
-                        <div className="button_container">
+                        <div className={styles.button_container}>
                             {!slicingDone && (
                                 <Button label="Slice" onClick={this.handleSlicing}/>
                             )}

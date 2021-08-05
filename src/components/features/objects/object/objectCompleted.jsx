@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Canvas from "../../../canvas/canvas";
+import styles from "./object.module.css"
 
 class ObjectCompleted extends Component {
     render() {
@@ -20,8 +21,10 @@ class ObjectCompleted extends Component {
                 </div>
 
                 <div className="col-lg-6">
-                    <div className="object_content">
-                        <div className="object_name">{object.name}</div>
+                    <div className={styles.content}>
+                        <div className={styles.name}>
+                            {object.name}
+                        </div>
                         <div>Price: <i className="fa fa-inr"/>{object.slicingDetails.totalPrice}</div>
                         <div>Printing status : {object.printingStatus}</div>
                         <div>

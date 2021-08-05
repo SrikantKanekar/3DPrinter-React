@@ -1,15 +1,15 @@
-.object_content {
+.content {
     margin-top: 15px;
 }
 
-.object_content > div {
+.content > div {
     font-size: 16px;
     font-weight: 550;
     color: var(--on-surface);
     margin-bottom: 5px;
 }
 
-.object_name {
+.name {
     font-size: 30px !important;
     font-weight: 600 !important;
     margin-bottom: 12px !important;
@@ -34,12 +34,12 @@
     margin-top: 90px;
 }
 
-.delete_button_container {
+.delete_button {
     margin-top: 50px;
     width: fit-content;
 }
 
-.delete_button {
+.delete_button > div {
     margin-top: 30px;
 }
 
@@ -50,12 +50,12 @@
 }
 
 @media only screen and (max-width: 600px) {
-    .object_name {
+    .name {
         font-size: 22px;
         font-weight: 500;
     }
 
-    .object_content > div {
+    .content > div {
         font-size: 15px;
     }
 
