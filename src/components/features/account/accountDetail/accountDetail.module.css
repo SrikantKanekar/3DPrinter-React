@@ -1,0 +1,21 @@
+.container {
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.container p {
+    font-size: 24px;
+    font-weight: 550;
+    color: var(--on-background);
+}
+
+@media only screen and (max-width: 600px) {
+    .container {
+        padding: 10px;
+    }
+
+    .container p {
+        font-size: 18px;
+        font-weight: 550;
+    }
+}

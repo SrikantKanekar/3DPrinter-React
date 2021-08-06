@@ -1,0 +1,39 @@
+.panel {
+    height: 100%;
+    display: flex;
+    position: relative;
+}
+
+.toggle {
+    position: absolute;
+    display: none;
+    width: 35px;
+    height: 35px;
+    background: var(--surface);
+    color: var(--on-surface);
+
+    border-radius: 50%;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.content {
+    padding: 30px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+@media (max-width: 768px) {
+    .toggle {
+        display: flex;
+    }
+
+    .content {
+        padding: 0 20px 0 20px;
+    }
+}

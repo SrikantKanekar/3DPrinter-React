@@ -1,46 +1,39 @@
-import React, {Component} from 'react';
-import auth from "../../../services/authService";
-import AccountUpdateForm from "./accountUpdateForm";
-import ResetPasswordForm from "./resetPasswordForm";
-import "./account.css"
+import React, {useState} from 'react';
+import AccountUpdateForm from "./accountUpdate/accountUpdateForm";
+import ResetPasswordForm from "./ResetPassword/resetPasswordForm";
+import AccountSidebar from "./accountSidebar/accountSidebar";
+import AccountDetail from "./accountDetail/accountDetail";
+import styles from "./account.module.css"
+import {Route} from "react-router-dom";
+import {FaBars} from "react-icons/all";
 
-class Account extends Component {
-    state = {
-        user: ''
-    }
 
-    componentDidMount() {
-        const user = auth.getCurrentUser()
-        this.setState({user})
-    }
+function Account() {
+    const [toggled, setToggled] = useState(false);
 
-    render() {
-        const {user} = this.state
+    const handleToggleSidebar = (value) => {
+        setToggled(value);
+    };
 
-        return (
-            <div className="container">
+    return (
+        <div className={styles.panel}>
+            <AccountSidebar
+                toggled={toggled}
+                handleToggleSidebar={handleToggleSidebar}
+            />
 
-                <div className="account_detail_container">
-                    <p>Username : {user.username}</p>
-                    <p>Email : {user.email}</p>
-                </div>
-
-                <button className="collapsible">Update Account</button>
-                <div className="collapsible_content col-lg-10">
-                    <div className="update_form_container">
-                        <AccountUpdateForm />
+            <div className={styles.content}>
+                {!toggled && (
+                    <div className={styles.toggle} onClick={() => handleToggleSidebar(true)}>
+                        <FaBars/>
                     </div>
-                </div>
-
-                <button className="collapsible">Change password</button>
-                <div className="collapsible_content col-lg-10">
-                    <div className="change_password_form_container">
-                        <ResetPasswordForm/>
-                    </div>
-                </div>
+                )}
+                <Route path="/account/reset-password" component={ResetPasswordForm}/>
+                <Route path="/account/update" component={AccountUpdateForm}/>
+                <Route exact path="/account" component={AccountDetail}/>
             </div>
-        );
-    }
+        </div>
+    );
 }
 
 export default Account;

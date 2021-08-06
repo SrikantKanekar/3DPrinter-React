@@ -1,9 +1,9 @@
 import React from 'react';
 import Joi from "joi-browser";
-import Form from "../../form/form";
-import account from "../../../services/accountService";
-import FormContainer from "../../form/formContainer/formContainer";
-import auth from "../../../services/authService";
+import Form from "../../../form/form";
+import account from "../../../../services/accountService";
+import FormContainer from "../../../form/formContainer/formContainer";
+import auth from "../../../../services/authService";
 
 class AccountUpdateForm extends Form {
     state = {
@@ -41,6 +41,8 @@ class AccountUpdateForm extends Form {
     render() {
         return (
             <FormContainer
+                title="Update account"
+                center={true}
                 buttonLabel="Update"
                 errors={this.validate()}
                 formError={this.state.formError}

@@ -1,7 +1,7 @@
 import React from 'react';
-import Form from "../../form/form";
-import FormContainer from "../../form/formContainer/formContainer";
-import auth from "../../../services/authService";
+import Form from "../../../form/form";
+import FormContainer from "../../../form/formContainer/formContainer";
+import auth from "../../../../services/authService";
 import Joi from "joi-browser";
 
 class ResetPasswordForm extends Form {
@@ -41,6 +41,8 @@ class ResetPasswordForm extends Form {
     render() {
         return (
             <FormContainer
+                title="Reset Password"
+                center={true}
                 buttonLabel="Reset"
                 errors={this.validate()}
                 formError={this.state.formError}
