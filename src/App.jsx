@@ -3,6 +3,7 @@ import {Redirect, Route, Switch} from "react-router-dom"
 import {ToastContainer} from "react-toastify";
 import auth from "./services/authService";
 import {setupTheme, toggleTheme} from "./util/theme";
+import ScrollToTop from "./components/util/scrollToTop";
 import ProtectedRoute from "./components/util/protectedRoute";
 import NotFound from "./components/features/util/notFound/notFound";
 import Account from "./components/features/account/account";
@@ -26,7 +27,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import "font-awesome/css/font-awesome.css";
 import "react-toastify/dist/ReactToastify.css";
 import './App.css';
-import ScrollToTop from "./components/util/scrollToTop";
+import Spinner from "./components/util/spinner/spinner";
 
 class App extends Component {
     state = {
@@ -47,6 +48,7 @@ class App extends Component {
         return (
             <Fragment>
                 <ToastContainer/>
+                <Spinner/>
                 <NavBar
                     user={user}
                     theme={theme}

@@ -1,21 +1,28 @@
 import jwtDecode from "jwt-decode";
 import http from "./httpService";
+import {trackPromise} from "react-promise-tracker";
 
 const apiEndpoint = "/auth";
 const tokenKey = "token";
 
 async function login(credentials) {
-    const {data} = await http.post(`${apiEndpoint}/login`, credentials);
+    const {data} = await trackPromise(
+        http.post(`${apiEndpoint}/login`, credentials)
+    )
     localStorage.setItem(tokenKey, data);
 }
 
 async function register(user) {
-    const {data} = await http.post(`${apiEndpoint}/register`, user);
+    const {data} = await trackPromise(
+        http.post(`${apiEndpoint}/register`, user)
+    )
     localStorage.setItem(tokenKey, data);
 }
 
 async function resetPassword(data) {
-    return await http.put(`${apiEndpoint}/reset-password`, data);
+    return await trackPromise(
+        http.put(`${apiEndpoint}/reset-password`, data)
+    )
 }
 
 function logout() {

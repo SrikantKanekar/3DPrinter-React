@@ -1,13 +1,14 @@
 import http from "./httpService";
+import {trackPromise} from "react-promise-tracker";
 
 const apiEndpoint = "/orders";
 
 async function getAll() {
-    return await http.get(apiEndpoint);
+    return await trackPromise(http.get(apiEndpoint))
 }
 
 async function get(id) {
-    return await http.get(`${apiEndpoint}/${id}`);
+    return await trackPromise(http.get(`${apiEndpoint}/${id}`))
 }
 
 const order = {

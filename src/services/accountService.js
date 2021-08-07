@@ -1,17 +1,18 @@
 import http from "./httpService";
+import {trackPromise} from "react-promise-tracker";
 
 const apiEndpoint = "/account";
 
 async function get() {
-    return await http.get(apiEndpoint)
+    return await trackPromise(http.get(apiEndpoint))
 }
 
 async function update(account) {
-    return await http.post(apiEndpoint, account)
+    return await trackPromise(http.post(apiEndpoint, account))
 }
 
 async function updateAddress(address) {
-    return await http.post(`${apiEndpoint}/address`, address)
+    return await trackPromise(http.post(`${apiEndpoint}/address`, address))
 }
 
 const account = {

@@ -1,13 +1,18 @@
 import http from "./httpService";
+import {trackPromise} from "react-promise-tracker";
 
 const apiEndpoint = "/checkout";
 
 async function get() {
-    return await http.get(apiEndpoint);
+    return await trackPromise(
+        http.get(apiEndpoint)
+    )
 }
 
 async function proceed() {
-    return await http.post(`${apiEndpoint}/proceed`, {success: true});
+    return await trackPromise(
+        http.post(`${apiEndpoint}/proceed`, {success: true})
+    )
 }
 
 const checkout = {
