@@ -1,7 +1,8 @@
 import React from 'react';
 import Joi from "joi-browser";
-import Form from "../../../form/form";
-import FormContainer from "../../../form/formContainer/formContainer";
+import Form from "../../../../form/form";
+import FormContainer from "../../../../form/formContainer/formContainer";
+import styles from "./contactUs.module.css"
 
 class ContactUsForm extends Form {
     state = {
@@ -49,7 +50,7 @@ class ContactUsForm extends Form {
                     <div className="col-xl-6">
                         {this.renderInput("name", "Name")}
                     </div>
-                    <div className="col-xl-6">
+                    <div className={`col-xl-6 ${styles.margin}`}>
                         {this.renderInput("email", "Email", "email")}
                     </div>
                 </div>
