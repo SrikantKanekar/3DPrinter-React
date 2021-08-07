@@ -3,12 +3,6 @@
     padding-top: 44px;
 }
 
-@media only screen and (max-width: 1199px) {
-    .margin {
-        margin-top: 25px;
-    }
-}
-
 @media only screen and (max-width: 600px) {
     .checkout {
         padding-top: 0;

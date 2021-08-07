@@ -15,15 +15,16 @@ class ResetPasswordForm extends Form {
     schema={
         oldPassword: Joi.string()
             .required()
-            .label("Password"),
+            .min(4)
+            .label("Old Password"),
         newPassword: Joi.string()
             .required()
             .min(4)
-            .label("Password"),
+            .label("New Password"),
         confirmPassword: Joi.string()
             .required()
             .min(4)
-            .label("Password")
+            .label("Confirm Password")
     }
 
     doSubmit = async () => {

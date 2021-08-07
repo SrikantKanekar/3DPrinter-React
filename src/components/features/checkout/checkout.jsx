@@ -38,9 +38,11 @@ class Checkout extends Form {
     schema = {
         firstname: Joi.string()
             .min(2)
+            .max(50)
             .label("First Name"),
         lastname: Joi.string()
-            .min(2)
+            .min(1)
+            .max(50)
             .label("Last Name"),
         phoneNumber: Joi
             .required()
@@ -99,7 +101,7 @@ class Checkout extends Form {
                                     <div className="col-xl-6">
                                         {this.renderInput("firstname", "First Name*")}
                                     </div>
-                                    <div className={`col-xl-6 ${styles.margin}`}>
+                                    <div className="col-xl-6 field_margin">
                                         {this.renderInput("lastname", "Last Name*")}
                                     </div>
                                 </div>

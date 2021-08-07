@@ -21,7 +21,7 @@ class AccountUpdateForm extends Form {
     schema = {
         username: Joi.string()
             .required()
-            .min(3)
+            .min(2)
             .max(50)
             .label("Username")
     }

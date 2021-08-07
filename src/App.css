@@ -209,6 +209,12 @@ form > div:not(:last-child) {
     color: var(--success) !important;
 }
 
+@media only screen and (max-width: 1199px) {
+    .field_margin {
+        margin-top: 25px;
+    }
+}
+
 @media only screen and (max-width: 992px) {
     main {
         padding-bottom: 50px;

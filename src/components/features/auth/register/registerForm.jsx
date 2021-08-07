@@ -18,16 +18,16 @@ class RegisterForm extends Form {
             .label("Email"),
         username: Joi.string()
             .required()
-            .min(3)
-            .max(55)
+            .min(2)
+            .max(50)
             .label("Username"),
         password1: Joi.string()
             .required()
-            .min(5)
+            .min(4)
             .label("Password"),
         password2: Joi.string()
             .required()
-            .min(5)
+            .min(4)
             .label("Confirm Password")
     };
 

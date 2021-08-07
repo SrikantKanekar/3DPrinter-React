@@ -63,11 +63,6 @@ class SettingForm extends Form {
         }
     };
 
-    options = [
-        {id: "1", name: "name1"},
-        {id: "2", name: "name2"},
-    ]
-
     render() {
         return (
             <FormContainer
@@ -79,19 +74,19 @@ class SettingForm extends Form {
                 onSubmit={this.handleSubmit}>
                 {this.renderCheckbox("advanced", "Advanced User")}
 
-                {this.renderSelect("quality", "Quality", this.options)}
+                {this.renderSelect("quality", "Quality", this.quality)}
                 {this.renderInput("infill", "Infill (%)")}
                 {this.renderCheckbox("gradualInfill", "Gradual Infill")}
                 {this.renderCheckbox("support", "Support")}
 
                 {this.renderInput("layerHeight", "Layer Height (mm)")}
                 {this.renderInput("infillDensity", "Infill Density (%)")}
-                {this.renderSelect("infillPattern", "Infill Pattern", this.options)}
+                {this.renderSelect("infillPattern", "Infill Pattern", this.infillPattern)}
                 {this.renderCheckbox("generateSupport", "Generate Support")}
-                {this.renderSelect("supportStructure", "Support Structure", this.options)}
-                {this.renderSelect("supportPlacement", "Support Placement", this.options)}
+                {this.renderSelect("supportStructure", "Support Structure", this.supportStructure)}
+                {this.renderSelect("supportPlacement", "Support Placement", this.supportPlacement)}
                 {this.renderInput("supportOverhangAngle", "Support Overhang Angle")}
-                {this.renderSelect("supportPattern", "Support Pattern", this.options)}
+                {this.renderSelect("supportPattern", "Support Pattern", this.supportPattern)}
 
                 {this.renderInput("supportDensity", "Support Density (%)")}
                 {this.renderInput("wallLineWidth", "Wall Line Width (mm)")}
@@ -105,10 +100,58 @@ class SettingForm extends Form {
                 {this.renderInput("innerWallSpeed", "Inner Wall Speed (mm/s)")}
                 {this.renderInput("topBottomSpeed", "Top Bottom Speed (mm/s)")}
                 {this.renderInput("supportSpeed", "Support Speed (mm/s)")}
-                {this.renderSelect("printSequence", "Print Sequence", this.options)}
+                {this.renderSelect("printSequence", "Print Sequence", this.printSequence)}
             </FormContainer>
         );
     }
+
+    quality = [
+        {id: "SUPER", name: "Super"},
+        {id: "DYNAMIC", name: "Dynamic"},
+        {id: "STANDARD", name: "Standard"},
+        {id: "LOW", name: "Low"}
+    ]
+
+    infillPattern = [
+        {id: "LINES", name: "Lines"},
+        {id: "GRID", name: "Grid"},
+        {id: "TRIANGLES", name: "Triangles"},
+        {id: "TRI_HEXAGON", name: "Tri Hexagon"},
+        {id: "CUBIC", name: "Cubic"},
+        {id: "CUBIC_SUBDIVISION", name: "Cubic Subdivision"},
+        {id: "OCTET", name: "Octet"},
+        {id: "QUARTER_CUBIC", name: "Quarter Cubic"},
+        {id: "CONCENTRIC", name: "Concentric"},
+        {id: "ZIG_ZAG", name: "Zig Zag"},
+        {id: "CROSS", name: "Cross"},
+        {id: "CROSS_3D", name: "Cross 3D"},
+        {id: "GYROID", name: "Gyroid"}
+    ]
+
+    supportStructure = [
+        {id: "NORMAL", name: "Normal"},
+        {id: "TREE", name: "Tree"},
+    ]
+
+    supportPlacement = [
+        {id: "TOUCHING_BUILD_PLATE", name: "Touching Build Plate"},
+        {id: "EVERYWHERE", name: "Everywhere"}
+    ]
+
+    supportPattern = [
+        {id: "LINES", name: "Lines"},
+        {id: "GRID", name: "Grid"},
+        {id: "TRIANGLES", name: "Triangles"},
+        {id: "CONCENTRIC", name: "Concentric"},
+        {id: "ZIG_ZAG", name: "Zig Zag"},
+        {id: "CROSS", name: "Cross"},
+        {id: "GYROID", name: "Gyroid"}
+    ]
+
+    printSequence = [
+        {id: "ALL_AT_ONCE", name: "All At Once"},
+        {id: "ONE_AT_A_TIME", name: "One At A Time"},
+    ]
 }
 
 export default SettingForm;

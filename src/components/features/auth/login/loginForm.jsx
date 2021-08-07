@@ -19,6 +19,7 @@ class LoginForm extends Form {
             .label("Email"),
         password: Joi.string()
             .required()
+            .min(4)
             .label("Password")
     };
 

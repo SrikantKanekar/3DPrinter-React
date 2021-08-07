@@ -4,6 +4,7 @@ import cart from "../../../../services/cartService";
 import {toast} from "react-toastify";
 import ObjectItem from "./objectItem/objectItem";
 import styles from "./objects.module.css"
+import Title from "../../../util/title/title";
 
 class Objects extends Component {
     state = {
@@ -47,6 +48,10 @@ class Objects extends Component {
                                 object={object}/>
                         )}
                     </div>
+                )}
+
+                {!count && (
+                    <Title>No objects</Title>
                 )}
             </div>
         );
