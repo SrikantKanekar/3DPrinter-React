@@ -1,8 +1,7 @@
 import {Component, Fragment} from "react";
 import {Redirect, Route, Switch} from "react-router-dom"
-import {ToastContainer} from "react-toastify";
-import auth from "./services/authService";
 import theme from "./util/theme";
+import {ToastContainer} from "react-toastify";
 import ScrollToTop from "./components/util/scrollToTop";
 import ProtectedRoute from "./components/util/protectedRoute";
 import NotFound from "./components/features/util/notFound/notFound";
