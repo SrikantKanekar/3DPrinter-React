@@ -13,14 +13,13 @@
 }
 
 :root {
-    --primary: #e86363;
-    --primary-variant: #e85051;
+    --primary: #e86262;
     --background: #121212;
     --surface: #1b1b1b;
     --surface-hover: rgba(47, 47, 47, 0.64);
-    --error: #CF6679;
-    --success: #18d26e;
-    --warning: #e8bd39;
+    --error: #f96464;
+    --success: #86e67e;
+    --warning: #eeff82;
 
     --on-primary: #000000;
     --on-background: rgba(255, 255, 255, 0.87);
@@ -33,14 +32,13 @@
 }
 
 .light_theme {
-    --primary: #d6383a;
-    --primary-variant: #da0000;
+    --primary: #de2728;
     --background: #FFFFFF;
     --surface: rgb(246, 246, 246);
     --surface-hover: rgba(242, 244, 248, 0.66);
-    --error: #B00020;
-    --success: #61de4a;
-    --warning: #e8bd39;
+    --error: #c31e1e;
+    --success: #4ba738;
+    --warning: #b7a603;
 
     --on-primary: #FFFFFF;
     --on-background: #1b1b1b;

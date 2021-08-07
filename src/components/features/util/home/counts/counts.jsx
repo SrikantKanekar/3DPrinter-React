@@ -11,7 +11,7 @@ function Counts() {
                     <div className="col-lg-3 col-md-6">
                         <div className={styles.count_box}>
                             <i className="bi bi-emoji-smile"/>
-                            <span>130</span>
+                            <span>2</span>
                             <p>Happy Clients</p>
                         </div>
                     </div>
@@ -19,7 +19,7 @@ function Counts() {
                     <div className="col-lg-3 col-md-6 mt-5 mt-md-0">
                         <div className={styles.count_box}>
                             <i className="bi bi-journal-richtext"/>
-                            <span>540</span>
+                            <span>3</span>
                             <p>Projects</p>
                         </div>
                     </div>
@@ -27,7 +27,7 @@ function Counts() {
                     <div className="col-lg-3 col-md-6 mt-5 mt-lg-0">
                         <div className={styles.count_box}>
                             <i className="bi bi-headset"/>
-                            <span>5243</span>
+                            <span>500</span>
                             <p>Hours Of Support</p>
                         </div>
                     </div>

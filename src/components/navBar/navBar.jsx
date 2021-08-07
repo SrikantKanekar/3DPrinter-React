@@ -1,10 +1,17 @@
 import {Component, Fragment} from "react";
 import Header from "./header/header";
 import Menu from "./menu/menu";
+import auth from "../../services/authService";
 
 class NavBar extends Component {
     state = {
+        user: {},
         menu: false
+    }
+
+    componentDidMount() {
+        const user = auth.getCurrentUser()
+        this.setState({user})
     }
 
     openMenu = () => {
@@ -16,13 +23,11 @@ class NavBar extends Component {
     }
 
     render() {
-        const {user, theme, toggleTheme} = this.props
+        const {user} = this.state
         return (
             <Fragment>
                 <Header
                     user={user}
-                    theme={theme}
-                    toggleTheme={toggleTheme}
                     openMenu={this.openMenu}
                 />
                 <Menu

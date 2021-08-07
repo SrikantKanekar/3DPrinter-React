@@ -2,7 +2,7 @@ import {Component, Fragment} from "react";
 import {Redirect, Route, Switch} from "react-router-dom"
 import {ToastContainer} from "react-toastify";
 import auth from "./services/authService";
-import {setupTheme, toggleTheme} from "./util/theme";
+import theme from "./util/theme";
 import ScrollToTop from "./components/util/scrollToTop";
 import ProtectedRoute from "./components/util/protectedRoute";
 import NotFound from "./components/features/util/notFound/notFound";
@@ -23,37 +23,25 @@ import Notification from "./components/features/notification/notification/notifi
 import Home from "./components/features/util/home/home";
 import NavBar from "./components/navBar/navBar";
 import Footer from "./components/footer/footer";
+import Spinner from "./components/util/spinner/spinner";
 import "bootstrap/dist/css/bootstrap.css";
 import "font-awesome/css/font-awesome.css";
 import "react-toastify/dist/ReactToastify.css";
 import './App.css';
-import Spinner from "./components/util/spinner/spinner";
 
 class App extends Component {
-    state = {
-        theme: true,
-        user: {}
-    }
 
     componentDidMount() {
         this.hidePreloader()
-        this.setState({theme: setupTheme})
-
-        const user = auth.getCurrentUser()
-        this.setState({user})
+        theme.setupTheme()
     }
 
     render() {
-        const {theme, user} = this.state
         return (
             <Fragment>
                 <ToastContainer/>
                 <Spinner/>
-                <NavBar
-                    user={user}
-                    theme={theme}
-                    toggleTheme={toggleTheme}
-                />
+                <NavBar/>
                 <main>
                     <ScrollToTop/>
                     <Switch>

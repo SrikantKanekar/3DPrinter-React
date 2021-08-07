@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import objectService from "../../../../services/objectService";
 import ObjectNone from "./objectNone";
 import ObjectTracking from "./objectTracking";
@@ -51,25 +51,25 @@ class ObjectGet extends Component {
                         {status === "TRACKING" && <ObjectTracking object={object}/>}
                         {status === "COMPLETED" && <ObjectCompleted object={object}/>}
 
-                        <div className={styles.setting}>
-                            <SettingForm
-                                object={object}
-                                updateObject={obj => this.updateObject(obj)}
-                                {...this.props}/>
-                        </div>
-
                         {status === "NONE" && (
-                            <div className={styles.delete_button}>
-                                <Title>Delete</Title>
-                                <div>
-                                    <Button label="Delete" onClick={this.handleDelete}/>
+                            <Fragment>
+                                <div className={styles.setting}>
+                                    <SettingForm
+                                        object={object}
+                                        updateObject={obj => this.updateObject(obj)}
+                                        {...this.props}/>
                                 </div>
-                            </div>
+                                <div className={styles.delete_button}>
+                                    <Title>Delete</Title>
+                                    <div>
+                                        <Button label="Delete" onClick={this.handleDelete}/>
+                                    </div>
+                                </div>
+                            </Fragment>
                         )}
                     </div>
                 )}
             </div>
-
         );
     }
 

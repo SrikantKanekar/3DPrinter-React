@@ -1,19 +1,31 @@
+const themeKey = "light_theme"
 
-export function setupTheme() {
-    if (localStorage.getItem("light_theme") === "true") {
-        document.documentElement.classList.add("light_theme");
-        return false
+function isLight() {
+    return localStorage.getItem(themeKey);
+}
+
+function setupTheme() {
+    if (isLight()) {
+        document.documentElement.classList.add(themeKey);
     }
 }
 
-export function toggleTheme() {
-    if (localStorage.getItem("light_theme") === "true") {
-        document.documentElement.classList.remove("light_theme");
-        localStorage.removeItem("light_theme")
-        return true
+function toggleTheme() {
+    if (isLight()) {
+        document.documentElement.classList.remove(themeKey);
+        localStorage.removeItem(themeKey)
+        return false
     } else {
-        document.documentElement.classList.add("light_theme");
-        localStorage.setItem("light_theme", "true")
-        return false
+        document.documentElement.classList.add(themeKey);
+        localStorage.setItem(themeKey, "true")
+        return true
     }
 }
+
+const theme = {
+    setupTheme,
+    toggleTheme,
+    isLight
+}
+
+export default theme

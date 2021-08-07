@@ -24,7 +24,7 @@
 }
 
 .pro-sidebar-inner .pro-sidebar-layout ul .pro-inner-item .pro-icon-wrapper {
-    background-color: var(--surface);
+    background-color: var(--surface) !important;
     color: var(--on-background);
     border-radius: 3px;
 }

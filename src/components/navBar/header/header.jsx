@@ -1,10 +1,18 @@
 import React, {Component} from 'react';
 import {Link, NavLink} from "react-router-dom";
 import styles from "./header.module.css"
+import theme from "../../../util/theme";
 
 class Header extends Component {
     state = {
         scrolled: false
+    }
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            isLight: theme.isLight()
+        }
     }
 
     componentDidMount() {
@@ -24,10 +32,14 @@ class Header extends Component {
         }
     }
 
+    toggleTheme = () => {
+        this.setState({isLight: theme.toggleTheme()})
+    }
+
     render() {
-        const {user, theme} = this.props
+        const {user} = this.props
         const scrolled = this.state.scrolled ? styles.scrolled : ''
-        const themeIcon = theme ? 'fa fa-sun-o' : 'fa fa-moon-o'
+        const themeIcon = this.state.isLight ? 'fa fa-moon-o' : 'fa fa-sun-o'
 
         return (
             <header className={styles.header}>
@@ -94,7 +106,7 @@ class Header extends Component {
                                 )}
                             </div>
 
-                            <div className={styles.theme} onClick={this.props.toggleTheme}>
+                            <div className={styles.theme} onClick={this.toggleTheme}>
                                 <i className={themeIcon} aria-hidden="true"/>
                             </div>
 
