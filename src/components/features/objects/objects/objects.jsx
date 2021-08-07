@@ -38,7 +38,7 @@ class Objects extends Component {
 
         return (
             <div className="container">
-                {count && (
+                {count > 0 && (
                     <div className={styles.container}>
                         {objects.map(object =>
                             <ObjectItem

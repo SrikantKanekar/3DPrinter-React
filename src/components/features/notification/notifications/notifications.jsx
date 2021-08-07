@@ -24,7 +24,7 @@ class Notifications extends Component {
 
         return (
             <div className="container">
-                {notifications.length && (
+                {notifications.length > 0 && (
                     <div className="row">
                         <div className="col">
                             {notifications.map(notification =>

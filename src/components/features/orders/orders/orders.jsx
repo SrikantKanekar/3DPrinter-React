@@ -24,7 +24,7 @@ class Orders extends Component {
 
         return (
             <div className="container">
-                {orders.length && (
+                {orders.length > 0 && (
                     <Fragment>
                         <OrdersHeader/>
 

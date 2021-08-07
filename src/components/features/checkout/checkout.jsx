@@ -88,7 +88,7 @@ class Checkout extends Form {
 
         return (
             <div className={`container ${styles.checkout}`}>
-                {objects.length && (
+                {objects.length > 0 && (
                     <div className="row">
                         <div className="col-lg-6">
                             <FormContainer

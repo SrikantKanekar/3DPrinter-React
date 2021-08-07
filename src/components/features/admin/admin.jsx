@@ -56,7 +56,7 @@ class Admin extends Component {
 
         return (
             <div className="container">
-                {orders.length && (
+                {orders.length > 0 && (
                     <div className={styles.container}>
                         {orders.map(order =>
                             <AdminOrderItem

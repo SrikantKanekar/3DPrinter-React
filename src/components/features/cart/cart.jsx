@@ -59,7 +59,7 @@ class Cart extends Component {
 
         return (
             <div className="container">
-                {objects.length && (
+                {objects.length > 0 && (
                     <div>
                         <CartHeader/>
 
