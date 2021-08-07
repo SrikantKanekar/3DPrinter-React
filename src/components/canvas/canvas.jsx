@@ -116,9 +116,9 @@ class Canvas extends Component {
         const material = new THREE.MeshPhysicalMaterial({
             color: 0xffffff,
             metalness: .25,
-            roughness: 0.1,
+            roughness: 0.3,
             transparent: true,
-            transmission: 1.0,
+            transmission: 0.5,
             side: THREE.DoubleSide,
             clearcoat: 1.0,
             clearcoatRoughness: .25
@@ -184,7 +184,9 @@ class Canvas extends Component {
         } else if (ext === "obj") {
             new OBJLoader(this.manager).load(url, (object) => {
                     object.traverse((child) => {
-                        if (child instanceof THREE.Mesh) child.material = this.material
+                        if (child instanceof THREE.Mesh) {
+                            child.material = this.material
+                        }
                     });
                     this.renderObject(object)
                 }, undefined, (e) => {
