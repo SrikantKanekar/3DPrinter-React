@@ -3,7 +3,7 @@ import {Redirect, Route, Switch} from "react-router-dom"
 import {ToastContainer} from "react-toastify";
 import auth from "./services/authService";
 import {setupTheme, toggleTheme} from "./util/theme";
-import ProtectedRoute from "./components/protectedRoute";
+import ProtectedRoute from "./components/util/protectedRoute";
 import NotFound from "./components/features/util/notFound/notFound";
 import Account from "./components/features/account/account";
 import Admin from "./components/features/admin/admin";
@@ -26,6 +26,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import "font-awesome/css/font-awesome.css";
 import "react-toastify/dist/ReactToastify.css";
 import './App.css';
+import ScrollToTop from "./components/util/scrollToTop";
 
 class App extends Component {
     state = {
@@ -52,6 +53,7 @@ class App extends Component {
                     toggleTheme={toggleTheme}
                 />
                 <main>
+                    <ScrollToTop/>
                     <Switch>
                         <ProtectedRoute path="/account" component={Account}/>
                         <ProtectedRoute path="/admin" component={Admin}/>
