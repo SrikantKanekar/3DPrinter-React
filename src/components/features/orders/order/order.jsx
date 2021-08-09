@@ -33,7 +33,7 @@ class Order extends Component {
     updatePrintingStatus = async (status, object) => {
         try {
             const request = {
-                orderId: this.state.order.id,
+                orderId: this.state.order._id,
                 objectId: object.id,
                 printingStatus: status
             }

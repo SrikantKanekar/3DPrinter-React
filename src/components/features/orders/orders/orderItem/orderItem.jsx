@@ -12,7 +12,7 @@ function OrderItem(props) {
                 </div>
                 <div className={styles.content}>
                     <div className={styles.name}>
-                        <Link to={`/orders/${props.order.id}`}>{props.order.id}</Link>
+                        <Link to={`/orders/${props.order._id}`}>{props.order._id}</Link>
                     </div>
                     <div className={styles.objects}>
                         {props.order.objectIds.length} objects

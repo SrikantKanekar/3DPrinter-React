@@ -11,13 +11,20 @@ async function get() {
 
 async function proceed() {
     return await trackPromise(
-        http.post(`${apiEndpoint}/proceed`, {success: true})
+        http.post(`${apiEndpoint}/proceed`)
+    )
+}
+
+async function verify(body) {
+    return await trackPromise(
+        http.post(`${apiEndpoint}/verify`, body)
     )
 }
 
 const checkout = {
     get,
-    proceed
+    proceed,
+    verify
 }
 
 export default checkout

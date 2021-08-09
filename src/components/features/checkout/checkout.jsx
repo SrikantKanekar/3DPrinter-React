@@ -68,7 +68,7 @@ class Checkout extends Form {
         try {
             const {data} = this.state;
             await account.updateAddress(data)
-            await this.handleProceed()
+            await this.displayRazorpay()
         } catch (ex) {
             if (ex.response && ex.response.status === 400) {
                 this.setState({formError: ex.response.data});
@@ -76,13 +76,66 @@ class Checkout extends Form {
         }
     };
 
-    handleProceed = async () => {
-        try {
-            await checkout.proceed()
-            this.props.history.replace("/orders")
-        } catch (e) {
-            toast.dark(e.message)
+    loadScript = (src) => {
+        return new Promise((resolve) => {
+            const script = document.createElement("script");
+            script.src = src;
+            script.onload = () => {
+                resolve(true);
+            };
+            script.onerror = () => {
+                resolve(false);
+            };
+            document.body.appendChild(script);
+        });
+    }
+
+    displayRazorpay = async () => {
+        const res = await this.loadScript(
+            "https://checkout.razorpay.com/v1/checkout.js"
+        );
+
+        if (!res) {
+            toast.dark("Razorpay SDK failed to load. Are you online?");
+            return;
         }
+
+        const result = await checkout.proceed();
+
+        if (!result) {
+            toast.dark("Server error. Are you online?");
+            return;
+        }
+
+        const {price, _id} = result.data;
+
+        const logo = process.env.PUBLIC_URL + '/logo192.png'
+        const options = {
+            key: "rzp_test_oude3vJ48mVrXI",
+            amount: price.toString(),
+            currency: "INR",
+            name: "AvvonMark",
+            description: "Test Transaction",
+            image: {logo},
+            order_id: _id,
+            handler: async (response) => {
+                const data = {
+                    id: _id,
+                    order_id: response.razorpay_order_id,
+                    payment_id: response.razorpay_payment_id,
+                    signature: response.razorpay_signature,
+                };
+
+                await checkout.verify(data);
+                this.props.history.replace("/orders")
+            },
+            theme: {
+                color: "#de2728",
+            },
+        };
+
+        const paymentObject = new window.Razorpay(options);
+        paymentObject.open();
     }
 
     render() {

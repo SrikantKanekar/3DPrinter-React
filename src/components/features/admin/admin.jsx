@@ -32,9 +32,9 @@ class Admin extends Component {
 
     updateOrderStatus = async (status, order) => {
         try {
-            const {data} = await admin.updateOrderStatus(status, order.id)
+            const {data} = await admin.updateOrderStatus(status, order._id)
             if (status === 'DELIVERED'){
-                const orders = this.state.orders.filter(it => it.id !== order.id)
+                const orders = this.state.orders.filter(it => it._id !== order._id)
                 this.setState({orders})
             } else {
                 const orders = [...this.state.orders]
@@ -60,7 +60,7 @@ class Admin extends Component {
                     <div className={styles.container}>
                         {orders.map(order =>
                             <AdminOrderItem
-                                key={order.id}
+                                key={order._id}
                                 order={order}
                                 orderStatus={this.orderStatus}
                                 updateOrderStatus={this.updateOrderStatus}

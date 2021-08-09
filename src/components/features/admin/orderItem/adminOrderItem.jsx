@@ -24,7 +24,7 @@ class AdminOrderItem extends Component {
 
                 <div className={styles.content}>
                     <div className={styles.name}>
-                        <Link to={`/orders/${order.id}`}>ID : {order.id}</Link>
+                        <Link to={`/orders/${order._id}`}>ID : {order._id}</Link>
                     </div>
 
                     <div>{order.userEmail}</div>

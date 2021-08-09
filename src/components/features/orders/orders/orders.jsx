@@ -29,7 +29,7 @@ class Orders extends Component {
                         <OrdersHeader/>
 
                         {orders.map(order =>
-                            <OrderItem key={order.id} order={order}/>
+                            <OrderItem key={order._id} order={order}/>
                         )}
                     </Fragment>
                 )}
