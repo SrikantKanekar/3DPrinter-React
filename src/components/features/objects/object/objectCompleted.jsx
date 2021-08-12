@@ -25,7 +25,7 @@ class ObjectCompleted extends Component {
                         <div className={styles.name}>
                             {object.name}
                         </div>
-                        <div>Price: <i className="fa fa-inr"/>{object.slicingDetails.totalPrice}</div>
+                        <div>Price: <i className="fa fa-inr"/>{object.slicingDetails.price}</div>
                         <div>Printing status : {object.printingStatus}</div>
                         <div>
                             Completed on : {new Date(completedAt).toLocaleString()}

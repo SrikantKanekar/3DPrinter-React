@@ -25,7 +25,7 @@ function Total(props) {
                             <div className={styles.details}>
                                 <div>X{object.quantity}</div>
                                 <div>
-                                    <i className="fa fa-inr"/> {object.slicingDetails.totalPrice}
+                                    <i className="fa fa-inr"/> {object.slicingDetails.price}
                                 </div>
                             </div>
                         </li>
@@ -58,7 +58,7 @@ function Total(props) {
 function calculateTotal(objects) {
     let total = 0
     objects.forEach((object) => {
-        total += object.quantity * object.slicingDetails.totalPrice
+        total += object.quantity * object.slicingDetails.price
     })
     return total
 }

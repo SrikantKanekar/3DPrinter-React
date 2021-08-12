@@ -21,9 +21,14 @@ async function create(object) {
     );
 }
 
-async function slice(id) {
+async function downloadFile(url) {
+    return await http.get(url, {responseType: 'arraybuffer'})
+}
+
+
+async function slice(id, body) {
     return await trackPromise(
-        http.put(`${apiEndpoint}/slice/${id}`)
+        http.put(`${apiEndpoint}/slice/${id}`, body)
     );
 }
 
@@ -49,6 +54,7 @@ const objectService = {
     getAll,
     get,
     create,
+    downloadFile,
     slice,
     updateSetting,
     updateQuantity,

@@ -5,6 +5,7 @@ import {toast} from "react-toastify";
 import Button from "../../../util/button/button";
 import Canvas from "../../../canvas/canvas";
 import "./create.css"
+import ProgressBar from "../../../util/progressBar/progressBar";
 
 class Create extends Component {
     state = {
@@ -192,9 +193,7 @@ class Create extends Component {
                         </div>
 
                         <div className="progress_container">
-                            <div className="progress-bar" role="progressbar" aria-valuenow={progress}
-                                 aria-valuemin="0" aria-valuemax="100" style={{width: progress + "%"}}>
-                            </div>
+                            <ProgressBar progress={progress}/>
                         </div>
                     </form>
                 )}

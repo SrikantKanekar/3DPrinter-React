@@ -17,11 +17,11 @@ class ObjectItem extends Component {
                         <Link to={`/objects/${object.id}`}>{object.name}</Link>
                     </div>
 
-                    {!object.slicingDetails.uptoDate && (
+                    {object.setting.updated && (
                         <div>Slicing pending</div>
                     )}
 
-                    {object.slicingDetails.uptoDate && object.status === "NONE" && (
+                    {!object.setting.updated && object.status === "NONE" && (
                         <Fragment>
                             <div className={styles.cart}>
                                 <a href="/" onClick={e => this.props.handleAddToCart(e, object)}>
@@ -41,7 +41,7 @@ class ObjectItem extends Component {
                                 </a>
                             </div>
                             <div>
-                                <i className="fa fa-inr"/>{object.slicingDetails.totalPrice}
+                                <i className="fa fa-inr"/>{object.slicingDetails.price}
                             </div>
                         </Fragment>
                     )}

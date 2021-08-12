@@ -10,6 +10,8 @@
     "bootstrap": "^5.0.2",
     "bootstrap-icons": "^1.5.0",
     "boxicons": "^2.0.8",
+    "cura-wasm": "^1.5.2",
+    "cura-wasm-definitions": "^1.5.1",
     "firebase": "^8.8.0",
     "font-awesome": "^4.7.0",
     "joi-browser": "^13.4.0",

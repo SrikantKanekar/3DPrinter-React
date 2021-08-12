@@ -17,6 +17,7 @@ class SettingForm extends Form {
     }
 
     schema = {
+        updated: Joi.boolean(),
         advanced: Joi.boolean(),
 
         quality: Joi.string(),
@@ -50,10 +51,10 @@ class SettingForm extends Form {
     doSubmit = async () => {
         try {
             const {data} = this.state;
-            const setting = await objectService.updateSetting(this.props.object.id, data)
+            data.updated = true
+            const {data: setting} = await objectService.updateSetting(this.props.object.id, data)
             const object = {...this.props.object}
             object.setting = setting
-            object.slicingDetails.uptoDate = false
             this.props.updateObject(object)
             this.setState({formSuccess: "Successfully Updated"})
         } catch (ex) {

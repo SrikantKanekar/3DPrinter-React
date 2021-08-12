@@ -165,6 +165,8 @@ form > div:not(:last-child) {
 }
 
 .progress-bar {
+    width: 0;
+    height: 2px;
     background-color: var(--primary);
 }
 

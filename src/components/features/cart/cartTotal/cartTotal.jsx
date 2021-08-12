@@ -30,7 +30,7 @@ function CartTotal(props) {
                                     x<span>{object.quantity}</span>
                                 </div>
                                 <div className={styles.price}>
-                                    <i className="fa fa-inr"/> {object.slicingDetails.totalPrice}
+                                    <i className="fa fa-inr"/> {object.slicingDetails.price}
                                 </div>
                             </div>
                         </li>
@@ -66,7 +66,7 @@ function CartTotal(props) {
 function cartTotal(objects){
     let total = 0
     objects.forEach((object) => {
-        total += object.quantity * object.slicingDetails.totalPrice
+        total += object.quantity * object.slicingDetails.price
     })
     return total
 }
