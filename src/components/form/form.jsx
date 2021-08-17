@@ -52,6 +52,13 @@ class Form extends Component {
         this.setState({data, errors, formError: '', formSuccess: ''});
     };
 
+    handleCheckboxChange = ({target: input}) => {
+        const data = {...this.state.data};
+        data[input.name] = input.checked;
+
+        this.setState({data, formError: '', formSuccess: ''});
+    };
+
     renderInput(name, label, type = "text") {
         const {data, errors} = this.state;
         return (
@@ -100,7 +107,7 @@ class Form extends Component {
                 name={name}
                 value={data[name]}
                 label={label}
-                onChange={this.handleChange}
+                onChange={this.handleCheckboxChange}
             />
         );
     }

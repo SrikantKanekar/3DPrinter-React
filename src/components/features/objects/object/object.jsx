@@ -3,7 +3,7 @@ import objectService from "../../../../services/objectService";
 import ObjectNone from "./objectNone";
 import ObjectTracking from "./objectTracking";
 import ObjectCompleted from "./objectCompleted";
-import SettingForm from "./settingForm";
+import SettingForm from "./setting/settingForm";
 import Button from "../../../util/button/button";
 import {toast} from "react-toastify";
 import Title from "../../../util/title/title";

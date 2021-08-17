@@ -8,6 +8,7 @@ import styles from "./object.module.css"
 import {CuraWASM} from "cura-wasm";
 import {resolveDefinition} from "cura-wasm-definitions";
 import ProgressBar from "../../../util/progressBar/progressBar";
+import {getCuraOverrides} from "./setting/settingOverrides";
 
 class ObjectNone extends Component {
     state = {
@@ -24,15 +25,8 @@ class ObjectNone extends Component {
             this.setState({slicing: true})
 
             const slicer = new CuraWASM({
-                //command: 'slice -j definitions/printer.def.json -o Model.gcode -s mesh_position_x=-10 -l Model.stl',
-                definition: resolveDefinition('ultimaker2'),
-                overrides: [
-                    {
-                        scope: 'e0',
-                        key: 'mesh_position_x',
-                        value: -10
-                    }
-                ],
+                definition: resolveDefinition('creality_ender3'),
+                overrides: getCuraOverrides(this.props.object.setting),
                 transfer: true,
                 verbose: true
             });
@@ -43,14 +37,14 @@ class ObjectNone extends Component {
                 this.setState({progress: percent})
             });
 
-            const {gcode, metadata} = await slicer.slice(stl, 'stl');
+            const {gcode, metadata} = await slicer.slice(stl, 'stl')
 
             const printTime = `${Math.floor(metadata.printTime / 3600)}h ${Math.floor(metadata.printTime % 3600 / 60)}m ${Math.floor(metadata.printTime % 3600 % 60)}s`;
-            const materialWeight = metadata.material1Usage
-            const materialCost = metadata.material1Usage * 1.5
-            const powerCost = metadata.printTime / 3600 * 30
-            const labourCost = metadata.printTime / 3600 * 20
-            const price = Math.round(materialCost + powerCost + labourCost)
+            const materialWeight = (metadata.material1Usage * 0.00123).toFixed(2)
+            const materialCost = (materialWeight * 0.9).toFixed(2)
+            const powerCost = (metadata.printTime / 3600 * 2).toFixed(2)
+            const labourCost = (metadata.printTime / 3600 * 10).toFixed(2)
+            const price = Math.round(parseFloat(materialCost) + parseFloat(powerCost) + parseFloat(labourCost))
 
             const slicingDetails = {
                 printTime,
@@ -61,8 +55,15 @@ class ObjectNone extends Component {
                 price
             }
 
-            console.log(new TextDecoder().decode(new Uint8Array(gcode)))
             console.log(metadata)
+            const blob = new Blob([gcode], {
+                type: 'text/plain'
+            });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'Output.gcode';
+            link.click();
+            link.remove();
 
             await slicer.destroy()
 
@@ -71,11 +72,10 @@ class ObjectNone extends Component {
             object.slicingDetails = data
             object.setting.updated = false
             this.props.updateObject(object)
-
-            this.setState({progress: 0,slicing: false})
         } catch (e) {
             toast.dark(e.message)
         }
+        this.setState({progress: 0,slicing: false})
     }
 
     handleAddToCart = async () => {

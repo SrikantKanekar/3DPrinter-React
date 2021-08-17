@@ -6,8 +6,9 @@ class Checkbox extends Component {
         checked: this.props.value
     }
 
-    handleClick = () => {
-        this.setState({checked: !this.state.checked})
+    handleClick = (e) => {
+        this.setState({checked: e.target.checked})
+        this.props.onChange(e)
     }
 
     render() {
@@ -22,7 +23,7 @@ class Checkbox extends Component {
                     name={name}
                     checked={checked}
                     value={this.state.checked}
-                    onClick={this.handleClick}/>
+                    onClick={e => this.handleClick(e)}/>
                 <span className={styles.checkmark}/>
             </label>
         );
