@@ -61,7 +61,7 @@ class ObjectNone extends Component {
             });
             const link = document.createElement('a');
             link.href = URL.createObjectURL(blob);
-            link.download = 'Output.gcode';
+            link.download = `${this.props.object.name}.gcode`;
             link.click();
             link.remove();
 

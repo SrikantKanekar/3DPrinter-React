@@ -1,13 +1,15 @@
 import recommended from "./recommended/recommended";
 import basic from "./basic";
 import advanced from "./advanced";
-import {set} from "./curaSet";
+import {defaultSetting} from "./defaultSetting";
 
 export function getCuraOverrides(setting) {
     const curaOverrides = []
     const level = setting.level
 
-    if (level === 0) {
+    curaOverrides.push(...defaultSetting)
+
+    if (level >= 0) {
         curaOverrides.push(...recommended(setting))
     }
     if (level >= 1) {
@@ -19,8 +21,6 @@ export function getCuraOverrides(setting) {
     if (level === 3) {
         curaOverrides.push()
     }
-
-    curaOverrides.push(set("machine_depth", 220))
 
     console.log(curaOverrides)
     return curaOverrides

@@ -2,9 +2,6 @@ import {set} from "./curaSet";
 
 export default function advanced(setting) {
     return [
-        //quality
-        set('layer_height_0', '0.2'),
-
         // speed
         set('speed_infill', setting.infillSpeed),
         set('speed_wall_0', setting.outerWallSpeed),
