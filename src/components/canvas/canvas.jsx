@@ -68,8 +68,8 @@ class Canvas extends Component {
         scene.background = new THREE.Color(0xdddddd);
 
         // axes
-        // const axesHelper = new THREE.AxesHelper(5);
-        // scene.add(axesHelper);
+        const axesHelper = new THREE.AxesHelper(250)
+        scene.add(axesHelper)
 
         // camera
         const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 1000);

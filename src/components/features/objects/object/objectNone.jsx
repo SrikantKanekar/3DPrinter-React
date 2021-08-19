@@ -41,7 +41,8 @@ class ObjectNone extends Component {
 
             const printTime = `${Math.floor(metadata.printTime / 3600)}h ${Math.floor(metadata.printTime % 3600 / 60)}m ${Math.floor(metadata.printTime % 3600 % 60)}s`;
             const materialWeight = (metadata.material1Usage * 0.00123).toFixed(2)
-            const materialCost = (materialWeight * 0.9).toFixed(2)
+            const filament = (metadata.material1Usage / 2405).toFixed(2)
+            const materialCost = (materialWeight * 1.85).toFixed(2)
             const powerCost = (metadata.printTime / 3600 * 2).toFixed(2)
             const labourCost = (metadata.printTime / 3600 * 10).toFixed(2)
             const price = Math.round(parseFloat(materialCost) + parseFloat(powerCost) + parseFloat(labourCost))
@@ -49,6 +50,7 @@ class ObjectNone extends Component {
             const slicingDetails = {
                 printTime,
                 materialWeight,
+                filament,
                 materialCost,
                 powerCost,
                 labourCost,
@@ -56,14 +58,14 @@ class ObjectNone extends Component {
             }
 
             console.log(metadata)
-            const blob = new Blob([gcode], {
-                type: 'text/plain'
-            });
-            const link = document.createElement('a');
-            link.href = URL.createObjectURL(blob);
-            link.download = `${this.props.object.name}.gcode`;
-            link.click();
-            link.remove();
+            // const blob = new Blob([gcode], {
+            //     type: 'text/plain'
+            // });
+            // const link = document.createElement('a');
+            // link.href = URL.createObjectURL(blob);
+            // link.download = `${this.props.object.name}.gcode`;
+            // link.click();
+            // link.remove();
 
             await slicer.destroy()
 
@@ -75,7 +77,7 @@ class ObjectNone extends Component {
         } catch (e) {
             toast.dark(e.message)
         }
-        this.setState({progress: 0,slicing: false})
+        this.setState({progress: 0, slicing: false})
     }
 
     handleAddToCart = async () => {
@@ -143,6 +145,9 @@ class ObjectNone extends Component {
                                 </div>
                                 <div>
                                     Material Weight: {object.slicingDetails.materialWeight}g
+                                </div>
+                                <div>
+                                    Filament length: {object.slicingDetails.filament}m
                                 </div>
                                 <div>
                                     Material Cost: <i className="fa fa-inr"/>{object.slicingDetails.materialCost}

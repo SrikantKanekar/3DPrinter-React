@@ -23,5 +23,6 @@ export default function recommended(setting) {
         set('gradual_infill_steps', setting.gradualInfill ? 5 : 0),
         set('support_enable', setting.support)
     )
+
     return array
 }

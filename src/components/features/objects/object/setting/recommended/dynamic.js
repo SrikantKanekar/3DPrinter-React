@@ -43,5 +43,5 @@ export const dynamicQuality = [
     set('raft_base_thickness', 0.24),
 
     // Experimental
-    set('adaptive_layer_height_enabled', true)
+    //set('adaptive_layer_height_enabled', true)// Not working
 ]
