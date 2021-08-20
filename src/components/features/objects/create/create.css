@@ -25,6 +25,7 @@
     margin-bottom: 35px;
 }
 
+.box.is_slicing .box_upload,
 .box.is_uploading_file .box_upload,
 .box.is_uploading_img .box_upload,
 .box.is_done .box_upload,
@@ -32,6 +33,7 @@
     visibility: hidden;
 }
 
+.box_slicing,
 .box_uploading_file,
 .box_uploading_img,
 .box_done,
@@ -39,6 +41,7 @@
     display: none;
 }
 
+.box.is_slicing .box_slicing,
 .box.is_uploading_file .box_uploading_file,
 .box.is_uploading_img .box_uploading_img,
 .box.is_done .box_done,
@@ -55,6 +58,7 @@
     transform: translateY(-50%);
 }
 
+.box_slicing,
 .box_uploading_img,
 .box_uploading_file {
     font-style: italic;

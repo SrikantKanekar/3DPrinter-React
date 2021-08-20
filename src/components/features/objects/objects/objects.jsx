@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import objectService from "../../../../services/objectService";
-import cart from "../../../../services/cartService";
 import {toast} from "react-toastify";
 import ObjectItem from "./objectItem/objectItem";
 import styles from "./objects.module.css"
@@ -20,19 +19,6 @@ class Objects extends Component {
         }
     }
 
-    handleAddToCart = async (e, object) => {
-        e.preventDefault()
-        try {
-            await cart.add(object.id)
-            const objects = [...this.state.objects]
-            const index = objects.indexOf(object)
-            objects[index].status = "CART"
-            this.setState({objects})
-        } catch (e) {
-            toast.dark(e.message)
-        }
-    }
-
     render() {
         const objects = this.state.objects
         const {length: count} = objects
@@ -44,7 +30,6 @@ class Objects extends Component {
                         {objects.map(object =>
                             <ObjectItem
                                 key={object.id}
-                                handleAddToCart={this.handleAddToCart}
                                 object={object}/>
                         )}
                     </div>

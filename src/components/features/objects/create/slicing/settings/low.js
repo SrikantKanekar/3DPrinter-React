@@ -1,4 +1,4 @@
-import {set} from "../curaSet";
+import {set} from "./curaSet";
 
 export const lowQuality = [
     // Quality

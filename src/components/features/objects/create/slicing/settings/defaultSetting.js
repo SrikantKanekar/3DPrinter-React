@@ -1,5 +1,8 @@
 import {set} from "./curaSet";
 
+/**
+ * Changed cura engine settings to match cura settings
+ */
 export const defaultSetting = [
     set('acceleration_infill', 500),
     set('acceleration_ironing', 500),

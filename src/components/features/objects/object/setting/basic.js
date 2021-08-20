@@ -1,4 +1,4 @@
-import {set} from "./curaSet";
+import {set} from "../../create/slicing/settings/curaSet";
 
 export default function basic(setting) {
     return [

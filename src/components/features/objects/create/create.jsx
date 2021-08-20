@@ -4,13 +4,15 @@ import objectService from "../../../../services/objectService";
 import {toast} from "react-toastify";
 import Button from "../../../util/button/button";
 import Canvas from "../../../canvas/canvas";
-import "./create.css"
 import ProgressBar from "../../../util/progressBar/progressBar";
+import {sliceAllQualities} from "./slicing/slice";
+import "./create.css"
 
 class Create extends Component {
     state = {
         uploading: false,
         dragging: false,
+        slicing: false,
         uploadingFile: false,
         uploadingImg: false,
         done: false,
@@ -64,48 +66,65 @@ class Create extends Component {
         this.setState({formError: '', done: false})
     }
 
-    handleObjectCreate = (e) => {
-        e.preventDefault();
+    handleObjectCreate = async (e) => {
+        e.preventDefault()
 
-        if (this.state.filename !== "") {
-            this.uploadingFile();
-            const image = this.canvas.current.takeSnapshot();
-            this.hideCanvas();
-            const id = this.generateId();
+        try {
+            if (this.state.filename !== "") {
 
-            Firebase.uploadFirebaseFile(
-                this.file,
-                this.file.name,
-                id,
-                progress => this.setState({progress}),
-                fileUrl => {
-                    this.uploadingImage();
-                    Firebase.uploadFirebaseImage(
-                        image,
-                        id,
-                        progress => this.setState({progress}),
-                        async (imageUrl) => {
+                this.slicingFile()
 
-                            this.uploadingDone();
-                            const request = {
-                                id: id,
-                                name: this.state.filename,
-                                fileUrl: fileUrl,
-                                imageUrl: imageUrl,
-                                fileExtension: this.getFileExtension()
+                const image = this.canvas.current.takeSnapshot();
+
+                this.hideCanvas();
+
+                const id = this.generateId();
+
+                const slicing = await sliceAllQualities(
+                    this.file,
+                    progress => this.setState({progress})
+                )
+
+                this.uploadingFile();
+
+                Firebase.uploadFirebaseFile(
+                    this.file,
+                    this.file.name,
+                    id,
+                    progress => this.setState({progress}),
+                    fileUrl => {
+                        this.uploadingImage();
+                        Firebase.uploadFirebaseImage(
+                            image,
+                            id,
+                            progress => this.setState({progress}),
+                            async (imageUrl) => {
+
+                                this.uploadingDone();
+                                const request = {
+                                    id: id,
+                                    name: this.state.filename,
+                                    fileUrl: fileUrl,
+                                    imageUrl: imageUrl,
+                                    fileExtension: this.getFileExtension(),
+                                    slicing
+                                }
+                                try {
+                                    const result = await objectService.create(request)
+                                    this.props.history.replace("/objects/" + result.data.id)
+                                } catch (ex) {
+                                    this.showError(ex.response.data)
+                                }
                             }
-                            try {
-                                const result = await objectService.create(request)
-                                this.props.history.replace("/objects/" + result.data.id)
-                            } catch (ex) {
-                                this.showError(ex.response.data)
-                            }
-                        }
-                    );
-                }
-            );
-        } else {
-            toast.dark("Name cannot be empty")
+                        );
+                    }
+                );
+            } else {
+                toast.dark("Name cannot be empty")
+            }
+        } catch (e) {
+            this.showError(e)
+            toast.dark(e)
         }
     }
 
@@ -126,6 +145,7 @@ class Create extends Component {
         const {
             dragging,
             done,
+            slicing,
             uploadingFile,
             uploadingImg,
             formError,
@@ -137,6 +157,7 @@ class Create extends Component {
 
         const boxClass = "box " +
             `${dragging ? "is_dragover" : ""}` +
+            `${slicing ? "is_slicing" : ""}` +
             `${uploadingFile ? "is_uploading_file" : ""}` +
             `${uploadingImg ? "is_uploading_img" : ""}` +
             `${done ? "is_done" : ""}` +
@@ -181,6 +202,7 @@ class Create extends Component {
                             </label>
                         </div>
 
+                        <div className="box_slicing">Slicing…</div>
                         <div className="box_uploading_file">
                             Uploading {this.file ? this.file.name : ''}
                         </div>
@@ -239,11 +261,18 @@ class Create extends Component {
         );
     }
 
-    uploadingFile() {
+    slicingFile() {
         this.setState({
             uploading: true,
-            uploadingFile: true,
+            slicing: true,
             formError: ''
+        })
+    }
+
+    uploadingFile() {
+        this.setState({
+            slicing: false,
+            uploadingFile: true,
         })
     }
 
@@ -264,8 +293,10 @@ class Create extends Component {
     showError(formError) {
         this.setState({
             uploading: false,
+            slicing: false,
             uploadingFile: false,
             uploadingImg: false,
+            progress: 0,
             formError
         })
     }
