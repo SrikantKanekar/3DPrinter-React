@@ -25,6 +25,6 @@ export function getCuraOverrides(quality) {
         set('support_enable', true)
     )
 
-    console.log(setting)
+    // console.log(setting)
     return setting
 }

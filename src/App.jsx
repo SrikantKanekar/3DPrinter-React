@@ -57,9 +57,9 @@ class App extends Component {
                         <ProtectedRoute path="/notifications/:id" component={Notification}/>
                         <ProtectedRoute exact path="/notifications" component={Notifications}/>
 
-                        <Route path="/objects/create" component={Create}/>
-                        <Route path="/objects/:id" component={ObjectGet}/>
-                        <Route exact path="/objects" component={Objects}/>
+                        <ProtectedRoute path="/objects/create" component={Create}/>
+                        <ProtectedRoute path="/objects/:id" component={ObjectGet}/>
+                        <ProtectedRoute exact path="/objects" component={Objects}/>
 
                         <ProtectedRoute path="/orders/:id" component={Order}/>
                         <ProtectedRoute exact path="/orders" component={Orders}/>

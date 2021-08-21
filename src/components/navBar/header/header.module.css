@@ -22,7 +22,15 @@
 .logo {
     font-size: 30px;
     font-weight: 700;
+}
+
+.logo a {
+    text-decoration: none;
     color: var(--on-background);
+}
+
+.logo a:hover {
+    color: var(--primary);
 }
 
 .container.scrolled .logo {

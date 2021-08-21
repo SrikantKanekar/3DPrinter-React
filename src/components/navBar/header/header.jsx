@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import {Link, NavLink} from "react-router-dom";
 import styles from "./header.module.css"
 import theme from "../../../util/theme";
@@ -46,33 +46,34 @@ class Header extends Component {
                 <div className="container">
                     <div className={`${styles.container} ${scrolled}`}>
                         <div className={styles.logo}>
-                            3D Printing
+                            <Link exact to="/">3D Printing</Link>
                         </div>
 
                         <nav className={styles.center}>
                             <ul>
-                                <li><NavLink exact={true} to="/">Home</NavLink></li>
-                                <li><NavLink to="/objects/create">Create</NavLink></li>
-                                <li><NavLink exact to="/objects">My Objects</NavLink></li>
-
                                 {user && (
-                                    <li className={styles.subs}>
-                                        <NavLink to="/account">Account</NavLink>
-                                        <ul>
-                                            <li>
-                                                <Link to="/account">Account</Link>
-                                            </li>
-                                            <li>
-                                                <Link to="/orders">Orders</Link>
-                                            </li>
-                                            <li>
-                                                <Link to="/notifications">Notifications</Link>
-                                            </li>
-                                            <li>
-                                                <Link to="/logout">Logout</Link>
-                                            </li>
-                                        </ul>
-                                    </li>
+                                    <Fragment>
+                                        <li><NavLink exact to="/">Home</NavLink></li>
+                                        <li><NavLink to="/objects/create">Create</NavLink></li>
+                                        <li><NavLink exact to="/objects">My Objects</NavLink></li>
+                                        <li className={styles.subs}>
+                                            <NavLink to="/account">Account</NavLink>
+                                            <ul>
+                                                <li>
+                                                    <Link to="/account">Account</Link>
+                                                </li>
+                                                <li>
+                                                    <Link to="/orders">Orders</Link>
+                                                </li>
+                                                <li>
+                                                    <Link to="/notifications">Notifications</Link>
+                                                </li>
+                                                <li>
+                                                    <Link to="/logout">Logout</Link>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </Fragment>
                                 )}
 
                                 {user && user.isAdmin && <li><NavLink to="/admin">Admin</NavLink></li>}

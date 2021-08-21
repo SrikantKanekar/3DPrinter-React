@@ -9,8 +9,8 @@ function Hero() {
                 Welcome
             </div>
             <Button
-                url="/objects/create"
-                label="Create"
+                url="/login"
+                label="Sign in"
             />
         </div>
     );
