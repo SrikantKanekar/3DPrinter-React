@@ -36,7 +36,7 @@ class ObjectTracking extends Component {
                         <div className={styles.name}>
                             {object.name}
                         </div>
-                        <div>Price: <i className="fa fa-inr"/>{object.slicingDetails.price}</div>
+                        <div>Price: <i className="fa fa-inr"/>{this.getObjectPrice(object)}</div>
                         <div>Printing status : {object.printingStatus}</div>
 
                         {!startedAt && (
@@ -52,6 +52,15 @@ class ObjectTracking extends Component {
                 </div>
             </div>
         );
+    }
+
+    getObjectPrice = (object) => {
+        const quality = object.quality
+        if (quality === "SUPER") return object.slicing._super.price
+        else if (quality === "DYNAMIC") return object.slicing.dynamic.price
+        else if (quality === "STANDARD") return object.slicing.standard.price
+        else if (quality === "LOW") return object.slicing.low.price
+        else if (quality === "CUSTOM") return object.slicing.custom.price
     }
 }
 

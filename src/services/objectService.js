@@ -21,6 +21,16 @@ async function create(object) {
     );
 }
 
+async function updateQuality(id, quality) {
+    return await trackPromise(
+        http.put(
+            `${apiEndpoint}/quality/${id}`,
+            quality,
+            {headers: {"Content-Type": "application/json"}}
+        )
+    );
+}
+
 async function updateSetting(id, setting) {
     return await trackPromise(
         http.put(`${apiEndpoint}/setting/${id}`, setting)
@@ -43,6 +53,7 @@ const objectService = {
     getAll,
     get,
     create,
+    updateQuality,
     updateSetting,
     updateQuantity,
     deleteObject

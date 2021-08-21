@@ -21,76 +21,58 @@ class SettingForm extends Form {
     doSubmit = async () => {
         try {
             const {data} = this.state;
-            data.updated = true
             const {data: setting} = await objectService.updateSetting(this.props.object.id, data)
             const object = {...this.props.object}
             object.setting = setting
             this.props.updateObject(object)
-            this.setState({formSuccess: "Successfully Updated"})
+            this.setState({formSuccess: "Request Sent"})
         } catch (ex) {
             if (ex.response && ex.response.status === 400) {
                 this.setState({formError: ex.response.data});
             }
         }
-    };
+    }
 
     render() {
-        const setting = this.state.data
-        const level = setting.level
-
-        const recommended = level == 0
-        const basic = level >= 1
-        const intermediate = level >= 2
-        const advanced = level >= 3
-
         return (
             <FormContainer
-                title="Settings"
-                buttonLabel="Update"
+                buttonLabel="Send"
                 errors={this.validate()}
                 formError={this.state.formError}
                 formSuccess={this.state.formSuccess}
                 onSubmit={this.handleSubmit}>
+                {this.renderSelect("quality", "Quality", this.quality)}
 
-                {this.renderSelect("level", "Level", this.level)}
+                {this.renderInput("layerHeight", "Layer Height (mm)")}
 
-                {recommended && this.renderSelect("quality", "Quality", this.quality)}
-                {recommended && this.renderInput("infill", "Infill (%)")}
-                {recommended && this.renderCheckbox("gradualInfill", "Gradual Infill")}
-                {recommended && this.renderCheckbox("support", "Support")}
+                {this.renderInput("infillDensity", "Infill Density (%)")}
+                {this.renderSelect("infillPattern", "Infill Pattern", this.infillPattern)}
+                {this.renderCheckbox("gradualInfill", "Gradual Infill")}
 
-                {basic && this.renderInput("layerHeight", "Layer Height (mm)")}
-                {basic && this.renderInput("infillDensity", "Infill Density (%)")}
-                {basic && this.renderSelect("infillPattern", "Infill Pattern", this.infillPattern)}
-                {basic && this.renderCheckbox("generateSupport", "Generate Support")}
-                {basic && this.renderSelect("supportStructure", "Support Structure", this.supportStructure)}
-                {basic && this.renderSelect("supportPlacement", "Support Placement", this.supportPlacement)}
-                {basic && this.renderInput("supportOverhangAngle", "Support Overhang Angle")}
-                {basic && this.renderSelect("supportPattern", "Support Pattern", this.supportPattern)}
+                {this.renderCheckbox("generateSupport", "Generate Support")}
+                {this.renderSelect("supportStructure", "Support Structure", this.supportStructure)}
+                {this.renderSelect("supportPlacement", "Support Placement", this.supportPlacement)}
+                {this.renderInput("supportOverhangAngle", "Support Overhang Angle")}
+                {this.renderSelect("supportPattern", "Support Pattern", this.supportPattern)}
+                {this.renderInput("supportDensity", "Support Density (%)")}
 
-                {intermediate && this.renderInput("supportDensity", "Support Density (%)")}
-                {advanced && this.renderInput("wallLineWidth", "Wall Line Width (mm)")}
-                {advanced && this.renderInput("topBottomLineWidth", "Top/Bottom Line Width (mm)")}
-                {advanced && this.renderInput("wallThickness", "Wall Thickness (mm)")}
-                {advanced && this.renderInput("wallLineCount", "Wall Line Count")}
-                {advanced && this.renderInput("topThickness", "Top Thickness (mm)")}
-                {advanced && this.renderInput("bottomThickness", "Bottom Thickness (mm)")}
-                {advanced && this.renderInput("infillSpeed", "Infill Speed (mm/s)")}
-                {advanced && this.renderInput("outerWallSpeed", "Outer Wall Speed (mm/s)")}
-                {advanced && this.renderInput("innerWallSpeed", "Inner Wall Speed (mm/s)")}
-                {advanced && this.renderInput("topBottomSpeed", "Top Bottom Speed (mm/s)")}
-                {advanced && this.renderInput("supportSpeed", "Support Speed (mm/s)")}
-                {advanced && this.renderSelect("printSequence", "Print Sequence", this.printSequence)}
+                {this.renderInput("wallLineWidth", "Wall Line Width (mm)")}
+                {this.renderInput("topBottomLineWidth", "Top/Bottom Line Width (mm)")}
+                {this.renderInput("wallThickness", "Wall Thickness (mm)")}
+                {this.renderInput("topThickness", "Top Thickness (mm)")}
+                {this.renderInput("bottomThickness", "Bottom Thickness (mm)")}
+                {this.renderInput("wallLineCount", "Wall Line Count")}
+
+                {this.renderInput("infillSpeed", "Infill Speed (mm/s)")}
+                {this.renderInput("supportSpeed", "Support Speed (mm/s)")}
+                {this.renderInput("outerWallSpeed", "Outer Wall Speed (mm/s)")}
+                {this.renderInput("innerWallSpeed", "Inner Wall Speed (mm/s)")}
+                {this.renderInput("topBottomSpeed", "Top Bottom Speed (mm/s)")}
+
+                {this.renderSelect("printSequence", "Print Sequence", this.printSequence)}
             </FormContainer>
-        );
+        )
     }
-
-    level = [
-        {id: 0, name: "Recommended"},
-        {id: 1, name: "Basic"},
-        {id: 2, name: "Advanced"},
-        {id: 3, name: "Expert"}
-    ]
 
     quality = [
         {id: "SUPER", name: "Super"},
@@ -141,4 +123,4 @@ class SettingForm extends Form {
     ]
 }
 
-export default SettingForm;
+export default SettingForm

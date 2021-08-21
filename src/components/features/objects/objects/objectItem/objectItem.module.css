@@ -14,19 +14,19 @@
 
 .description {
     width: 100%;
-    padding: 36px 5px 38px;
+    padding: 35px 5px 35px;
 }
 
-.description > div:not(:first-child) {
+.description > div:last-child {
     font-size: 16px;
-    font-weight: 550;
+    font-weight: 500;
     color: var(--on-surface);
-    line-height: 0.75;
-    margin-top: 8px;
+    line-height: 0.90;
+    margin-top: 12px;
 }
 
 .title {
-    width: 90%;
+    width: 75%;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -44,8 +44,15 @@
 
 .price {
     position: absolute;
+    font-size: 22px;
+    font-weight: 550;
+    color: var(--on-surface);
     right: 7px;
     top: 61px;
+}
+
+.price i {
+    font-size: 16px;
 }
 
 @media only screen and (max-width: 991px) {

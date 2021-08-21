@@ -1,0 +1,95 @@
+.card {
+    width: calc((100% - 90px) / 4);
+    margin: 50px 0 0 18px;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    background: var(--surface);
+    cursor: pointer;
+}
+
+.card:hover {
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.card .selectable {
+    position: relative;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    border: 4px solid transparent;
+}
+
+.card .selectable .check {
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 10;
+    width: 20px;
+    height: 20px;
+}
+
+.card .selectable .check:before {
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    content: '';
+    border: 20px solid transparent;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: -1;
+}
+
+.card .selectable .check .checkmark {
+    display: block;
+    font: 20px sans-serif;
+    line-height: 20px;
+    text-align: center;
+    color: transparent;
+}
+
+.card .selectable.selected {
+    border-color: var(--border-light);
+}
+
+.card .selectable.selected .check:before {
+    border-color: var(--border-light) var(--border-light) rgba(0, 0, 255, 0) rgba(255, 0, 0, 0);
+}
+
+.card .selectable.selected .check .checkmark {
+    color: var(--on-background);
+}
+
+.content {
+    padding: 20px;
+    text-align: center;
+}
+
+.title {
+    font-size: 25px;
+    font-weight: 550;
+    margin: 0;
+    padding: 4px;
+}
+
+.description {
+    font-size: 50px;
+    font-weight: 500;
+    margin: 0;
+    padding: 4px;
+}
+
+.description i {
+    font-size: 25px;
+}
+
+@media only screen and (max-width: 991px) {
+    .card {
+        width: calc((100% - 70px) / 2);
+        margin: 40px 0 0 20px;
+    }
+}
+
+@media only screen and (max-width: 575px) {
+    .card {
+        width: calc(100% - 50px);
+        margin: 30px 0 0 25px;
+    }
+}

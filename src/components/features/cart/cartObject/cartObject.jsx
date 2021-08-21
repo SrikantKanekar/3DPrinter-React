@@ -26,7 +26,7 @@ function CartObject(props) {
             </div>
 
             <div className={style.price}><i
-                className="fa fa-inr"/> {props.object.slicingDetails.price}
+                className="fa fa-inr"/> {props.price}
             </div>
 
             <div className={style.quantity}>

@@ -25,7 +25,7 @@ class ObjectCompleted extends Component {
                         <div className={styles.name}>
                             {object.name}
                         </div>
-                        <div>Price: <i className="fa fa-inr"/>{object.slicingDetails.price}</div>
+                        <div>Price: <i className="fa fa-inr"/>{this.getObjectPrice(object)}</div>
                         <div>Printing status : {object.printingStatus}</div>
                         <div>
                             Completed on : {new Date(completedAt).toLocaleString()}
@@ -45,6 +45,15 @@ class ObjectCompleted extends Component {
         let hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
         minutes = (minutes < 10) ? "0" + minutes : minutes;
         return hours + ":" + minutes + " hrs";
+    }
+
+    getObjectPrice = (object) => {
+        const quality = object.quality
+        if (quality === "SUPER") return object.slicing._super.price
+        else if (quality === "DYNAMIC") return object.slicing.dynamic.price
+        else if (quality === "STANDARD") return object.slicing.standard.price
+        else if (quality === "LOW") return object.slicing.low.price
+        else if (quality === "CUSTOM") return object.slicing.custom.price
     }
 }
 

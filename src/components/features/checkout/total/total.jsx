@@ -25,7 +25,7 @@ function Total(props) {
                             <div className={styles.details}>
                                 <div>X{object.quantity}</div>
                                 <div>
-                                    <i className="fa fa-inr"/> {object.slicingDetails.price}
+                                    <i className="fa fa-inr"/> {getObjectPrice(object)}
                                 </div>
                             </div>
                         </li>
@@ -58,9 +58,18 @@ function Total(props) {
 function calculateTotal(objects) {
     let total = 0
     objects.forEach((object) => {
-        total += object.quantity * object.slicingDetails.price
+        total += object.quantity * getObjectPrice(object)
     })
     return total
+}
+
+function getObjectPrice(object){
+    const quality = object.quality
+    if (quality === "SUPER") return object.slicing._super.price
+    else if (quality === "DYNAMIC") return object.slicing.dynamic.price
+    else if (quality === "STANDARD") return object.slicing.standard.price
+    else if (quality === "LOW") return object.slicing.low.price
+    else if (quality === "CUSTOM") return object.slicing.custom.price
 }
 
 export default Total;

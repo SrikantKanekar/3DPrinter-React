@@ -23,7 +23,7 @@ import Home from "./components/features/util/home/home";
 import NavBar from "./components/navBar/navBar";
 import Footer from "./components/footer/footer";
 import Spinner from "./components/util/spinner/spinner";
-import "bootstrap/dist/css/bootstrap.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 import "font-awesome/css/font-awesome.css";
 import "react-toastify/dist/ReactToastify.css";
 import './App.css';

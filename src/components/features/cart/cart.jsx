@@ -68,6 +68,7 @@ class Cart extends Component {
                                 <CartObject
                                     object={object}
                                     key={object.id}
+                                    price={this.getObjectPrice(object)}
                                     handleCartRemove={this.handleCartRemove}
                                     handleQuantityIncrease={this.handleQuantityIncrease}
                                     handleQuantityDecrease={this.handleQuantityDecrease}
@@ -92,6 +93,15 @@ class Cart extends Component {
                 )}
             </div>
         );
+    }
+
+    getObjectPrice = (object) => {
+        const quality = object.quality
+        if (quality === "SUPER") return object.slicing._super.price
+        else if (quality === "DYNAMIC") return object.slicing.dynamic.price
+        else if (quality === "STANDARD") return object.slicing.standard.price
+        else if (quality === "LOW") return object.slicing.low.price
+        else if (quality === "CUSTOM") return object.slicing.custom.price
     }
 }
 

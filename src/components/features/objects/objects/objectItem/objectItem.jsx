@@ -18,7 +18,7 @@ class ObjectItem extends Component {
                     </div>
 
                     <div className={styles.price}>
-                        <i className="fa fa-inr"/>{object.slicing.standard.price}
+                        <i className="fa fa-inr"/>{this.getObjectPrice(object)}
                     </div>
 
                     <div className={object.status.toLowerCase()}>
@@ -27,6 +27,15 @@ class ObjectItem extends Component {
                 </div>
             </div>
         );
+    }
+
+    getObjectPrice = (object) => {
+        const quality = object.quality
+        if (quality === "SUPER") return object.slicing._super.price
+        else if (quality === "DYNAMIC") return object.slicing.dynamic.price
+        else if (quality === "STANDARD") return object.slicing.standard.price
+        else if (quality === "LOW") return object.slicing.low.price
+        else if (quality === "CUSTOM") return object.slicing.custom.price
     }
 }
 
