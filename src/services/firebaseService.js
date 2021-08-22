@@ -14,40 +14,34 @@ firebase.initializeApp(firebaseConfig);
 
 const storageRef = firebase.storage().ref();
 
-function uploadFirebaseFile(file, filename, id, progress, downloadURL) {
-    const uploadTask = storageRef.child(id + '/' + filename).put(file);
+function uploadFirebaseFile(file, filename, id, progress) {
+    const uploadTask = storageRef.child(id + '/' + filename).put(file)
 
-    uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
-        (snapshot) => {
-            progress((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
-        },
-        (error) => {
-            console.log(error)
-        },
-        () => {
-            uploadTask.snapshot.ref.getDownloadURL().then((url) => {
-                downloadURL(url)
-            });
-        }
-    );
+    return new Promise((resolve, reject) => {
+        uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
+            snapshot => progress((snapshot.bytesTransferred / snapshot.totalBytes) * 100),
+            error => reject(error),
+            async () => {
+                const url = await uploadTask.snapshot.ref.getDownloadURL()
+                resolve(url)
+            }
+        )
+    })
 }
 
-function uploadFirebaseImage(image, id, progress, downloadURL) {
-    const uploadTask = storageRef.child(id + '/image').putString(image, 'data_url');
+function uploadFirebaseImage(image, id, progress) {
+    const uploadTask = storageRef.child(id + '/image').putString(image, 'data_url')
 
-    uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
-        (snapshot) => {
-            progress((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
-        },
-        (error) => {
-            console.log(error)
-        },
-        () => {
-            uploadTask.snapshot.ref.getDownloadURL().then((url) => {
-                downloadURL(url)
-            });
-        }
-    );
+    return new Promise((resolve, reject) => {
+        uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
+            snapshot => progress((snapshot.bytesTransferred / snapshot.totalBytes) * 100),
+            error => reject(error),
+            async () => {
+                const url = await uploadTask.snapshot.ref.getDownloadURL()
+                resolve(url)
+            }
+        )
+    })
 }
 
 function deleteFirebaseFolder(id, proceed) {
@@ -57,12 +51,12 @@ function deleteFirebaseFolder(id, proceed) {
     deleteTask.listAll().then(dir => {
         dir.items.forEach(fileRef => {
             const dirRef = firebase.storage().ref(fileRef.fullPath);
-            dirRef.getDownloadURL().then(function(url) {
+            dirRef.getDownloadURL().then(function (url) {
                 const imgRef = firebase.storage().refFromURL(url);
-                imgRef.delete().then(function() {
+                imgRef.delete().then(function () {
                     if (deletedOne) proceed();
                     deletedOne = true;
-                }).catch(function(error) {
+                }).catch(function (error) {
                     proceed()
                 });
             });

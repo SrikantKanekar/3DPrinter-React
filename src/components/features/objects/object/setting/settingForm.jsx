@@ -1,7 +1,7 @@
 import React from 'react';
-import Form from "../../../../form/form";
+import requestService from "../../../../../services/requestService";
 import FormContainer from "../../../../form/formContainer/formContainer";
-import objectService from "../../../../../services/objectService";
+import Form from "../../../../form/form";
 import {schema} from "./settingSchema";
 
 class SettingForm extends Form {
@@ -21,10 +21,7 @@ class SettingForm extends Form {
     doSubmit = async () => {
         try {
             const {data} = this.state;
-            const {data: setting} = await objectService.sendRequest(this.props.object.id, data)
-            const object = {...this.props.object}
-            object.setting = setting
-            this.props.updateObject(object)
+            await requestService.sendSpecialRequest(this.props.object.id, data)
             this.setState({formSuccess: "Request Sent. You will receive email with Silcing details within one working day"})
         } catch (ex) {
             if (ex.response && ex.response.status === 400) {

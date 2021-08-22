@@ -1,6 +1,8 @@
-.container{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: flex-start;
+.buttons {
+    padding: 10px 110px 50px 110px;
+    display: inline-flex;
+}
+
+.buttons > div {
+    margin-left: 10px;
 }

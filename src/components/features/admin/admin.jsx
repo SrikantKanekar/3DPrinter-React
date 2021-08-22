@@ -1,88 +1,37 @@
-import React, {Component} from 'react';
-import {toast} from "react-toastify";
-import admin from "../../../services/adminService";
+import React, {Fragment} from 'react';
 import auth from "../../../services/authService";
-import AdminOrderItem from "./orderItem/adminOrderItem";
-import Title from "../../util/title/title";
+import {Route} from "react-router-dom";
+import AdminOrders from "./adminOrders/adminOrders";
+import Button from "../../util/button/button";
 import styles from "./admin.module.css"
+import DirectRequests from "./directRequests/directRequests";
+import SpecialRequests from "./specialRequests/specialRequests";
 
-class Admin extends Component {
+class Admin extends React.Component {
 
     constructor(props) {
         super(props);
         const user = auth.getCurrentUser()
         if (!user.isAdmin) this.props.history.replace("/not-found");
-
-        this.state = {
-            orders: [],
-            isAdmin: user.isAdmin
-        }
-    }
-
-    async componentDidMount() {
-        try {
-            if (this.state.isAdmin) {
-                const {data: orders} = await admin.getAllActiveOrders()
-                this.setState({orders})
-            }
-        } catch (e) {
-            toast.dark(e.message)
-        }
-    }
-
-    updateOrderStatus = async (status, order) => {
-        try {
-            const {data} = await admin.updateOrderStatus(status, order._id)
-            if (status === 'DELIVERED'){
-                const orders = this.state.orders.filter(it => it._id !== order._id)
-                this.setState({orders})
-            } else {
-                const orders = [...this.state.orders]
-                const index = orders.indexOf(order)
-                orders[index].status = data
-                this.setState({orders})
-            }
-        } catch (e) {
-            if (e.response && e.response.status === 405) {
-                toast.dark("Please prints all objects of the order")
-            } else {
-                toast.dark(e.message)
-            }
-        }
+        this.state = {isAdmin: user.isAdmin}
     }
 
     render() {
-        const {orders} = this.state
-
         return (
-            <div className="container">
-                {orders.length > 0 && (
-                    <div className={styles.container}>
-                        {orders.map(order =>
-                            <AdminOrderItem
-                                key={order._id}
-                                order={order}
-                                orderStatus={this.orderStatus}
-                                updateOrderStatus={this.updateOrderStatus}
-                            />
-                        )}
-                    </div>
-                )}
-
-                {!orders.length && (
-                    <Title>No Active Orders</Title>
-                )}
-            </div>
+            <Fragment>
+                <div className={styles.buttons}>
+                    <Button url="/admin" label="Orders" />
+                    <Button url="/admin/special-requests" label="Special Requests" />
+                    <Button url="/admin/direct-requests" label="Direct Requests" />
+                </div>
+                <Fragment>
+                    <Route path="/admin/special-requests" component={SpecialRequests}/>
+                    <Route path="/admin/direct-requests" component={DirectRequests}/>
+                    <Route exact path="/admin" component={AdminOrders}/>
+                </Fragment>
+            </Fragment>
         );
     }
-
-    orderStatus = [
-        {id: 0, name: "PLACED"},
-        {id: 1, name: "CONFIRMED"},
-        {id: 2, name: "PROCESSING"},
-        {id: 3, name: "DELIVERING"},
-        {id: 4, name: "DELIVERED"}
-    ]
 }
 
 export default Admin;

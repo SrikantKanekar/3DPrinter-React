@@ -31,12 +31,6 @@ async function updateQuality(id, quality) {
     );
 }
 
-async function sendRequest(id, setting) {
-    return await trackPromise(
-        http.post(`${apiEndpoint}/request/${id}`, setting)
-    );
-}
-
 async function updateQuantity(id, quantity) {
     return await trackPromise(
         http.put(`${apiEndpoint}/quantity/${id}`, quantity)
@@ -54,7 +48,6 @@ const objectService = {
     get,
     create,
     updateQuality,
-    sendRequest,
     updateQuantity,
     deleteObject
 }

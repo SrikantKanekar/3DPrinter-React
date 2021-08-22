@@ -6,6 +6,8 @@ import Button from "../../../util/button/button";
 import Canvas from "../../../canvas/canvas";
 import ProgressBar from "../../../util/progressBar/progressBar";
 import {sliceAllQualities} from "./slicing/slice";
+import requestService from "../../../../services/requestService";
+import Popup from "../../../util/popup/popup";
 import "./create.css"
 
 class Create extends Component {
@@ -23,7 +25,8 @@ class Create extends Component {
 
         formError: '',
         canvasError: '',
-        sizeError: false
+        sizeError: false,
+        popup: true
     }
 
     constructor(props) {
@@ -69,63 +72,93 @@ class Create extends Component {
     handleObjectCreate = async (e) => {
         e.preventDefault()
 
-        try {
-            if (this.state.filename !== "") {
-
-                this.slicingFile()
-
-                const image = this.canvas.current.takeSnapshot();
-
-                this.hideCanvas();
-
-                const id = this.generateId();
-
+        if (this.state.filename !== "") {
+            this.slicingFile()
+            this.image = this.canvas.current.takeSnapshot()
+            this.hideCanvas()
+            this.generateId()
+            try {
                 const slicing = await sliceAllQualities(
                     this.file,
                     progress => this.setState({progress})
                 )
-
-                this.uploadingFile();
-
-                Firebase.uploadFirebaseFile(
-                    this.file,
-                    this.file.name,
-                    id,
-                    progress => this.setState({progress}),
-                    fileUrl => {
-                        this.uploadingImage();
-                        Firebase.uploadFirebaseImage(
-                            image,
-                            id,
-                            progress => this.setState({progress}),
-                            async (imageUrl) => {
-
-                                this.uploadingDone();
-                                const request = {
-                                    id: id,
-                                    name: this.state.filename,
-                                    fileUrl: fileUrl,
-                                    imageUrl: imageUrl,
-                                    fileExtension: this.getFileExtension(),
-                                    slicing
-                                }
-                                try {
-                                    const result = await objectService.create(request)
-                                    this.props.history.replace("/objects/" + result.data.id)
-                                } catch (ex) {
-                                    this.showError(ex.response.data)
-                                }
-                            }
-                        );
-                    }
-                );
-            } else {
-                toast.dark("Name cannot be empty")
+                try{
+                    await this.uploadFile()
+                    await this.uploadImage()
+                    this.uploadingDone()
+                    await this.uploadObject(slicing)
+                }catch (e) {
+                    this.showError(e.message)
+                    toast.dark(e.message)
+                }
+            } catch (e) {
+                this.setState({popup: true})
             }
-        } catch (e) {
-            this.showError(e)
-            toast.dark(e)
+        } else {
+            toast.dark("Name cannot be empty")
         }
+    }
+
+    uploadFile = async () => {
+        this.uploadingFile();
+        this.fileUrl = await Firebase.uploadFirebaseFile(
+            this.file,
+            this.file.name,
+            this.id,
+            progress => this.setState({progress}),
+        )
+    }
+
+    uploadImage = async () => {
+        this.uploadingImage();
+        this.imageUrl = await Firebase.uploadFirebaseImage(
+            this.image,
+            this.id,
+            progress => this.setState({progress}),
+        )
+    }
+
+    uploadObject = async (slicing) => {
+        const request = {
+            id: this.id,
+            name: this.state.filename,
+            fileUrl: this.fileUrl,
+            imageUrl: this.imageUrl,
+            fileExtension: this.getFileExtension(),
+            slicing
+        }
+        try {
+            const result = await objectService.create(request)
+            this.props.history.replace("/objects/" + result.data.id)
+        } catch (ex) {
+            this.showError(ex.response.data)
+        }
+    }
+
+    sendDirectRequest = async () => {
+        this.setState({popup: false})
+        try{
+            await this.uploadFile()
+            await this.uploadImage()
+            this.uploadingDone()
+            const request = {
+                name: this.state.filename,
+                fileUrl: this.fileUrl,
+                fileExtension: this.getFileExtension(),
+                imageUrl: this.imageUrl
+            }
+            await requestService.sendDirectRequest(this.id, request)
+            toast.dark("Request Sent, you will receive our response soon")
+            this.setState({progress: 0, done: false})
+        }catch (e) {
+            this.showError(e.message)
+            toast.dark(e.message)
+        }
+    }
+
+    closePopup = () => {
+        this.showError("Error Slicing Object")
+        this.setState({popup: false})
     }
 
     handleObjectChange = (e) => {
@@ -257,6 +290,11 @@ class Create extends Component {
                         </div>
                     </div>
                 )}
+                <Popup
+                    isOpen={this.state.popup}
+                    execute={this.sendDirectRequest}
+                    close={this.closePopup}
+                />
             </div>
         );
     }
@@ -318,7 +356,7 @@ class Create extends Component {
     }
 
     generateId() {
-        return Date.now().toString(36) + Math.random().toString(36).substr(2);
+        this.id = Date.now().toString(36) + Math.random().toString(36).substr(2);
     }
 
     getFileExtension() {

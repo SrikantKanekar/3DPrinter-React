@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from "react-router-dom";
-import Button from "../../../util/button/button";
 import styles from "./adminOrderItem.module.css"
+import Button from "../../../../util/button/button";
 
 class AdminOrderItem extends Component {
 

@@ -46,7 +46,7 @@ class Header extends Component {
                 <div className="container">
                     <div className={`${styles.container} ${scrolled}`}>
                         <div className={styles.logo}>
-                            <Link exact to="/">3D Printing</Link>
+                            <Link to="/">3D Printing</Link>
                         </div>
 
                         <nav className={styles.center}>

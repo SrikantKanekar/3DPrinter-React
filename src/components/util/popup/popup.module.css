@@ -1,0 +1,104 @@
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 120;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.popup {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    width: 580px;
+    height: 380px;
+    position: fixed;
+    z-index: 150;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--surface);
+    box-shadow: 0 0 60px 10px rgba(0, 0, 0, 0.9);
+}
+
+.popup > i {
+    position: absolute;
+    z-index: 1;
+    font-size: 16px;
+    top: 15px;
+    right: 15px;
+    color: var(--on-surface);
+}
+
+.content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    padding: 40px 50px;
+}
+
+.title {
+    font-size: 30px;
+    font-weight: 550;
+    margin-bottom: 20px;
+    color: var(--on-background);
+}
+
+.text {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.buttons {
+    position: absolute;
+    width: 100%;
+    bottom: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.buttons > button{
+    margin: 15px ;
+    padding: 10px 30px;
+    border: solid 2px var(--border-light);
+    background: var(--surface);
+    color: var(--on-background);
+}
+
+@media only screen and (max-width: 600px) {
+    .popup {
+        width: 280px;
+        height: 230px;
+    }
+
+    .content {
+        padding: 20px 20px;
+    }
+
+    .title {
+        font-size: 20px;
+        font-weight: 550;
+        margin-bottom: 10px;
+    }
+
+    .text {
+        font-size: 14px;
+        font-weight: 500;
+        margin-bottom: 10px;
+    }
+
+    .buttons {
+        bottom: 15px;
+    }
+
+    .buttons > button{
+        margin: 8px ;
+        padding: 5px 18px;
+    }
+}
