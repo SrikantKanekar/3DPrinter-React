@@ -7,13 +7,8 @@ import requestService from "../../../../../services/requestService";
 class SpecialRequestForm extends Form {
     state = {
         data: {
-            printTime: '',
-            materialWeight: '',
-            filament: '',
-            materialCost: '',
-            powerCost: '',
-            labourCost: '',
-            price: ''
+            time: '',
+            material: '',
         },
         errors: {},
         formError: '',
@@ -21,27 +16,12 @@ class SpecialRequestForm extends Form {
     };
 
     schema = {
-        printTime: Joi.string()
+        time: Joi.number()
             .required()
-            .label("Print Time"),
-        materialWeight: Joi.number()
+            .label("Time"),
+        material: Joi.number()
             .required()
-            .label("Material Weight"),
-        filament: Joi.number()
-            .required()
-            .label("Filament"),
-        materialCost: Joi.number()
-            .required()
-            .label("Material Cost"),
-        powerCost: Joi.number()
-            .required()
-            .label("Power Cost"),
-        labourCost: Joi.number()
-            .required()
-            .label("Labour Cost"),
-        price: Joi.number()
-            .required()
-            .label("Price"),
+            .label("Material")
     };
 
     doSubmit = async () => {
@@ -65,13 +45,8 @@ class SpecialRequestForm extends Form {
                 formError={this.state.formError}
                 formSuccess={this.state.formSuccess}
                 onSubmit={this.handleSubmit}>
-                {this.renderInput("printTime", "Print Time (hr min sec)")}
-                {this.renderInput("materialWeight", "Material Weight (g)")}
-                {this.renderInput("filament", "Filament (m)")}
-                {this.renderInput("materialCost", "Material Cost")}
-                {this.renderInput("powerCost", "Power Cost")}
-                {this.renderInput("labourCost", "Labour Cost")}
-                {this.renderInput("price", "Total Price")}
+                {this.renderInput("time", "Print Time (min)")}
+                {this.renderInput("material", "Material Weight (g)")}
             </FormContainer>
         )
     }
