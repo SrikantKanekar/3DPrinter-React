@@ -26,7 +26,7 @@ class Create extends Component {
         formError: '',
         canvasError: '',
         sizeError: false,
-        popup: true
+        popup: false
     }
 
     constructor(props) {
@@ -148,7 +148,7 @@ class Create extends Component {
                 imageUrl: this.imageUrl
             }
             await requestService.sendDirectRequest(this.id, request)
-            toast.dark("Request Sent, you will receive our response soon")
+            toast.success("Request Sent, you will receive our response soon")
             this.setState({progress: 0, done: false})
         }catch (e) {
             this.showError(e.message)
