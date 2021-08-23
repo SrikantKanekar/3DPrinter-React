@@ -1,0 +1,42 @@
+.content {
+    margin-top: 15px;
+}
+
+.content > div {
+    font-size: 16px;
+    font-weight: 550;
+    color: var(--on-surface);
+    margin-bottom: 5px;
+}
+
+.content > div a {
+    font-size: 16px;
+    font-weight: 550;
+    color: var(--primary);
+    margin-bottom: 5px;
+}
+
+.name {
+    font-size: 30px !important;
+    font-weight: 600 !important;
+    margin-bottom: 12px !important;
+    color: var(--on-background) !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.settings {
+    margin: 50px 0;
+}
+
+@media only screen and (max-width: 600px) {
+    .name {
+        font-size: 22px;
+        font-weight: 500;
+    }
+
+    .content > div {
+        font-size: 15px;
+    }
+}

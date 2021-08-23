@@ -10,7 +10,7 @@ class Footer extends Component {
                         <div className="col">
                             <div className={styles.content}>
                                 <div className={styles.logo}>
-                                    <Link to="/">3D Printing</Link>
+                                    <Link to="/">AvvonMark</Link>
                                 </div>
                                 <div className={styles.copyright}>
                                     Copyright &copy; All rights reserved | This template is made with <i className="fa fa-heart-o" aria-hidden="true"/> by Colorlib

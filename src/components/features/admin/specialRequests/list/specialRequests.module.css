@@ -1,0 +1,65 @@
+.container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.request {
+    width: calc((100% - 90px) / 4);
+    margin: 0 0 50px 18px;
+}
+
+.image {
+    width: 100%;
+}
+
+.image img {
+    width: 100%;
+    height: auto;
+}
+
+.content {
+    width: 100%;
+    padding: 20px 5px 30px;
+}
+
+.content > div:not(:first-child) {
+    font-size: 16px;
+    font-weight: 550;
+    color: var(--on-surface);
+    line-height: 0.75;
+    margin-top: 11px;
+}
+
+.name {
+    width: 95%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: normal;
+}
+
+.name a {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--on-background);
+}
+
+.name a:hover {
+    color: var(--primary);
+}
+
+@media only screen and (max-width: 991px) {
+    .request {
+        width: calc((100% - 30px) / 2);
+        margin: 0 0 40px 10px;
+    }
+}
+
+@media only screen and (max-width: 575px) {
+    .request {
+        width: calc(100% - 30px);
+        margin: 0 0 30px 15px;
+    }
+}

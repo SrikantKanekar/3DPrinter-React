@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 
-class SpecialRequests extends Component {
+class DirectRequests extends Component {
     render() {
         return (
             <div className="container">
-                Coming soon
+                DirectRequests
             </div>
         );
     }
 }
 
-export default SpecialRequests;
+export default DirectRequests;
