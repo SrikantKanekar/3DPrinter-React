@@ -1,35 +1,27 @@
 import http from "./httpService";
 import {trackPromise} from "react-promise-tracker";
 
-const apiEndpoint = "/objects";
-
-async function sendDirectRequest(id, body) {
+async function getAllObjectRequests() {
     return await trackPromise(
-        http.post(`${apiEndpoint}/requests/direct/${id}`, body)
+        http.get(`/admin/objects`)
     );
 }
 
-async function getAllDirect() {
+async function getObjectRequest(email, id) {
     return await trackPromise(
-        http.get(`/admin/requests/direct`)
+        http.get(`/admin/objects/${email}/${id}`)
     );
 }
 
-async function getDirect(id) {
+async function fulfillObject(email, id, body) {
     return await trackPromise(
-        http.get(`/admin/requests/direct/${id}`)
-    );
-}
-
-async function fulfillDirect(id, body) {
-    return await trackPromise(
-        http.put(`/admin/requests/direct/${id}`, body)
+        http.put(`/admin/objects/${email}/${id}`, body)
     );
 }
 
 async function sendSpecialRequest(id, body) {
     return await trackPromise(
-        http.post(`${apiEndpoint}/requests/special/${id}`, body)
+        http.post(`/objects/requests/special/${id}`, body)
     );
 }
 
@@ -52,10 +44,9 @@ async function fulfillSpecial(id, body) {
 }
 
 const requestService = {
-    sendDirectRequest,
-    getAllDirect,
-    getDirect,
-    fulfillDirect,
+    getAllObjectRequests,
+    getObjectRequest,
+    fulfillObject,
     sendSpecialRequest,
     getAllSpecial,
     getSpecial,

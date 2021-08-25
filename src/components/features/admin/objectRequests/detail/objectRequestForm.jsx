@@ -2,10 +2,10 @@ import React from 'react';
 import requestService from "../../../../../services/requestService";
 import FormContainer from "../../../../form/formContainer/formContainer";
 import Title from "../../../../util/title/title";
-import {directRequestSchema} from "./directRequestSchema";
+import {objectRequestSchema} from "./objectRequestSchema";
 import Form from "../../../../form/form";
 
-class DirectRequestForm extends Form {
+class ObjectRequestForm extends Form {
     state = {
         data: {
             super_time: '',
@@ -22,7 +22,7 @@ class DirectRequestForm extends Form {
         formSuccess: ''
     };
 
-    schema = directRequestSchema
+    schema = objectRequestSchema
 
     doSubmit = async () => {
         try {
@@ -45,8 +45,9 @@ class DirectRequestForm extends Form {
                     material: data.low_material,
                 }
             }
-            await requestService.fulfillDirect(this.props.id, body)
-            this.setState({formSuccess: "Successfully Created"})
+            const {email, id} = this.props
+            await requestService.fulfillObject(email, id, body)
+            this.setState({formSuccess: "Successfully Posted"})
         } catch (ex) {
             if (ex.response && ex.response.status === 400) {
                 this.setState({formError: ex.response.data});
@@ -58,7 +59,7 @@ class DirectRequestForm extends Form {
         return (
             <FormContainer
                 title="Fill Slicing Details"
-                buttonLabel="Create Object"
+                buttonLabel="Post"
                 errors={this.validate()}
                 formError={this.state.formError}
                 formSuccess={this.state.formSuccess}
@@ -83,4 +84,4 @@ class DirectRequestForm extends Form {
     }
 }
 
-export default DirectRequestForm;
+export default ObjectRequestForm;

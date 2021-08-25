@@ -2,22 +2,18 @@ import React, {Component} from 'react';
 import Firebase from "../../../../services/firebaseService";
 import objectService from "../../../../services/objectService";
 import {toast} from "react-toastify";
+import ProgressBar from "../../../util/progressBar/progressBar";
 import Button from "../../../util/button/button";
 import Canvas from "../../../canvas/canvas";
-import ProgressBar from "../../../util/progressBar/progressBar";
-import {sliceAllQualities} from "./slicing/slice";
-import requestService from "../../../../services/requestService";
-import Popup from "../../../util/popup/popup";
 import "./create.css"
 
 class Create extends Component {
     state = {
-        uploading: false,
         dragging: false,
-        slicing: false,
+        uploading: false,
         uploadingFile: false,
         uploadingImg: false,
-        done: false,
+        uploadingObject: false,
 
         filename: '',
         progress: 0,
@@ -26,7 +22,6 @@ class Create extends Component {
         formError: '',
         canvasError: '',
         sizeError: false,
-        popup: false
     }
 
     constructor(props) {
@@ -66,33 +61,26 @@ class Create extends Component {
 
     handleRestart = (e) => {
         e.preventDefault()
-        this.setState({formError: '', done: false})
+        this.setState({formError: '', uploadingObject: false})
     }
 
     handleObjectCreate = async (e) => {
         e.preventDefault()
 
         if (this.state.filename !== "") {
-            this.slicingFile()
+
+            this.uploadingFile();
             this.image = this.canvas.current.takeSnapshot()
             this.hideCanvas()
             this.generateId()
+
             try {
-                const slicing = await sliceAllQualities(
-                    this.file,
-                    progress => this.setState({progress})
-                )
-                try{
-                    await this.uploadFile()
-                    await this.uploadImage()
-                    this.uploadingDone()
-                    await this.uploadObject(slicing)
-                }catch (e) {
-                    this.showError(e.message)
-                    toast.dark(e.message)
-                }
+                await this.uploadFile()
+                await this.uploadImage()
+                await this.uploadObject()
             } catch (e) {
-                this.setState({popup: true})
+                this.showError(e.message)
+                toast.dark(e.message)
             }
         } else {
             toast.dark("Name cannot be empty")
@@ -100,7 +88,6 @@ class Create extends Component {
     }
 
     uploadFile = async () => {
-        this.uploadingFile();
         this.fileUrl = await Firebase.uploadFirebaseFile(
             this.file,
             this.file.name,
@@ -118,47 +105,17 @@ class Create extends Component {
         )
     }
 
-    uploadObject = async (slicing) => {
-        const request = {
+    uploadObject = async () => {
+        this.uploadingObject()
+        const body = {
             id: this.id,
             name: this.state.filename,
             fileUrl: this.fileUrl,
             imageUrl: this.imageUrl,
             fileExtension: this.getFileExtension(),
-            slicing
         }
-        try {
-            const result = await objectService.create(request)
-            this.props.history.replace("/objects/" + result.data.id)
-        } catch (ex) {
-            this.showError(ex.response.data)
-        }
-    }
-
-    sendDirectRequest = async () => {
-        this.setState({popup: false})
-        try{
-            await this.uploadFile()
-            await this.uploadImage()
-            this.uploadingDone()
-            const request = {
-                name: this.state.filename,
-                fileUrl: this.fileUrl,
-                fileExtension: this.getFileExtension(),
-                imageUrl: this.imageUrl
-            }
-            await requestService.sendDirectRequest(this.id, request)
-            toast.success("Request Sent, you will receive our response soon")
-            this.setState({progress: 0, done: false})
-        }catch (e) {
-            this.showError(e.message)
-            toast.dark(e.message)
-        }
-    }
-
-    closePopup = () => {
-        this.showError("Error Slicing Object")
-        this.setState({popup: false})
+        const result = await objectService.create(body)
+        this.props.history.replace("/objects/" + result.data.id)
     }
 
     handleObjectChange = (e) => {
@@ -177,10 +134,9 @@ class Create extends Component {
     render() {
         const {
             dragging,
-            done,
-            slicing,
             uploadingFile,
             uploadingImg,
+            uploadingObject,
             formError,
             progress,
             canvasVisible,
@@ -190,10 +146,9 @@ class Create extends Component {
 
         const boxClass = "box " +
             `${dragging ? "is_dragover" : ""}` +
-            `${slicing ? "is_slicing" : ""}` +
             `${uploadingFile ? "is_uploading_file" : ""}` +
             `${uploadingImg ? "is_uploading_img" : ""}` +
-            `${done ? "is_done" : ""}` +
+            `${uploadingObject ? "is_uploading_object" : ""}` +
             `${formError ? "is_error" : ""}`
 
         return (
@@ -235,12 +190,11 @@ class Create extends Component {
                             </label>
                         </div>
 
-                        <div className="box_slicing">Slicing…</div>
                         <div className="box_uploading_file">
                             Uploading {this.file ? this.file.name : ''}
                         </div>
                         <div className="box_uploading_img">Uploading Image…</div>
-                        <div className="box_done">Almost Done!</div>
+                        <div className="box_uploading_object">Almost Done!</div>
                         <div className="box_error">
                             <span>{this.state.formError}</span>. <a
                             href="/" className="box_restart"
@@ -290,27 +244,15 @@ class Create extends Component {
                         </div>
                     </div>
                 )}
-                <Popup
-                    isOpen={this.state.popup}
-                    execute={this.sendDirectRequest}
-                    close={this.closePopup}
-                />
             </div>
         );
     }
 
-    slicingFile() {
-        this.setState({
-            uploading: true,
-            slicing: true,
-            formError: ''
-        })
-    }
-
     uploadingFile() {
         this.setState({
-            slicing: false,
+            uploading: true,
             uploadingFile: true,
+            formError: ''
         })
     }
 
@@ -321,19 +263,19 @@ class Create extends Component {
         })
     }
 
-    uploadingDone() {
+    uploadingObject() {
         this.setState({
             uploadingImg: false,
-            done: true
+            uploadingObject: true
         })
     }
 
     showError(formError) {
         this.setState({
             uploading: false,
-            slicing: false,
             uploadingFile: false,
             uploadingImg: false,
+            uploadingObject: false,
             progress: 0,
             formError
         })

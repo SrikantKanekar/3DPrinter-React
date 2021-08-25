@@ -1,6 +1,6 @@
 import Joi from "joi-browser";
 
-export const directRequestSchema = {
+export const objectRequestSchema = {
     super_time: Joi.string()
         .required()
         .label("Print Time"),

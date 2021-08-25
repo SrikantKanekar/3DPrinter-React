@@ -15,10 +15,8 @@ async function get(id) {
     );
 }
 
-async function create(object) {
-    return await trackPromise(
-        http.post(apiEndpoint, object)
-    );
+async function create(body) {
+    return await http.post(apiEndpoint, body)
 }
 
 async function updateQuality(id, quality) {

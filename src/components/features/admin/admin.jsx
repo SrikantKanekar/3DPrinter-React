@@ -3,11 +3,11 @@ import auth from "../../../services/authService";
 import {Route} from "react-router-dom";
 import AdminOrders from "./adminOrders/adminOrders";
 import Button from "../../util/button/button";
-import styles from "./admin.module.css"
-import DirectRequests from "./directRequests/list/directRequests";
+import ObjectRequests from "./objectRequests/list/objectRequests";
 import SpecialRequests from "./specialRequests/list/specialRequests";
-import DirectRequest from "./directRequests/detail/directRequest";
+import ObjectRequest from "./objectRequests/detail/objectRequest";
 import SpecialRequest from "./specialRequests/detail/specialRequest";
+import styles from "./admin.module.css"
 
 class Admin extends React.Component {
 
@@ -23,12 +23,12 @@ class Admin extends React.Component {
             <Fragment>
                 <div className={styles.buttons}>
                     <Button url="/admin" label="Orders" />
-                    <Button url="/admin/requests/direct" label="Direct Requests" />
+                    <Button url="/admin/objects" label="Objects" />
                     <Button url="/admin/requests/special" label="Special Requests" />
                 </div>
                 <Fragment>
-                    <Route path="/admin/requests/direct/:id" component={DirectRequest}/>
-                    <Route exact path="/admin/requests/direct" component={DirectRequests}/>
+                    <Route path="/admin/objects/:email/:id" component={ObjectRequest}/>
+                    <Route exact path="/admin/objects" component={ObjectRequests}/>
 
                     <Route path="/admin/requests/special/:id" component={SpecialRequest}/>
                     <Route exact path="/admin/requests/special" component={SpecialRequests}/>

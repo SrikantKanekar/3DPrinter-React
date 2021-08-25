@@ -81,73 +81,84 @@ class ObjectNone extends Component {
                             <div className={styles.name}>
                                 {object.name}
                             </div>
-                            <div>
-                                Time: {details.printTime}
-                            </div>
-                            <div>
-                                Material Weight: {details.materialWeight}g
-                            </div>
-                            <div>
-                                Filament length: {details.filament}m
-                            </div>
-                            <div>
-                                Material Cost: <i className="fa fa-inr"/>{details.materialCost}
-                            </div>
-                            <div>
-                                Power Cost: <i className="fa fa-inr"/>{details.powerCost}
-                            </div>
-                            <div>
-                                Labour Cost: <i className="fa fa-inr"/>{details.labourCost}
-                            </div>
-                            <div>
-                                Total Price: <i className="fa fa-inr"/>{details.price}
-                            </div>
 
-                            <div className={styles.button_container}>
-                                {status !== "CART" && (
-                                    <Button label="Add to cart" onClick={this.handleAddToCart}/>
-                                )}
-                                {status === "CART" && (
-                                    <Button label="Remove from cart" onClick={this.handleRemoveFromCart}/>
-                                )}
-                            </div>
+                            {details === false && (
+                                <div>Price will be added soon</div>
+                            )}
+
+                            {details !== false && (
+                                <Fragment>
+                                    <div>
+                                        Time: {details.printTime}
+                                    </div>
+                                    <div>
+                                        Material Weight: {details.materialWeight}g
+                                    </div>
+                                    <div>
+                                        Filament length: {details.filament}m
+                                    </div>
+                                    <div>
+                                        Material Cost: <i className="fa fa-inr"/>{details.materialCost}
+                                    </div>
+                                    <div>
+                                        Power Cost: <i className="fa fa-inr"/>{details.powerCost}
+                                    </div>
+                                    <div>
+                                        Labour Cost: <i className="fa fa-inr"/>{details.labourCost}
+                                    </div>
+                                    <div>
+                                        Total Price: <i className="fa fa-inr"/>{details.price}
+                                    </div>
+
+                                    <div className={styles.button_container}>
+                                        {status !== "CART" && (
+                                            <Button label="Add to cart" onClick={this.handleAddToCart}/>
+                                        )}
+                                        {status === "CART" && (
+                                            <Button label="Remove from cart" onClick={this.handleRemoveFromCart}/>
+                                        )}
+                                    </div>
+                                </Fragment>
+                            )}
                         </div>
                     </div>
                 </div>
 
-                <div className={styles.cards}>
-                    <SelectableCard
-                        title="Super"
-                        description={object.slicing._super.price}
-                        selected={quality === "SUPER"}
-                        onClick={() => this.handleQualityChange("SUPER")}/>
-
-                    <SelectableCard
-                        title="Dynamic"
-                        description={object.slicing.dynamic.price}
-                        selected={quality === "DYNAMIC"}
-                        onClick={() => this.handleQualityChange("DYNAMIC")}/>
-
-                    <SelectableCard
-                        title="Standard"
-                        description={object.slicing.standard.price}
-                        selected={quality === "STANDARD"}
-                        onClick={() => this.handleQualityChange("STANDARD")}/>
-
-                    <SelectableCard
-                        title="Low"
-                        description={object.slicing.low.price}
-                        selected={quality === "LOW"}
-                        onClick={() => this.handleQualityChange("LOW")}/>
-
-                    {object.slicing.custom.price != null && (
+                {details !== false && (
+                    <div className={styles.cards}>
                         <SelectableCard
-                            title="Custom"
-                            description={object.slicing.custom.price}
-                            selected={quality === "CUSTOM"}
-                            onClick={() => this.handleQualityChange("CUSTOM")}/>
-                    )}
-                </div>
+                            title="Super"
+                            description={object.slicing._super.price}
+                            selected={quality === "SUPER"}
+                            onClick={() => this.handleQualityChange("SUPER")}/>
+
+                        <SelectableCard
+                            title="Dynamic"
+                            description={object.slicing.dynamic.price}
+                            selected={quality === "DYNAMIC"}
+                            onClick={() => this.handleQualityChange("DYNAMIC")}/>
+
+                        <SelectableCard
+                            title="Standard"
+                            description={object.slicing.standard.price}
+                            selected={quality === "STANDARD"}
+                            onClick={() => this.handleQualityChange("STANDARD")}/>
+
+                        <SelectableCard
+                            title="Low"
+                            description={object.slicing.low.price}
+                            selected={quality === "LOW"}
+                            onClick={() => this.handleQualityChange("LOW")}/>
+
+                        {object.slicing.custom.price != null && (
+                            <SelectableCard
+                                title="Custom"
+                                description={object.slicing.custom.price}
+                                selected={quality === "CUSTOM"}
+                                onClick={() => this.handleQualityChange("CUSTOM")}/>
+                        )}
+                    </div>
+                )}
 
                 <div className={styles.setting}>
                     <Button label="Advanced Settings" onClick={this.toggleAdvancedSettings}/>
@@ -171,6 +182,8 @@ class ObjectNone extends Component {
 
     getSlicingDetails = (object) => {
         const quality = object.quality
+        if (!object.slicing.sliced) return false
+
         if (quality === "SUPER") return object.slicing._super
         else if (quality === "DYNAMIC") return object.slicing.dynamic
         else if (quality === "STANDARD") return object.slicing.standard

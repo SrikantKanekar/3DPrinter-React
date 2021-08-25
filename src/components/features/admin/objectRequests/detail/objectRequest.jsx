@@ -1,18 +1,19 @@
 import React, {Component} from 'react';
 import requestService from "../../../../../services/requestService";
 import Canvas from "../../../../canvas/canvas";
-import DirectRequestForm from "./directRequestForm";
-import styles from "./directRequest.module.css"
+import ObjectRequestForm from "./objectRequestForm";
+import styles from "./objectRequest.module.css"
 
-class DirectRequest extends Component {
+class ObjectRequest extends Component {
     state = {
-        request: {}
+        object: {}
     }
 
     async componentDidMount() {
         try {
-            const {data: request} = await requestService.getDirect(this.props.match.params.id)
-            this.setState({request})
+            const {id, email} = this.props.match.params
+            const {data: object} = await requestService.getObjectRequest(email, id)
+            this.setState({object})
         } catch (e) {
             if (e.response && e.response.status === 404) {
                 this.props.history.replace("/not-found");
@@ -21,16 +22,16 @@ class DirectRequest extends Component {
     }
 
     render() {
-        const request = this.state.request
+        const object = this.state.object
 
         return (
             <div className="container">
                 <div className="row">
                     <div className="col-lg-6">
-                        {request.fileUrl && (
+                        {object.fileUrl && (
                             <Canvas
-                                fileUrl={request.fileUrl}
-                                fileExt={request.fileExtension}
+                                fileUrl={object.fileUrl}
+                                fileExt={object.fileExtension}
                                 canvasError={e => void 0}
                             />
                         )}
@@ -38,27 +39,27 @@ class DirectRequest extends Component {
                     <div className="col-lg-6">
                         <div className={styles.content}>
                             <div className={styles.name}>
-                                {request._id}
+                                {object.id}
                             </div>
                             <div>
-                                File: <a href={request.fileUrl}>download</a>
+                                File: <a href={object.fileUrl}>download</a>
                             </div>
                             <div>
-                                User Email: {request.userEmail}
+                                User Email: {object.userEmail}
                             </div>
                             <div>
-                                Time: {new Date(request.requestedAt).toLocaleString()}
+                                Time: {new Date(object.created_at).toLocaleString()}
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div className={styles.settings}>
-                    <DirectRequestForm id={request._id}/>
+                    <ObjectRequestForm email={object.userEmail} id={object.id}/>
                 </div>
             </div>
         );
     }
 }
 
-export default DirectRequest;
+export default ObjectRequest;

@@ -3,55 +3,55 @@ import requestService from "../../../../../services/requestService";
 import {toast} from "react-toastify";
 import {Link} from "react-router-dom";
 import Title from "../../../../util/title/title";
-import styles from "./directRequests.module.css"
+import styles from "./objectRequests.module.css"
 
-class DirectRequests extends Component {
+class ObjectRequests extends Component {
     state = {
-        requests: []
+        objects: []
     }
 
     async componentDidMount() {
         try {
-            const {data: requests} = await requestService.getAllDirect()
-            this.setState({requests})
+            const {data: objects} = await requestService.getAllObjectRequests()
+            this.setState({objects})
         } catch (e) {
             toast.dark(e.message)
         }
     }
 
     render() {
-        const {requests} = this.state
+        const {objects} = this.state
 
         return (
             <div className="container">
-                {requests.length > 0 && (
+                {objects.length > 0 && (
                     <div className={styles.container}>
-                        {requests.map(request =>
-                            <div className={styles.request} key={request._id}>
+                        {objects.map(object =>
+                            <div className={styles.request} key={object.id}>
 
                                 <div className={styles.image}>
-                                    <img src={request.imageUrl} alt=""/>
+                                    <img src={object.imageUrl} alt=""/>
                                 </div>
 
                                 <div className={styles.content}>
                                     <div className={styles.name}>
-                                        <Link to={`/admin/requests/direct/${request._id}`}>ID : {request._id}</Link>
+                                        <Link to={`/admin/objects/${object.userEmail}/${object.id}`}>ID : {object.id}</Link>
                                     </div>
 
-                                    <div>{request.userEmail}</div>
-                                    <div>{new Date(request.requestedAt).toLocaleString()}</div>
+                                    <div>{object.userEmail}</div>
+                                    <div>{new Date(object.created_at).toLocaleString()}</div>
                                 </div>
                             </div>
                         )}
                     </div>
                 )}
 
-                {!requests.length && (
-                    <Title>No Active Direct Requests</Title>
+                {!objects.length && (
+                    <Title>No Active Objects</Title>
                 )}
             </div>
         );
     }
 }
 
-export default DirectRequests;
+export default ObjectRequests;
