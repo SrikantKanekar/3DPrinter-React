@@ -11,32 +11,26 @@
 }
 
 .order {
-    width: 55%;
+    width: 30%;
+    padding-left: 10px;
 }
 
-.status {
-    width: 15%;
+.content {
+    width: 70%;
+    display: flex;
+    flex-direction: row;
+}
+
+.content div {
+    width: 33%;
     text-align: center;
-}
-
-.price {
-    width: 15%;
-    text-align: center;
-}
-
-.delivered {
-    width: 15%;
-    text-align: right;
-}
-
-@media only screen and (max-width: 992px) {
-    .header > div {
-        font-size: 15px;
-    }
+    font-size: 16px;
+    font-weight: 450;
+    color: var(--on-background);
 }
 
 @media only screen and (max-width: 600px) {
-    .header > div {
+    .content div {
         font-size: 11px;
     }
 }

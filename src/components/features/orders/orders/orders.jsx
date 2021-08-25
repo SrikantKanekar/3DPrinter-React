@@ -13,6 +13,10 @@ class Orders extends Component {
     async componentDidMount() {
         try {
             const {data: orders} = await order.getAll()
+            const length = orders.length
+            orders.forEach((order, index) => {
+                order.name = `Order ${length - index}`
+            })
             this.setState({orders})
         } catch (e) {
             toast.dark(e.message)

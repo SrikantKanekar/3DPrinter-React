@@ -39,7 +39,10 @@ class ObjectRequest extends Component {
                     <div className="col-lg-6">
                         <div className={styles.content}>
                             <div className={styles.name}>
-                                {object.id}
+                                {object.name}
+                            </div>
+                            <div>
+                                ID: {object.id}
                             </div>
                             <div>
                                 File: <a href={object.fileUrl}>download</a>

@@ -25,8 +25,15 @@
     margin-top: 13px;
 }
 
+.content > div:not(:first-child) a {
+    font-size: 16px;
+    font-weight: 550;
+    color: var(--primary);
+    margin-bottom: 5px;
+}
+
 .title {
-    width: 90%;
+    width: 75%;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -41,6 +48,12 @@
 
 .title a:hover {
     color: var(--primary);
+}
+
+.quantity {
+    position: absolute;
+    top: 13px;
+    right: 8px;
 }
 
 .buttons {

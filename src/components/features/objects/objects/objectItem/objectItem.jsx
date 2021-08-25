@@ -5,6 +5,8 @@ import styles from "./objectItem.module.css"
 class ObjectItem extends Component {
     render() {
         const {object} = this.props
+        const sliced = object.slicing.sliced
+
         return (
             <div className={styles.object}>
 
@@ -17,9 +19,11 @@ class ObjectItem extends Component {
                         <Link to={`/objects/${object.id}`}>{object.name}</Link>
                     </div>
 
-                    <div className={styles.price}>
-                        <i className="fa fa-inr"/>{this.getObjectPrice(object)}
-                    </div>
+                    {sliced && (
+                        <div className={styles.price}>
+                            <i className="fa fa-inr"/>{this.getObjectPrice(object)}
+                        </div>
+                    )}
 
                     <div className={object.status.toLowerCase()}>
                         {object.status}

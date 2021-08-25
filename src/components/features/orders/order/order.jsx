@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import {toast} from "react-toastify";
 import order from "../../../../services/orderService";
 import auth from "../../../../services/authService";
@@ -6,6 +6,8 @@ import admin from "../../../../services/adminService";
 import NotificationForm from "./notificationForm";
 import OrderObjectItem from "./orderObjectItem/orderObjectItem";
 import styles from "./order.module.css"
+import Title from "../../../util/title/title";
+import Subtitle from "../../../util/subtitle/subtitle";
 
 class Order extends Component {
     state = {
@@ -43,7 +45,7 @@ class Order extends Component {
             objects[index].printingStatus = data
             this.setState({objects})
         } catch (e) {
-            if (e.response && e.response.status === 405){
+            if (e.response && e.response.status === 405) {
                 toast.dark("Please start processing this order first")
             } else toast.dark(e.message)
         }
@@ -53,26 +55,37 @@ class Order extends Component {
         const {order, objects, isAdmin} = this.state
 
         return (
-            <div className="container">
-                <div className={styles.container}>
-                    {objects.map(object =>
-                        <OrderObjectItem
-                            object={object}
-                            isAdmin={isAdmin}
-                            printingStatus={this.printingStatus}
-                            updatePrintingStatus={this.updatePrintingStatus}
-                            key={object.id}/>
-                    )}
-                </div>
+            <Fragment>
+                {order.objectIds && (
+                    <div className="container">
+                        <Title>
+                            {order.objectIds.length} Object{order.objectIds.length === 1 ? "" : "s"} in current order
+                        </Title>
+                        <Subtitle>Status: {order.status}</Subtitle>
+                        {isAdmin && <Subtitle>User: {order.userEmail}</Subtitle>}
+                        <Subtitle>Price: <i className="fa fa-inr"/>{order.price}</Subtitle>
 
-                {isAdmin && (
-                    <div className="row">
-                        <div className={`${styles.notification} col-lg-6`}>
-                            <NotificationForm email={order.userEmail}/>
+                        <div className={styles.container}>
+                            {objects.map(object =>
+                                <OrderObjectItem
+                                    object={object}
+                                    isAdmin={isAdmin}
+                                    printingStatus={this.printingStatus}
+                                    updatePrintingStatus={this.updatePrintingStatus}
+                                    key={object.id}/>
+                            )}
                         </div>
+
+                        {isAdmin && (
+                            <div className="row">
+                                <div className={`${styles.notification} col-lg-6`}>
+                                    <NotificationForm email={order.userEmail}/>
+                                </div>
+                            </div>
+                        )}
                     </div>
                 )}
-            </div>
+            </Fragment>
         );
     }
 

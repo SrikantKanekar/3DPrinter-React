@@ -35,9 +35,10 @@ class ObjectRequests extends Component {
 
                                 <div className={styles.content}>
                                     <div className={styles.name}>
-                                        <Link to={`/admin/objects/${object.userEmail}/${object.id}`}>ID : {object.id}</Link>
+                                        <Link to={`/admin/objects/${object.userEmail}/${object.id}`}>{object.name}</Link>
                                     </div>
 
+                                    <div>ID : {object.id}</div>
                                     <div>{object.userEmail}</div>
                                     <div>{new Date(object.created_at).toLocaleString()}</div>
                                 </div>

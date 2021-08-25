@@ -31,9 +31,14 @@ class OrderObjectItem extends Component {
                         {object.printingStatus}
                     </div>
 
+                    <div className={styles.quantity}>x{object.quantity}</div>
+
                     {isAdmin && (
                         <Fragment>
                             <div>ID : {object.id}</div>
+                            <div>
+                                File: <a href={object.fileUrl}>download</a>
+                            </div>
                             <div className={styles.buttons}>
                                 {printingStatus.map(status =>
                                     <Button

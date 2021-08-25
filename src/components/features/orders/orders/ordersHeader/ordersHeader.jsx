@@ -7,14 +7,11 @@ function OrdersHeader() {
             <div className={styles.order}>
                 Order
             </div>
-            <div className={styles.status}>
-                Status
-            </div>
-            <div className={styles.price}>
-                Price
-            </div>
-            <div className={styles.delivered}>
-                Delivered
+
+            <div className={styles.content}>
+                <div>Status</div>
+                <div>Price</div>
+                <div>Delivered</div>
             </div>
         </div>
     );
