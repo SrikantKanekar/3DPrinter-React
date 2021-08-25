@@ -24,7 +24,8 @@ class OrderObjectItem extends Component {
 
                 <div className={styles.content}>
                     <div className={styles.title}>
-                        <Link to={`/objects/${object.id}`}>{object.name}</Link>
+                        {!isAdmin && <Link to={`/objects/${object.id}`}>{object.name}</Link>}
+                        {isAdmin && <div>{object.name}</div>}
                     </div>
 
                     <div className={object.printingStatus.toLowerCase()}>

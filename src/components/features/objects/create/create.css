@@ -159,32 +159,6 @@
     margin: 30px 5px;
 }
 
-.canvas_name {
-    font-size: 30px;
-    font-weight: 550;
-    color: var(--on-background);
-    margin-bottom: 8px;
-}
-
-[contenteditable="true"].canvas_name {
-    white-space: nowrap;
-    width: 90%;
-    overflow: hidden;
-}
-
-[contenteditable="true"].canvas_name br {
-    display: none;
-}
-
-[contenteditable="true"].canvas_name * {
-    display: inline;
-    white-space: nowrap;
-}
-
-[contenteditable]:focus {
-    outline: 0 solid transparent;
-}
-
 .canvas_size_error {
     font-weight: 450;
     color: var(--error);
@@ -219,11 +193,6 @@
     .box_icon {
         height: 40px;
         margin-bottom: 20px;
-    }
-
-    .canvas_name {
-        font-size: 22px;
-        font-weight: 500;
     }
 
     .canvas_size_error {

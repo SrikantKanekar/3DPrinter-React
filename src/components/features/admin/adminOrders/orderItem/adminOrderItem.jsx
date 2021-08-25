@@ -18,15 +18,12 @@ class AdminOrderItem extends Component {
 
         return (
             <div className={styles.order}>
-                <div className={styles.image}>
-                    <img src="/3d-order-image.jpeg" alt=""/>
-                </div>
-
                 <div className={styles.content}>
                     <div className={styles.name}>
-                        <Link to={`/orders/${order._id}`}>ID : {order._id}</Link>
+                        <Link to={`/orders/${order._id}`}>{order.name}</Link>
                     </div>
 
+                    <div>ID : {order._id}</div>
                     <div>{order.userEmail}</div>
                     <div className={order.status.toLowerCase()}>
                         {order.status}

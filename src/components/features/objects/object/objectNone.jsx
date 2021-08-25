@@ -83,7 +83,7 @@ class ObjectNone extends Component {
                             </div>
 
                             {details === false && (
-                                <div>Price will be added soon</div>
+                                <div>Price will be displayed soon</div>
                             )}
 
                             {details !== false && (

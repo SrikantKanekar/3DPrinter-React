@@ -151,6 +151,7 @@ class Canvas extends Component {
         });
 
         this.scene = scene
+        this.axes = axesHelper
         this.camera = camera
         this.renderer = renderer
         this.sizes = sizes
@@ -268,6 +269,8 @@ class Canvas extends Component {
     }
 
     takeSnapshot = () => {
+        this.resetObjectPosition()
+
         const temporaryCanvas = document.createElement('canvas');
         let context = temporaryCanvas.getContext('2d');
 
@@ -287,6 +290,10 @@ class Canvas extends Component {
             context.drawImage(canvas, x, 0, cHeight, cHeight, 0, 0, cHeight, cHeight);
         }
         return temporaryCanvas.toDataURL("image/png");
+    }
+
+    resetObjectPosition = () => {
+        this.scene.remove(this.axes)
     }
 
     getFileExtension(file) {

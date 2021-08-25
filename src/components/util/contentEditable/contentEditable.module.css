@@ -1,0 +1,45 @@
+.content {
+    font-size: 30px;
+    font-weight: 550;
+    color: var(--on-background);
+    margin-bottom: 4px;
+}
+
+.content:after {
+    position: absolute;
+    content: '\f040';
+    padding-left: 15px;
+    font-size: 15px;
+    font-family: "FontAwesome", sans-serif;
+}
+
+.content:focus::after {
+    visibility: hidden;
+}
+
+[contenteditable="true"].content {
+    white-space: nowrap;
+    width: fit-content;
+    padding-right: 30px;
+    overflow: hidden;
+}
+
+[contenteditable="true"].content br {
+    display: none;
+}
+
+[contenteditable="true"].content * {
+    display: inline;
+    white-space: nowrap;
+}
+
+[contenteditable]:focus {
+    outline: 0 solid transparent;
+}
+
+@media only screen and (max-width: 600px) {
+    .content {
+        font-size: 22px;
+        font-weight: 500;
+    }
+}

@@ -6,6 +6,7 @@ import ProgressBar from "../../../util/progressBar/progressBar";
 import Button from "../../../util/button/button";
 import Canvas from "../../../canvas/canvas";
 import "./create.css"
+import ContentEditable from "../../../util/contentEditable/contentEditable";
 
 class Create extends Component {
     state = {
@@ -131,6 +132,10 @@ class Create extends Component {
         this.setState({sizeError: true})
     }
 
+    handleFilenameChange = (e) => {
+        this.setState({filename: e.target.value})
+    }
+
     render() {
         const {
             dragging,
@@ -216,13 +221,10 @@ class Create extends Component {
                             sizeError={this.handleSizeError}/>
 
                         <div className="canvas_info">
-                            <div
-                                className="canvas_name"
+                            <ContentEditable
                                 contentEditable="true"
-                                onChange={e => this.setState({filename: e.currentTarget.textContent})}
-                                suppressContentEditableWarning={true}>
-                                {this.state.filename}
-                            </div>
+                                html={this.state.filename}
+                                onChange={this.handleFilenameChange}/>
                             {sizeError && (
                                 <div className="canvas_size_error">
                                     Maximum dimension should be less than 200x200x250 mm
