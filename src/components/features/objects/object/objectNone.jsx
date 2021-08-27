@@ -47,7 +47,7 @@ class ObjectNone extends Component {
         }
     }
 
-    toggleAdvancedSettings = () => {
+    toggleSettings = () => {
         this.setState({collapsed: !this.state.collapsed})
     }
 
@@ -164,7 +164,7 @@ class ObjectNone extends Component {
                 )}
 
                 <div className={styles.setting}>
-                    <Button label="Advanced Settings" onClick={this.toggleAdvancedSettings}/>
+                    <Button label="Special Request" onClick={this.toggleSettings}/>
                     <div className={`${styles.collapsible} ${this.state.collapsed ? styles.collapsed : ''}`}>
                         <SettingForm
                             object={object}
@@ -174,7 +174,7 @@ class ObjectNone extends Component {
                 </div>
 
                 <div className={styles.delete_button}>
-                    <Title>Delete</Title>
+                    <Title>Delete Object</Title>
                     <div>
                         <Button label="Delete" onClick={this.handleDelete}/>
                     </div>

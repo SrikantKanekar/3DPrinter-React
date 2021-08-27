@@ -60,13 +60,8 @@ class SettingForm extends Form {
                 {this.renderInput("bottomThickness", "Bottom Thickness (mm)")}
                 {this.renderInput("wallLineCount", "Wall Line Count")}
 
-                {this.renderInput("infillSpeed", "Infill Speed (mm/s)")}
-                {this.renderInput("supportSpeed", "Support Speed (mm/s)")}
-                {this.renderInput("outerWallSpeed", "Outer Wall Speed (mm/s)")}
-                {this.renderInput("innerWallSpeed", "Inner Wall Speed (mm/s)")}
-                {this.renderInput("topBottomSpeed", "Top Bottom Speed (mm/s)")}
-
                 {this.renderSelect("printSequence", "Print Sequence", this.printSequence)}
+                {this.renderTextarea("message", "Message")}
             </FormContainer>
         )
     }
