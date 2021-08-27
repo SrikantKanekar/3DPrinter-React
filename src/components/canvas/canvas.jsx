@@ -294,6 +294,7 @@ class Canvas extends Component {
 
     resetObjectPosition = () => {
         this.scene.remove(this.axes)
+        this.renderer.render(this.scene, this.camera);
     }
 
     getFileExtension(file) {

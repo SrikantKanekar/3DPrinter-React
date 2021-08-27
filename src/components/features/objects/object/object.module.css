@@ -19,6 +19,11 @@
     text-overflow: ellipsis;
 }
 
+.text {
+    font-size: 14px !important;
+    font-weight: 500 !important;
+}
+
 .button_container {
     margin-top: 30px;
 }

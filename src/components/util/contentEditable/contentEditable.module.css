@@ -1,8 +1,18 @@
 .content {
+    width: fit-content;
+    max-width: 100%;
+    margin-bottom: 4px;
+    padding-right: 30px;
+    white-space: nowrap;
+    overflow: hidden;
+
     font-size: 30px;
     font-weight: 550;
     color: var(--on-background);
-    margin-bottom: 4px;
+}
+
+.content:focus {
+    outline: 0 solid transparent;
 }
 
 .content:after {
@@ -11,30 +21,19 @@
     padding-left: 15px;
     font-size: 15px;
     font-family: "FontAwesome", sans-serif;
+    cursor: pointer;
 }
 
 .content:focus::after {
     visibility: hidden;
 }
 
-[contenteditable="true"].content {
-    white-space: nowrap;
-    width: fit-content;
-    padding-right: 30px;
-    overflow: hidden;
-}
-
-[contenteditable="true"].content br {
+.content br {
     display: none;
 }
 
-[contenteditable="true"].content * {
+.content * {
     display: inline;
-    white-space: nowrap;
-}
-
-[contenteditable]:focus {
-    outline: 0 solid transparent;
 }
 
 @media only screen and (max-width: 600px) {
