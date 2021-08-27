@@ -63,7 +63,7 @@ function calculateTotal(objects) {
     return total
 }
 
-function getObjectPrice(object){
+function getObjectPrice(object) {
     const quality = object.quality
     if (quality === "SUPER") return object.slicing._super.price
     else if (quality === "DYNAMIC") return object.slicing.dynamic.price

@@ -55,7 +55,7 @@
     z-index: 1;
 }
 
-.collapsible.active{
+.collapsible.active {
     height: fit-content;
 }
 

@@ -35,7 +35,8 @@ class ObjectRequests extends Component {
 
                                 <div className={styles.content}>
                                     <div className={styles.name}>
-                                        <Link to={`/admin/objects/${object.userEmail}/${object.id}`}>{object.name}</Link>
+                                        <Link
+                                            to={`/admin/objects/${object.userEmail}/${object.id}`}>{object.name}</Link>
                                     </div>
 
                                     <div>ID : {object.id}</div>

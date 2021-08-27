@@ -22,9 +22,9 @@ class Admin extends React.Component {
         return (
             <Fragment>
                 <div className={styles.buttons}>
-                    <Button url="/admin" label="Orders" />
-                    <Button url="/admin/objects" label="Objects" />
-                    <Button url="/admin/requests/special" label="Special Requests" />
+                    <Button url="/admin" label="Orders"/>
+                    <Button url="/admin/objects" label="Objects"/>
+                    <Button url="/admin/requests/special" label="Special Requests"/>
                 </div>
                 <Fragment>
                     <Route path="/admin/objects/:email/:id" component={ObjectRequest}/>

@@ -12,7 +12,7 @@ class ResetPasswordForm extends Form {
         formSuccess: ''
     };
 
-    schema={
+    schema = {
         oldPassword: Joi.string()
             .required()
             .min(4)

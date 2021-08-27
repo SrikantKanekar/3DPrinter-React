@@ -40,7 +40,7 @@ class ObjectCompleted extends Component {
     }
 
     calculateDuration(started, completed) {
-        const duration =  Math.abs(new Date(completed) - new Date(started))
+        const duration = Math.abs(new Date(completed) - new Date(started))
         let minutes = Math.floor((duration / (1000 * 60)) % 60);
         let hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
         minutes = (minutes < 10) ? "0" + minutes : minutes;

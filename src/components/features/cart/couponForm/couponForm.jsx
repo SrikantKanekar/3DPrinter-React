@@ -22,7 +22,7 @@ function CouponForm() {
     );
 }
 
-function handleCouponSubmit(e){
+function handleCouponSubmit(e) {
     e.preventDefault()
     toast.dark("Invalid coupon id")
 }

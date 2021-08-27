@@ -11,10 +11,10 @@ class Notifications extends Component {
     }
 
     async componentDidMount() {
-        try{
+        try {
             const {data: notifications} = await notification.getAll()
             this.setState({notifications})
-        }catch (e) {
+        } catch (e) {
             toast.dark(e.message)
         }
     }

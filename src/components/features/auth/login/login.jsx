@@ -10,7 +10,7 @@ class Login extends Component {
                 <LoginForm {...this.props}/>
 
                 <div className={`col ${styles.content}`}>
-					<span className={styles.txt2}>Don’t have an account? </span>
+                    <span className={styles.txt2}>Don’t have an account? </span>
                     <Link to="/register" className={styles.txt3}>
                         Sign up now
                     </Link>

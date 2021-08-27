@@ -63,8 +63,8 @@
     justify-content: center;
 }
 
-.buttons > button{
-    margin: 15px ;
+.buttons > button {
+    margin: 15px;
     padding: 10px 30px;
     border: solid 2px var(--border-light);
     background: var(--surface);
@@ -97,8 +97,8 @@
         bottom: 15px;
     }
 
-    .buttons > button{
-        margin: 8px ;
+    .buttons > button {
+        margin: 8px;
         padding: 5px 18px;
     }
 }
