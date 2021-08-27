@@ -4,7 +4,7 @@ import {toast} from "react-toastify";
 import Canvas from "../../../canvas/canvas";
 import Button from "../../../util/button/button";
 import styles from "./object.module.css"
-import SettingForm from "./setting/settingForm";
+import RequestForm from "./requestForm";
 import Title from "../../../util/title/title";
 import objectService from "../../../../services/objectService";
 import SelectableCard from "../../../util/card/selectableCard";
@@ -166,10 +166,10 @@ class ObjectNone extends Component {
                 <div className={styles.setting}>
                     <Button label="Special Request" onClick={this.toggleSettings}/>
                     <div className={`${styles.collapsible} ${this.state.collapsed ? styles.collapsed : ''}`}>
-                        <SettingForm
+                        <RequestForm
                             object={object}
-                            updateObject={obj => this.props.updateObject(obj)}
-                            {...this.props}/>
+                            {...this.props}
+                        />
                     </div>
                 </div>
 
