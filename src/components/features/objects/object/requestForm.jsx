@@ -11,8 +11,8 @@ class RequestForm extends Form {
         this.state = {
             data: {
                 message: props.object.message,
-                edit: !!props.object.message
             },
+            edited: !!props.object.message,
             errors: {},
             formError: '',
             formSuccess: ''
@@ -25,8 +25,8 @@ class RequestForm extends Form {
 
     doSubmit = async () => {
         try {
-            const {data} = this.state;
-            await requestService.sendSpecialRequest(this.props.object.id, data)
+            const message = this.state.data.message;
+            await requestService.sendSpecialRequest(this.props.object.id, message)
             this.setState({formSuccess: "Request Sent. You will receive email with Silcing details soon"})
         } catch (ex) {
             if (ex.response && ex.response.status === 400) {
@@ -38,12 +38,12 @@ class RequestForm extends Form {
     render() {
         return (
             <FormContainer
-                buttonLabel={this.state.edit ? 'Edit' : 'Send'}
+                buttonLabel={this.state.edited ? 'Edit' : 'Send'}
                 errors={this.validate()}
                 formError={this.state.formError}
                 formSuccess={this.state.formSuccess}
                 onSubmit={this.handleSubmit}>
-                {this.renderTextarea("message", "Message")}
+                {this.renderTextarea("message", "Send a Special Request Message")}
             </FormContainer>
         )
     }

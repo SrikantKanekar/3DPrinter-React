@@ -2,7 +2,7 @@
     margin-top: 15px;
 }
 
-.content > div {
+.content div {
     font-size: 16px;
     font-weight: 550;
     color: var(--on-surface);
@@ -51,11 +51,11 @@
     justify-content: flex-start;
 }
 
-.setting {
+.special_request {
     margin-top: 60px;
 }
 
-.setting > div {
+.special_request > div {
     margin: 0;
 }
 

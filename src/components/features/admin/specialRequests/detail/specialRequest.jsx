@@ -4,7 +4,6 @@ import Canvas from "../../../../canvas/canvas";
 import SpecialRequestForm from "./specialRequestForm";
 import Title from "../../../../util/title/title";
 import styles from "./specialRequest.module.css"
-import SettingList from "./settingList";
 
 class SpecialRequest extends Component {
     state = {
@@ -24,7 +23,7 @@ class SpecialRequest extends Component {
 
     render() {
         const request = this.state.request
-        const setting = request.setting
+        const message = request.message
 
         return (
             <div className="container">
@@ -56,9 +55,9 @@ class SpecialRequest extends Component {
                     </div>
                 </div>
 
-                <div className={styles.settings}>
-                    <Title>Settings</Title>
-                    {setting && <SettingList setting={setting}/>}
+                <div className={styles.message}>
+                    <Title>Message</Title>
+                    {message}
                 </div>
 
                 <SpecialRequestForm id={request._id}/>

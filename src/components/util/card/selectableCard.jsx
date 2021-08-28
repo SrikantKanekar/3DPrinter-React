@@ -3,11 +3,11 @@ import styles from "./selectableCard.module.css"
 
 class SelectableCard extends Component {
     render() {
-        const {title, description, selected} = this.props;
+        const {title, description, selected, tooltip} = this.props;
         const className = `${styles.selectable} ${selected ? styles.selected : ""}`
 
         return (
-            <div className={styles.card}>
+            <div className={styles.card} data-tip={tooltip}>
                 <div className={className} onClick={this.props.onClick}>
                     <div className={styles.content}>
                         <div className={styles.title}>{title}</div>

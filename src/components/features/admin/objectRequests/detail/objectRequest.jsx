@@ -57,7 +57,7 @@ class ObjectRequest extends Component {
                     </div>
                 </div>
 
-                <div className={styles.settings}>
+                <div className={styles.form}>
                     <ObjectRequestForm email={object.userEmail} id={object.id}/>
                 </div>
             </div>

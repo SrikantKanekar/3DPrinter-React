@@ -8,6 +8,8 @@ import RequestForm from "./requestForm";
 import Title from "../../../util/title/title";
 import objectService from "../../../../services/objectService";
 import SelectableCard from "../../../util/card/selectableCard";
+import ReactTooltip from "react-tooltip";
+import SlicingDetail from "../../util/slicingDetail";
 
 class ObjectNone extends Component {
     state = {
@@ -47,7 +49,7 @@ class ObjectNone extends Component {
         }
     }
 
-    toggleSettings = () => {
+    toggleMessage = () => {
         this.setState({collapsed: !this.state.collapsed})
     }
 
@@ -63,7 +65,7 @@ class ObjectNone extends Component {
     render() {
         const {object} = this.props
         const status = object.status
-        const details = this.getSlicingDetails(object)
+        const sliced = object.slicing.sliced
         const quality = object.quality
 
         return (
@@ -82,36 +84,16 @@ class ObjectNone extends Component {
                                 {object.name}
                             </div>
 
-                            {details === false && (
+                            {!sliced && (
                                 <div className={styles.text}>
                                     Price for your model will be calculated by our team and
                                     you will be notified as soon as it is done
                                 </div>
                             )}
 
-                            {details !== false && (
+                            {sliced && (
                                 <Fragment>
-                                    <div>
-                                        Time: {details.printTime}
-                                    </div>
-                                    <div>
-                                        Material Weight: {details.materialWeight}g
-                                    </div>
-                                    <div>
-                                        Filament length: {details.filament}m
-                                    </div>
-                                    <div>
-                                        Material Cost: <i className="fa fa-inr"/>{details.materialCost}
-                                    </div>
-                                    <div>
-                                        Power Cost: <i className="fa fa-inr"/>{details.powerCost}
-                                    </div>
-                                    <div>
-                                        Labour Cost: <i className="fa fa-inr"/>{details.labourCost}
-                                    </div>
-                                    <div>
-                                        Total Price: <i className="fa fa-inr"/>{details.price}
-                                    </div>
+                                    <SlicingDetail object={object}/>
 
                                     <div className={styles.button_container}>
                                         {status !== "CART" && (
@@ -127,44 +109,56 @@ class ObjectNone extends Component {
                     </div>
                 </div>
 
-                {details !== false && (
+                {sliced && (
                     <div className={styles.cards}>
+                        <ReactTooltip effect="solid"/>
+
                         <SelectableCard
                             title="Super"
                             description={object.slicing._super.price}
                             selected={quality === "SUPER"}
-                            onClick={() => this.handleQualityChange("SUPER")}/>
+                            onClick={() => this.handleQualityChange("SUPER")}
+                            tooltip="Super Quality"
+                        />
 
                         <SelectableCard
                             title="Dynamic"
                             description={object.slicing.dynamic.price}
                             selected={quality === "DYNAMIC"}
-                            onClick={() => this.handleQualityChange("DYNAMIC")}/>
+                            onClick={() => this.handleQualityChange("DYNAMIC")}
+                            tooltip="Dynamic Quality"
+                        />
 
                         <SelectableCard
                             title="Standard"
                             description={object.slicing.standard.price}
                             selected={quality === "STANDARD"}
-                            onClick={() => this.handleQualityChange("STANDARD")}/>
+                            onClick={() => this.handleQualityChange("STANDARD")}
+                            tooltip="Standard Quality"
+                        />
 
                         <SelectableCard
                             title="Low"
                             description={object.slicing.low.price}
                             selected={quality === "LOW"}
-                            onClick={() => this.handleQualityChange("LOW")}/>
+                            onClick={() => this.handleQualityChange("LOW")}
+                            tooltip="Low Quality"
+                        />
 
                         {object.slicing.custom.price != null && (
                             <SelectableCard
                                 title="Custom"
                                 description={object.slicing.custom.price}
                                 selected={quality === "CUSTOM"}
-                                onClick={() => this.handleQualityChange("CUSTOM")}/>
+                                onClick={() => this.handleQualityChange("CUSTOM")}
+                                tooltip="Custom Quality"
+                            />
                         )}
                     </div>
                 )}
 
-                <div className={styles.setting}>
-                    <Button label="Special Request" onClick={this.toggleSettings}/>
+                <div className={styles.special_request}>
+                    <Button label="Special Request" onClick={this.toggleMessage}/>
                     <div className={`${styles.collapsible} ${this.state.collapsed ? styles.collapsed : ''}`}>
                         <RequestForm
                             object={object}
@@ -181,17 +175,6 @@ class ObjectNone extends Component {
                 </div>
             </Fragment>
         );
-    }
-
-    getSlicingDetails = (object) => {
-        const quality = object.quality
-        if (!object.slicing.sliced) return false
-
-        if (quality === "SUPER") return object.slicing._super
-        else if (quality === "DYNAMIC") return object.slicing.dynamic
-        else if (quality === "STANDARD") return object.slicing.standard
-        else if (quality === "LOW") return object.slicing.low
-        else if (quality === "CUSTOM") return object.slicing.custom
     }
 }
 
