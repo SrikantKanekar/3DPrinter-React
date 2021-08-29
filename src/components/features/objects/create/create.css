@@ -151,6 +151,13 @@
     margin: 10px 40px;
 }
 
+.tooltip_icon {
+    position: absolute;
+    bottom: 16px;
+    right: 28px;
+    font-size: 10px !important;
+}
+
 /************
   Canvas
 ************/

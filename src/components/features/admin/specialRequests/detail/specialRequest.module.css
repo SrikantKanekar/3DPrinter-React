@@ -27,6 +27,7 @@
 }
 
 .message {
+    word-wrap: break-word;
     margin: 50px 0;
 }
 

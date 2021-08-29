@@ -61,7 +61,7 @@ class OrderObjectItem extends Component {
                 <ReactTooltip id='orderObject' aria-haspopup='true' role='example'>
                     <p>Quality : {object.quality}</p>
                     <SlicingDetail object={object}/>
-                    {object.quality === "CUSTOM" && <div>Message: {object.message}</div>}
+                    {/*{object.quality === "CUSTOM" && <p>Message: {object.message}</p>}*/}
                 </ReactTooltip>
             </Fragment>
         );

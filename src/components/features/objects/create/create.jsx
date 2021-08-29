@@ -7,6 +7,7 @@ import Button from "../../../util/button/button";
 import Canvas from "../../../canvas/canvas";
 import ContentEditable from "../../../util/contentEditable/contentEditable";
 import "./create.css"
+import ReactTooltip from "react-tooltip";
 
 class Create extends Component {
     state = {
@@ -209,6 +210,12 @@ class Create extends Component {
                         <div className="progress_container">
                             <ProgressBar progress={progress}/>
                         </div>
+
+                        <i
+                            className="fa fa-exclamation-circle tooltip_icon"
+                            data-tip="Maximum dimension should be less than 210x210x245 mm. Only Stl, Obj and glb files are currently supported."
+                        />
+                        <ReactTooltip/>
                     </form>
                 )}
 
