@@ -5,8 +5,8 @@ import {toast} from "react-toastify";
 import ProgressBar from "../../../util/progressBar/progressBar";
 import Button from "../../../util/button/button";
 import Canvas from "../../../canvas/canvas";
-import "./create.css"
 import ContentEditable from "../../../util/contentEditable/contentEditable";
+import "./create.css"
 
 class Create extends Component {
     state = {
@@ -227,7 +227,7 @@ class Create extends Component {
                                 onChange={this.handleFilenameChange}/>
                             {sizeError && (
                                 <div className="canvas_size_error">
-                                    Maximum dimension should be less than 200x200x250 mm
+                                    Maximum dimension should be less than 210x210x245 mm
                                 </div>
                             )}
                         </div>

@@ -236,7 +236,7 @@ class Canvas extends Component {
     checkSizeError = (box) => {
         const vector = new THREE.Vector3()
         box.getSize(vector)
-        if (vector.x > 200 || vector.y > 200 || vector.z > 250) this.props.sizeError()
+        if (vector.x > 210 || vector.y > 210 || vector.z > 245) this.props.sizeError()
     }
 
     showCanvasError = (e) => {

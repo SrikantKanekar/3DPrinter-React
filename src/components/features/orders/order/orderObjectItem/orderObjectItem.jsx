@@ -65,7 +65,7 @@ class OrderObjectItem extends Component {
                 </ReactTooltip>
             </Fragment>
         );
-    ``
-
+    }
+}
 
 export default OrderObjectItem;
