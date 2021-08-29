@@ -33,8 +33,16 @@
     color: var(--primary);
 }
 
+.logo img{
+    width: 140px;
+}
+
 .container.scrolled .logo {
     font-size: 24px;
+}
+
+.container.scrolled .logo img{
+    width: 80px;
 }
 
 .center > ul > li {
@@ -205,7 +213,15 @@
         font-size: 20px;
     }
 
+    .logo img{
+        width: 100px;
+    }
+
     .container.scrolled .logo {
         font-size: 18px;
+    }
+
+    .container.scrolled .logo img{
+        width: 70px;
     }
 }

@@ -109,7 +109,7 @@ class Checkout extends Form {
 
         const {price, _id} = result.data;
 
-        const logo = process.env.PUBLIC_URL + '/logo192.png'
+        const logo = process.env.PUBLIC_URL + '/logo.jpg'
         const options = {
             key: "rzp_test_oude3vJ48mVrXI",
             amount: price.toString(),

@@ -42,6 +42,13 @@ class ObjectItem extends Component {
                 return "SLICING"
             }
         }
+        if (object.status === "TRACKING"){
+            if (object.printingStatus === "PENDING"){
+                return "PRINTING PENDING"
+            } else {
+                return object.printingStatus
+            }
+        }
         return object.status
     }
 

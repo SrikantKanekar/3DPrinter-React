@@ -45,9 +45,13 @@ class Header extends Component {
             <header className={styles.header}>
                 <div className="container">
                     <div className={`${styles.container} ${scrolled}`}>
-                        <div className={styles.logo}>
-                            <Link to="/">AvvonMark</Link>
-                        </div>
+                        {/*<div className={styles.logo}>*/}
+                        {/*    <Link to="/">AvvonMark</Link>*/}
+                        {/*</div>*/}
+
+                        <Link to="/" className={styles.logo}>
+                            <img src="/logo.jpg" alt="Logo"/>
+                        </Link>
 
                         <nav className={styles.center}>
                             <ul>
