@@ -1,39 +1,13 @@
 .content {
     width: fit-content;
-    max-width: 100%;
-    margin-bottom: 4px;
-    padding-right: 30px;
-    white-space: nowrap;
-    overflow: hidden;
-
     font-size: 30px;
     font-weight: 550;
     color: var(--on-background);
+    background: none;
 }
 
 .content:focus {
     outline: 0 solid transparent;
-}
-
-.content:after {
-    position: absolute;
-    content: '\f040';
-    padding-left: 15px;
-    font-size: 15px;
-    font-family: "FontAwesome", sans-serif;
-    cursor: pointer;
-}
-
-.content:focus::after {
-    visibility: hidden;
-}
-
-.content br {
-    display: none;
-}
-
-.content * {
-    display: inline;
 }
 
 @media only screen and (max-width: 600px) {

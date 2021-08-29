@@ -6,6 +6,7 @@ class ObjectItem extends Component {
     render() {
         const {object} = this.props
         const sliced = object.slicing.sliced
+        const status = object.status
 
         return (
             <div className={styles.object}>
@@ -25,12 +26,23 @@ class ObjectItem extends Component {
                         </div>
                     )}
 
-                    <div className={object.status.toLowerCase()}>
-                        {object.status}
+                    <div className={status.toLowerCase()}>
+                        {this.renderStatus(object)}
                     </div>
                 </div>
             </div>
         );
+    }
+
+    renderStatus = (object) => {
+        if (object.status === "NONE"){
+            if (object.slicing.sliced){
+                return "SLICED"
+            } else {
+                return "SLICING"
+            }
+        }
+        return object.status
     }
 
     getObjectPrice = (object) => {

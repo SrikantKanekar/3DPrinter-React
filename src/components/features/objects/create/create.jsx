@@ -132,8 +132,8 @@ class Create extends Component {
         this.setState({sizeError: true})
     }
 
-    handleFilenameChange = (e) => {
-        this.setState({filename: e.target.value})
+    handleFilenameChange = (value) => {
+        this.setState({filename: value})
     }
 
     render() {
@@ -222,8 +222,7 @@ class Create extends Component {
 
                         <div className="canvas_info">
                             <ContentEditable
-                                contentEditable="true"
-                                html={this.state.filename}
+                                value={this.state.filename}
                                 onChange={this.handleFilenameChange}/>
                             {sizeError && (
                                 <div className="canvas_size_error">
