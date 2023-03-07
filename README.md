@@ -39,6 +39,8 @@ https://user-images.githubusercontent.com/63180976/223353077-0ad794f7-1250-44b9-
 
 ### Account screens
 
+<img src="/screenshots/register.png" width="30%"> &nbsp; 
+<img src="/screenshots/login.png" width="30%"> &nbsp; 
 <img src="/screenshots/account1.png" width="30%"> &nbsp; 
 <img src="/screenshots/account2.png" width="30%"> &nbsp; 
 <img src="/screenshots/account3.png" width="30%"> &nbsp; 
