@@ -1,70 +1,58 @@
-# Getting Started with Create React App
+# 3D Printer App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A 3D printer react frontend application 
 
-## Available Scripts
+## Screenshots
 
-In the project directory, you can run:
+### Landing screens
 
-### `npm start`
+<img src="/screenshots/landing1.png" width="260"> &emsp; 
+<img src="/screenshots/landing2.png" width="260"> &emsp; 
+<img src="/screenshots/landing3.png" width="260"> &emsp; 
+<img src="/screenshots/landing4.png" width="260"> &emsp; 
+<img src="/screenshots/landing5.png" width="260"> &emsp; 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Create object screen
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+<img src="/screenshots/create1.png" width="260"> &emsp; 
+<img src="/screenshots/create2.png" width="260"> &emsp; 
+<img src="/screenshots/create3.png" width="260"> &emsp; 
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+https://user-images.githubusercontent.com/63180976/223353077-0ad794f7-1250-44b9-8261-8703dfe1f372.mp4
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Object screens
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<img src="/screenshots/objects1.png" width="260"> &emsp; 
+<img src="/screenshots/objects2.png" width="260"> &emsp; 
+<img src="/screenshots/objects3.png" width="260"> &emsp; 
+<img src="/screenshots/objects4.png" width="260"> &emsp; 
+<img src="/screenshots/orders.png" width="260"> &emsp; 
+<img src="/screenshots/notifications.png" width="260"> &emsp; 
 
-### `npm run eject`
+### Account screens
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+<img src="/screenshots/account1.png" width="260"> &emsp; 
+<img src="/screenshots/account2.png" width="260"> &emsp; 
+<img src="/screenshots/account3.png" width="260"> &emsp; 
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Admin screens
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+<img src="/screenshots/admin1.png" width="260"> &emsp; 
+<img src="/screenshots/admin2.png" width="260"> &emsp; 
+<img src="/screenshots/admin3.png" width="260"> &emsp; 
+<img src="/screenshots/admin4.png" width="260"> &emsp; 
+<img src="/screenshots/admin5.png" width="260"> &emsp; 
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Checkout screens
 
-## Learn More
+<img src="/screenshots/cart1.png" width="260"> &emsp; 
+<img src="/screenshots/cart2.png" width="260"> &emsp; 
+<img src="/screenshots/checkout.png" width="260"> &emsp; 
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Theme
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<img src="/screenshots/light.png" width="260"> &emsp; 
+<img src="/screenshots/dark.png" width="260"> &emsp; 
