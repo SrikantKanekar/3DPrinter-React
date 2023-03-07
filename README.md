@@ -1,6 +1,6 @@
 # 3D Printer App
 
-A 3D printer react frontend application 
+A 3D printing react frontend application, where the users can upload the design file, get estimates for different printing qualities, place the order, make online payment and get the 3D print model home delivered.
 
 ## Screenshots
 
