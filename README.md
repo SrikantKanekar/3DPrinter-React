@@ -1,6 +1,6 @@
 # 3D Printer App
 
-A 3D printing react frontend application, where the users can upload the design file, get estimates for different printing qualities, place the order, make online payment and get the 3D print model home delivered.
+A React frontend application, providing an online platform for 3D designers. Users can easily upload their designs in various formats and receive a 3D rendering of the object before it is printed. The website would have its own 3D printing facilities, allowing for quick and efficient printing of objects. Pricing for printing would be calculated based on the size, complexity, and materials used, and secure payment options would be provided. Once printed, the objects would be delivered directly to the customer. Customers can track their orders and the website would provide customer support to ensure a smooth experience.
 
 Backend Api - https://github.com/SrikantKanekar/3DPrinter-Api
 
